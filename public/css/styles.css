@@ -1,29 +1,25 @@
-.content{
-    background-image: radial-gradient(#1484f5,#001F3F);
-    /* background-color: rgb(0, 255, 191); */
-    /* background-color: rgb(0, 174, 255); */
-    /* background-color: linen; */
-}
-.box-title{
+.box-title {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.title{
+
+.title {
     color: white;
     font-size: 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.navbar, .footer{
+.navbar,
+.footer {
     border: none;
 }
 
-.navbar{
+.navbar {
     position: sticky;
 }
 
-.square{
+.square {
     height: 30px;
     width: 30px;
     background-color: red;
@@ -35,7 +31,8 @@
     justify-content: center;
     align-items: center;
 }
-.square .letter{
+
+.square .letter {
     text-decoration: none;
     /* display: flex;
     justify-content: center;
@@ -43,6 +40,7 @@
     text-align: center;
     color: red;
 }
-.upper{
+
+.upper {
     text-transform: capitalize;
 }

@@ -30,3 +30,11 @@ Auth::routes(); //Esta ruta en realidad es un paquete de rutas
 Route::get('/home', 'HomeController@index')->name('home'); //está ruta es la que controla al momento de registrarnos -> sería el controlador HomeController
 
 //Por ejemplo una ruta
+
+Route::get('/grade_section','MaintainerController@GradesSections');
+Route::get('/course_grade','MaintainerController@DefCoursesGrades');
+Route::get('/courses','MaintainerController@Courses');
+Route::get('/subjects','MaintainerController@Capacity');
+Route::get('/personnel','MaintainerController@Workers');
+Route::get('/catedra','MaintainerController@Mcatedra');
+Route::get('/register_notes','MaintainerController@RegisterNotes');

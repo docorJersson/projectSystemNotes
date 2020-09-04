@@ -16,6 +16,16 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+
+ <link href="{{asset('/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="/build/css/custom.min.css" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -210,32 +220,28 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              {{--  <li class="nav-item">
-                <a href="{{URL::to('categories')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon text-warning"></i>
-                  <p class="text-white">Dashboard v1</p>
-                </a>
+              <li class="nav-item">
+                <a href="/grade_section" class="text-white nav-link">Grados y Secciones</a>
+              </li>
+               <li class="nav-item">
+                <a href="/course_grade" class="text-white nav-link">Cursos por Grados</a>
+              </li>
+               <li class="nav-item">
+                <a href="/courses" class="text-white nav-link">Cursos</a>
+              </li>
+               <li class="nav-item">
+               <a href="/subjects" class="text-white nav-link">Asignaturas/Capacidades</a>
               </li>
               <li class="nav-item">
-                <a href="{{URL::to('units')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon text-warning"></i>
-                  <p class="text-white">Dashboard v2</p>
-                </a>
+              <a href="/personnel" class="text-white nav-link">Personal</a>
               </li>
               <li class="nav-item">
-                <a href="{{URL::to('products')}}" class="nav-link">
-                  <i class="fa fa-spinner fa-pulse fa-3x fa-fw nav-icon text-warning"></i>
-                  <p class="text-white">Dashboard v3</p>
-                </a>
-              </li>  --}}
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  {{--  <i class="fa fa-spinner fa-spin nav-icon text-warning"></i>   --}}
-                  <i class="fa fa-cog fa-spin fa-3x fa-fw nav-icon text-warning"></i>
-                  <p class="text-white">Categorie</p>
-                </a>
+             <a href="/register_notes" class="text-white">Registro de Notas</a>
               </li>
+              
+              
+              
+              
             </ul>
           </li>
         </ul>
