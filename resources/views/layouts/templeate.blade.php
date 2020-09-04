@@ -217,7 +217,7 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p class="text-white">
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
+                {{--  <i class="right fas fa-angle-left"></i>  --}}
               </p>
             </a>
               <li class="nav-item">
