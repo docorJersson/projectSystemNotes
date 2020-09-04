@@ -1,7 +1,7 @@
 @extends('layouts.templeate')
 
 @section('content')
-<div class="row">
+<div class="container-fluid row">
     <div class="col-md-12 col-sm-12  ">
       <div class="x_panel">
         <div class="x_title">
