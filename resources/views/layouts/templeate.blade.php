@@ -142,10 +142,6 @@
             <li class="nav-item">
               <a href="/register_notes" class="text-white">Registro de Notas</a>
             </li>
-
-
-
-
           </ul>
           </li>
           </ul>
