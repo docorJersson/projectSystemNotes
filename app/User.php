@@ -18,7 +18,7 @@ class User extends Authenticatable
     protected $primaryKey = 'idUser';
     protected $table = 'users';
     protected $fillable = [
-        'nameUser', 'school', 'password', 'idRole'
+        'name', 'email', 'password',
     ];
     public $timestamps = false;
 
@@ -30,18 +30,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-
-    // public function role()
-    // {
-    //     return $this->belongsTo('App\Role');
-    // }
-
-    // public function isAdmin(){
-    //     if ($this->role->role=='Administrador') {
-    //         # code...
-    //         return true;
-    //     }
-    //     return false;
-    // }
 }
