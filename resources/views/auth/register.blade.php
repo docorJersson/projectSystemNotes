@@ -9,35 +9,33 @@
                     @csrf
                     <h2>Sign Up</h2>
                     <div class="form-group row">
-                        <label for="nameUser" class="col-12">{{ __('Name:') }}</label>
+                        <label for="name" class="col-12">{{ __('Name') }}</label>
 
                         <div class="col-12">
-                            <input id="nameUser" type="text" class="form-control @error('name') is-invalid @enderror"
-                                name="nameUser" value="{{ old('nameUser') }}" required autocomplete="name" autofocus>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                            @error('nameUser')
+                            @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
                     </div>
-
                     <div class="form-group row">
-                        <label for="name" class="col-12">{{ __('School:') }}</label>
+                        <label for="email" class="col-12">{{ __('E-Mail Address') }}</label>
 
                         <div class="col-12">
-                            <input id="school" type="text" class="form-control @error('school') is-invalid @enderror"
-                                name="school" value="{{ old('school') }}" required autocomplete="school" autofocus>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                            @error('school')
+                            @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label for="password" class="col-12">{{ __('Password:') }}</label>
 
@@ -62,20 +60,6 @@
                                 name="password_confirmation" required autocomplete="new-password">
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        <label for="idRole" class="col-12 col-md-2">{{ __('Role:') }}</label>
-
-                        <div class="col-12 col-md-10">
-                            <select name="idRole" id="role" class="form-control">
-                                <option value="">-- Choose Role --</option>
-                                @foreach ($roles as $role)
-                                <option value="{{$role->idRole}}">{{$role->roleName}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
                     <div class="form-group row mb-0">
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary">
