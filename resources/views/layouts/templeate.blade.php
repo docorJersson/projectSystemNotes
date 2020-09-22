@@ -214,7 +214,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link bg-blue">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fa fa-th fa-lg" aria-hidden="true"></i>
               <p class="text-white">
                 Dashboard
                 {{--  <i class="right fas fa-angle-left"></i>  --}}
@@ -227,7 +227,7 @@
                 <a href="/course_grade" class="text-white nav-link">Cursos por Grados</a>
               </li>
                <li class="nav-item">
-                <a href="/courses" class="text-white nav-link">Cursos</a>
+                <a href="{{URL::to('/courses')}}" class="text-white nav-link">Cursos</a>
               </li>
                <li class="nav-item">
                <a href="/subjects" class="text-white nav-link">Asignaturas/Capacidades</a>
@@ -239,9 +239,7 @@
              <a href="/register_notes" class="text-white">Registro de Notas</a>
               </li>
               
-              
-              
-              
+        
             </ul>
           </li>
         </ul>

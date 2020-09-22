@@ -1,8 +1,8 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Edit" title="Edit">
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Edit{{$curso->idCourse}}" title="Edit">
     <i class="fa fa-edit fa-sm" aria-hidden="true"></i>
     </button>
           <!-- Modal -->
-      <div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="Edit{{$curso->idCourse}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -17,12 +17,12 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12  form-group">
                         <label for="">Codigo*</label>
-                        <input type="text" name="codeCourse" class="form-control" required>
+                        <input type="text" name="codeCourse" class="form-control" value="{{$curso->codeCourse}}" required>
                     </div>
 
                     <div class="col-md-12 col-sm-12 form-group"> 
                         <label for="">Curso*</label>
-                        <input type="text" name="descriptionCourse" class="form-control" required>
+                        <input type="text" name="descriptionCourse" class="form-control" value="{{$curso->descriptionCourse}}" required>
                     </div>
 
                     <div class="col-md-12 col-sm-12  form-group">
