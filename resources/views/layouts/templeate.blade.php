@@ -71,7 +71,7 @@
           <li class="nav-item dropdown">
             <div class="square" id="navbarDropdown">
               <a href="#" class="letter text-white" id="letter" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" v-pre>{{auth()->user()->nameUser}} <span class="caret"
+                aria-haspopup="true" aria-expanded="false" v-pre>{{auth()->user()->name}} <span class="caret"
                   id="navbarDropdown"></span></a>
 
               <div class="dropdown-menu dropdown-menu-right text-navy" aria-labelledby="navbarDropdown">
