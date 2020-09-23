@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Degree extends Model
 {
-    protected $table='degrees';
-    protected $primaryKey='idDegree';
-    protected $fillable=['descriptionDegree','idLevel'];
+    protected $table='grades';
+    protected $primaryKey='idGrade';
+    protected $fillable=['descriptionGrade','idLevel'];
     public $timestamps=false;
 }

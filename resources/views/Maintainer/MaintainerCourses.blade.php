@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid row">
-    <div class="col-md-12 col-sm-12  ">
+    <div class="col-md-12 col-sm-12" style="font-family: Arial, Helvetica, sans-serif;font-size: 14px;color:black">
       <div class="x_panel">
         <div class="x_title">
           <h2>Mantenimiento de Cursos</h2>
@@ -24,26 +24,31 @@
                     </div>
                     <div class="col-md-12 form-group form-group">
                         <table class="table table-bordered">
-                            <thead class="">
+                            <thead class="thead-dark">
                                 <tr>
                                     <th>Código</th>
                                     <th>Curso</th>
                                     <th>Nivel</th>
+                                    <th>Grado</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>
-                                        @include('Maintainer.EditCourses')
-                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                    </td>
-                                </tr>
+                                @foreach($course as $curso)
+                                    <tr>
+                                        <th scope="row">{{$curso->codeCourse}}</th>
+                                        <td>{{$curso->descriptionCourse}}</td>
+                                        <td>{{$curso->descriptionLevel}}</td>
+                                        <td>{{$curso->descriptionGrade}}</td>
+                                        <td>
+                                            @include('Maintainer.EditCourses')
+                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table> 
+                        {{$course->links()}}
                     </div>
                     <div class="col-md-2 col-sm-6">
                         <button class="btn btn-app bg-secondary text-white"><i class="fa fa-reply"></i> Salir</button>
