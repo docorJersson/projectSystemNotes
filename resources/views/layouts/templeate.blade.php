@@ -116,40 +116,9 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-<<<<<<< HEAD
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link bg-blue">
-              <i class="fa fa-th fa-lg" aria-hidden="true"></i>
-              <p class="text-white">
-                Dashboard
-                {{--  <i class="right fas fa-angle-left"></i>  --}}
-              </p>
-            </a>
-              <li class="nav-item">
-                <a href="/grade_section" class="text-white nav-link">Grados y Secciones</a>
-              </li>
-               <li class="nav-item">
-                <a href="/course_grade" class="text-white nav-link">Cursos por Grados</a>
-              </li>
-               <li class="nav-item">
-                <a href="{{URL::to('/courses')}}" class="text-white nav-link">Cursos</a>
-              </li>
-               <li class="nav-item">
-               <a href="/subjects" class="text-white nav-link">Asignaturas/Capacidades</a>
-              </li>
-              <li class="nav-item">
-              <a href="/personnel" class="text-white nav-link">Personal</a>
-              </li>
-              <li class="nav-item">
-             <a href="/register_notes" class="text-white">Registro de Notas</a>
-              </li>
-              
-        
-            </ul>
-=======
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link bg-blue">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="fa fa-th fa-lg" aria-hidden="true"></i>
                 <p class="text-white">
                   Dashboard
                   {{--  <i class="right fas fa-angle-left"></i>  --}}
@@ -162,7 +131,7 @@
               <a href="/course_grade" class="text-white nav-link">Cursos por Grados</a>
             </li>
             <li class="nav-item">
-              <a href="/courses" class="text-white nav-link">Cursos</a>
+              <a href="{{URL::to('/courses')}}" class="text-white nav-link">Cursos</a>
             </li>
             <li class="nav-item">
               <a href="/subjects" class="text-white nav-link">Asignaturas/Capacidades</a>
@@ -173,8 +142,9 @@
             <li class="nav-item">
               <a href="/register_notes" class="text-white">Registro de Notas</a>
             </li>
+
+
           </ul>
->>>>>>> 84319d2cd35da5fe8cd89196199cb736f14cb82c
           </li>
           </ul>
         </nav>
