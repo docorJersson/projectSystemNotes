@@ -9,7 +9,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <div class="col-md-8 center-margin">      
+                <div class="col-md-8 center-margin">
                     <form class="form-horizontal form-label-left">
                         <div class="row">
                             <div class="col-md-10 col-sm-12 form-group">
@@ -28,46 +28,48 @@
                             </div>
 
                             <div class="col-md-2 col-sm-12  form-group">
-                                    <label for="">Año Escolar*</label>
-                                    <input type="text" class="form-control" required>
+                                <label for="">Año Escolar*</label>
+                                <input type="text" class="form-control" required>
                             </div>
 
                             <div class="col-md-3 col-sm-12  form-group">
-                                    <label for="">Nivel*</label>
-                                    <select id="heard" name="idLevel " class="form-control" required>
-                                        <option value="">Choose..</option>
-                                    </select>
+                                <label for="">Nivel*</label>
+                                <select id="heard" name="idLevel " class="form-control" required>
+                                    <option value="">Choose..</option>
+                                </select>
                             </div>
                             <div class="col-md-3 col-sm-12  form-group">
-                                    <label for="">Grado*</label>
-                                    <select id="heard" name="idDegree " class="form-control" required>
-                                        <option value="">Choose..</option>
-                                    </select>
+                                <label for="">Grado*</label>
+                                <select id="heard" name="idDegree " class="form-control" required>
+                                    <option value="">Choose..</option>
+                                </select>
                             </div>
                             <div class="col-md-3 col-sm-12  form-group">
-                                    <label for="">Seccion*</label>
-                                    <select id="heard" name="idSection " class="form-control" required>
-                                        <option value="">Choose..</option>
-                                    </select>
+                                <label for="">Seccion*</label>
+                                <select id="heard" name="idSection " class="form-control" required>
+                                    <option value="">Choose..</option>
+                                </select>
                             </div>
                             <div class="col-md-3 col-sm-12  form-group">
-                                    <label for="">Curso*</label>
-                                    <select id="heard" name="idCourse " class="form-control" required>
-                                        <option value="">Choose..</option>
-                                    </select>
+                                <label for="">Curso*</label>
+                                <select id="heard" name="idCourse " class="form-control" required>
+                                    <option value="">Choose..</option>
+                                </select>
                             </div>
                             <div class="col-md-12 col-sm-12 form-group p-3">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12 center-margin">
                                         <a class="btn btn-app bg-info text-white"><i class="fa fa-bars"></i> Mostrar</a>
-                                        <button class="btn btn-app bg-success text-white" type="submit"><i class="fa fa-save"></i> Insertar</button>
-                                        <a class="btn btn-app bg-secondary text-white"><i class="fa fa-reply"></i> Salir</a>
+                                        <button class="btn btn-app bg-success text-white" type="submit"><i
+                                                class="fa fa-save"></i> Insertar</button>
+                                        <a class="btn btn-app bg-secondary text-white"><i class="fa fa-reply"></i>
+                                            Salir</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </form>
-                                
+
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -84,9 +86,9 @@
                                 <td>3er Grado</td>
                                 <td>A</td>
                             </tr>
-                         
+
                         </tbody>
-                    </table> 
+                    </table>
                 </div>
             </div>
         </div>
