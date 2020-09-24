@@ -26,6 +26,16 @@
 
   <!-- Custom Theme Style -->
   <link href="/build/css/custom.min.css" rel="stylesheet">
+  <!--link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"-->
+  <!--DATATABLES CSS-->
+  <link rel="stylesheet" href="{{asset('assets/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <!--select-2-->
+  <link rel="stylesheet" href="{{asset('assets/adminlte/plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+
+
 
 </head>
 
@@ -71,7 +81,7 @@
           <li class="nav-item dropdown">
             <div class="square" id="navbarDropdown">
               <a href="#" class="letter text-white" id="letter" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" v-pre>{{auth()->user()->nameUser}} <span class="caret"
+                aria-haspopup="true" aria-expanded="false" v-pre>{{auth()->user()->name}} <span class="caret"
                   id="navbarDropdown"></span></a>
 
               <div class="dropdown-menu dropdown-menu-right text-navy" aria-labelledby="navbarDropdown">
@@ -116,7 +126,6 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-<<<<<<< HEAD
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link bg-blue">
               <i class="fa fa-th fa-lg" aria-hidden="true"></i>
@@ -125,8 +134,9 @@
                 {{--  <i class="right fas fa-angle-left"></i>  --}}
               </p>
             </a>
-              <li class="nav-item">
-                <a href="/grade_section" class="text-white nav-link">Grados y Secciones</a>
+            </li>
+              <li class="nav-item has-treeview">
+                <a href="/grade_section" class="text-white nav-link"><p>  Grados y Secciones</p></a>
               </li>
                <li class="nav-item">
                 <a href="/course_grade" class="text-white nav-link">Cursos por Grados</a>
@@ -143,40 +153,10 @@
               <li class="nav-item">
              <a href="/register_notes" class="text-white">Registro de Notas</a>
               </li>
-              
-        
+              <li class="nav-item">
+                <a href="/catedra" class="text-white">Cátedra</a>
+                 </li>
             </ul>
-=======
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link bg-blue">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p class="text-white">
-                  Dashboard
-                  {{--  <i class="right fas fa-angle-left"></i>  --}}
-                </p>
-              </a>
-            <li class="nav-item">
-              <a href="/grade_section" class="text-white nav-link">Grados y Secciones</a>
-            </li>
-            <li class="nav-item">
-              <a href="/course_grade" class="text-white nav-link">Cursos por Grados</a>
-            </li>
-            <li class="nav-item">
-              <a href="/courses" class="text-white nav-link">Cursos</a>
-            </li>
-            <li class="nav-item">
-              <a href="/subjects" class="text-white nav-link">Asignaturas/Capacidades</a>
-            </li>
-            <li class="nav-item">
-              <a href="/personnel" class="text-white nav-link">Personal</a>
-            </li>
-            <li class="nav-item">
-              <a href="/register_notes" class="text-white">Registro de Notas</a>
-            </li>
-          </ul>
->>>>>>> 84319d2cd35da5fe8cd89196199cb736f14cb82c
-          </li>
-          </ul>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
@@ -220,6 +200,15 @@
   <!-- AdminLTE for demo purposes -->
   <script src="{{asset('assets/adminlte/dist/js/demo.js')}}"></script>
   <script src="{{asset('js/scripts.js')}}"></script>
+  <!--DATATABLES-->
+  <script src="{{asset('assets/adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('assets/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('assets/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+  <script src="{{asset('assets/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+
+  <!--SELECT 2 LIBRERIAS-->
+  <script src="{{asset('assets/adminlte/plugins/select2/js/select2.full.min.js')}}"></script>
+  <script src="{{asset('datatable.js')}}"></script>
 </body>
 
 </html>

@@ -17,10 +17,11 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $grade=Degree::all();
+        /*$grade=Degree::all();
         $level=Level::all();
         $course=DB::table('courses as c')->join('levels as l','c.idlevel','=','l.idLevel')->join ('grades as g','c.idGrade','=','g.idGrade')->select('c.idCourse','c.codeCourse','c.descriptionCourse','l.descriptionLevel','g.descriptionGrade')->orderby('c.idCourse','asc')->paginate(8);
-        return view('Maintainer.MaintainerCourses',['grade'=>$grade,'level'=>$level,'course'=>$course]);
+        return view('Maintainer.MaintainerCourses',['grade'=>$grade,'level'=>$level,'course'=>$course]);*/
+        return view('Maintainer.MaintainerCourses');
     }
 
     /**

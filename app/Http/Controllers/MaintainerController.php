@@ -8,7 +8,7 @@ class MaintainerController extends Controller
 {
     public function GradesSections()
     {
-        return view('Maintainer.CoursesxGrades');
+        return view('Maintainer.GradeSeccion');
     }
 
     public function DefCoursesGrades()
