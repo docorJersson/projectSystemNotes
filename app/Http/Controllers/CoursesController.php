@@ -6,6 +6,7 @@ use App\Course;
 use App\Level;
 use App\Section;
 use App\Degree;
+use App\Period;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,10 @@ class CoursesController extends Controller
     public function index()
     {
         $grade = Degree::all();
+        $getPeriod = DB::select('select distinct yearPeriod  from periodsYear order by (yearPeriod) desc');
         $level = Level::all();
-        $course = DB::table('courses as c')->join('grades as g', 'c.idGrade', '=', 'g.idGrade')->join('levels as l', 'g.idlevel', '=', 'l.idLevel')->select('c.idCourse', 'c.codeCourse', 'c.descriptionCourse', 'l.descriptionLevel', 'g.descriptionGrade')->orderby('c.idCourse', 'asc')->paginate(8);
-        return view('Maintainer.MaintainerCourses', ['grade' => $grade, 'level' => $level, 'course' => $course]);
+        $getCourse = DB::select('exec courseTeacher ?', array(auth()->user()->id), date('Y'));
+        return view('Maintainer.MaintainerCourses', ['grade' => $grade, 'level' => $level, 'getCourse' => $getCourse, 'getPeriod' => $getPeriod]);
     }
 
     /**
