@@ -1,24 +1,22 @@
 @extends('layouts.templeate')
 
 @section('content')
-<div class="row">
-    <div class="col-md-12 col-sm-12  ">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Mantenimiento de Cátedra</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div class="col-md-8 center-margin">
-                    <form class="form-horizontal form-label-left">
+<div class="container p-5">
+    <div class="card card-outline card-info">
+        <div class="card-header">
+            <h3 class="card-title">Mantenimiento de Cátedra</h3>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="col-md-10 center-margin">
+                    <form class="form-horizontal form-label-left"
+                        style="font-family: Arial, Helvetica, sans-serif;color:black">
                         <div class="row">
                             <div class="col-md-10 col-sm-12 form-group">
                                 <label for="">Docente*</label>
                                 <div class="row">
-                                    <div class="col-md-2 col-sm-10">
-                                        <input type="text" name="codeWorker  " class="form-control" required>
-                                    </div>
-                                    <div class="col-md-1 col-sm-2">
+                                    <div class="col-md-3 input-group">
+                                        <input type="text" name="codeWorker" class="form-control" required>
                                         @include('Maintainer.ListTeachers')
                                     </div>
                                     <div class="col-md-9 col-sm-12">
@@ -40,7 +38,7 @@
                             </div>
                             <div class="col-md-3 col-sm-12  form-group">
                                 <label for="">Grado*</label>
-                                <select id="heard" name="idDegree " class="form-control" required>
+                                <select id="heard" name="idGrade " class="form-control" required>
                                     <option value="">Choose..</option>
                                 </select>
                             </div>
@@ -59,19 +57,18 @@
                             <div class="col-md-12 col-sm-12 form-group p-3">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12 center-margin">
-                                        <a class="btn btn-app bg-info text-white"><i class="fa fa-bars"></i> Mostrar</a>
-                                        <button class="btn btn-app bg-success text-white" type="submit"><i
+                                        <a class="btn bg-info text-white"><i class="fa fa-bars"></i> Mostrar</a>
+                                        <button class="btn bg-success text-white" type="submit"><i
                                                 class="fa fa-save"></i> Insertar</button>
-                                        <a class="btn btn-app bg-secondary text-white"><i class="fa fa-reply"></i>
-                                            Salir</a>
+                                        <a class="btn bg-secondary text-white"><i class="fa fa-reply"></i> Salir</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </form>
 
-                    <table class="table table-bordered">
-                        <thead>
+                    <table id="table-catedra" class="table table-bordered display nowrap" cellspacing="0" width="100%">
+                        <thead class="bg-dark">
                             <tr>
                                 <th>Código</th>
                                 <th>Curso</th>

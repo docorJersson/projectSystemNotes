@@ -26,6 +26,18 @@
 
   <!-- Custom Theme Style -->
   <link href="/build/css/custom.min.css" rel="stylesheet">
+  <!--link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"-->
+  <!--DATATABLES CSS-->
+  <link rel="stylesheet" href="{{asset('assets/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet"
+    href="{{asset('assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <!--select-2-->
+  <link rel="stylesheet" href="{{asset('assets/adminlte/plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet"
+    href="{{asset('assets/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+
+
 
 </head>
 
@@ -112,8 +124,11 @@
                   {{--  <i class="right fas fa-angle-left"></i>  --}}
                 </p>
               </a>
-            <li class="nav-item">
-              <a href="/grade_section" class="text-white nav-link">Grados y Secciones</a>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="/grade_section" class="text-white nav-link">
+                <p> Grados y Secciones</p>
+              </a>
             </li>
             <li class="nav-item">
               <a href="/course_grade" class="text-white nav-link">Cursos por Grados</a>
@@ -130,10 +145,9 @@
             <li class="nav-item">
               <a href="/register_notes" class="text-white">Registro de Notas</a>
             </li>
-
-
-          </ul>
-          </li>
+            <li class="nav-item">
+              <a href="/catedra" class="text-white">Cátedra</a>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -178,6 +192,15 @@
   <!-- AdminLTE for demo purposes -->
   <script src="{{asset('assets/adminlte/dist/js/demo.js')}}"></script>
   <script src="{{asset('js/scripts.js')}}"></script>
+  <!--DATATABLES-->
+  <script src="{{asset('assets/adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('assets/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('assets/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+  <script src="{{asset('assets/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+
+  <!--SELECT 2 LIBRERIAS-->
+  <script src="{{asset('assets/adminlte/plugins/select2/js/select2.full.min.js')}}"></script>
+  <script src="{{asset('datatable.js')}}"></script>
 </body>
 
 </html>
