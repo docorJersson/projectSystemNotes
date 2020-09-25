@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('assets/adminlte/dist/css/adminlte.min.css')}}">
-    <link rel="stylesheet" href="estilos.css">
-    <title>Libreta de Notas</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>LIBRETA DE NOTAS</title>
 </head>
 <body>
     <div class="text-center">
          <h4>Libreta de Notas</h4>
-    <div class="contenedor-1">
+    <div class="contenedor-1" s>
         <div class="contenedor">
             <div class="contenido-1">AÑO O GRADO</div>
             <div class="contenido1">Primer Grado de Secundaria</div>
@@ -30,7 +30,6 @@
             <div class="contenido7">Jacinto Manuel Rodriguez Mendoza</div>
         </div>
     </div>
-
         <table class="table table-striped text-left">
             <thead>
                 <tr>

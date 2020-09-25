@@ -11,6 +11,7 @@
           <!-- small box -->
           <div class="small-box bg-info">
             <div class="inner">
+
               <h3>SN</h3>
 
               <p>GRADOS Y SECCIONES</p>
@@ -29,6 +30,7 @@
               <h3>SN<sup style="font-size: 20px"></sup></h3>
 
               <p>CURSOS POR GRADOS</p>
+              
             </div>
             <div class="icon">
               <i class="fas fa-list-ol"></i>
