@@ -29,7 +29,6 @@ $(document).ready(function () {
             { data: "descriptionLevel" },
             { data: "bimester" },
             { data: "nombres" },
-            { data: "acciones" },
         ],
     });
 
