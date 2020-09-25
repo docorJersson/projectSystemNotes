@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Course;
 use App\Level;
 use App\Section;
 use App\Degree;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class CoursesController extends Controller
-{ 
+{
     /**
      * Display a listing of the resource.
      *
@@ -17,11 +18,10 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        /*$grade=Degree::all();
-        $level=Level::all();
-        $course=DB::table('courses as c')->join('levels as l','c.idlevel','=','l.idLevel')->join ('grades as g','c.idGrade','=','g.idGrade')->select('c.idCourse','c.codeCourse','c.descriptionCourse','l.descriptionLevel','g.descriptionGrade')->orderby('c.idCourse','asc')->paginate(8);
-        return view('Maintainer.MaintainerCourses',['grade'=>$grade,'level'=>$level,'course'=>$course]);*/
-        return view('Maintainer.MaintainerCourses');
+        $grade = Degree::all();
+        $level = Level::all();
+        $course = DB::table('courses as c')->join('grades as g', 'c.idGrade', '=', 'g.idGrade')->join('levels as l', 'g.idlevel', '=', 'l.idLevel')->select('c.idCourse', 'c.codeCourse', 'c.descriptionCourse', 'l.descriptionLevel', 'g.descriptionGrade')->orderby('c.idCourse', 'asc')->paginate(8);
+        return view('Maintainer.MaintainerCourses', ['grade' => $grade, 'level' => $level, 'course' => $course]);
     }
 
     /**

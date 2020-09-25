@@ -30,10 +30,12 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"-->
   <!--DATATABLES CSS-->
   <link rel="stylesheet" href="{{asset('assets/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-  <link rel="stylesheet" href="{{asset('assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet"
+    href="{{asset('assets/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <!--select-2-->
   <link rel="stylesheet" href="{{asset('assets/adminlte/plugins/select2/css/select2.min.css')}}">
-  <link rel="stylesheet" href="{{asset('assets/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+  <link rel="stylesheet"
+    href="{{asset('assets/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 
 
 
@@ -50,18 +52,6 @@
           <a class="nav-link text-white" data-widget="pushmenu" href="#" role="button"><i class="fas fa-equals"></i></a>
         </li>
       </ul>
-
-      {{--  <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search text-white"></i>
-          </button>
-        </div>
-      </div>
-    </form>  --}}
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
@@ -126,15 +116,24 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link bg-blue">
-              <i class="fa fa-th fa-lg" aria-hidden="true"></i>
-              <p class="text-white">
-                Dashboard
-                {{--  <i class="right fas fa-angle-left"></i>  --}}
-              </p>
-            </a>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link bg-blue">
+                <i class="fa fa-th fa-lg" aria-hidden="true"></i>
+                <p class="text-white">
+                  Dashboard
+                  {{--  <i class="right fas fa-angle-left"></i>  --}}
+                </p>
+              </a>
             </li>
+            <li class="nav-item has-treeview">
+              <a href="/grade_section" class="text-white nav-link">
+                <p> Grados y Secciones</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/course_grade" class="text-white nav-link">Cursos por Grados</a>
+            </li>
+<<<<<<< HEAD
                <li class="nav-item">
                 <a href="{{URL::to('/courses')}}" class="text-white nav-link">Cursos</a>
               </li>
@@ -142,15 +141,24 @@
                <a href="/subjects" class="text-white nav-link">Asignaturas/Capacidades</a>
               </li>
               <li class="nav-item">
+=======
+            <li class="nav-item">
+              <a href="{{URL::to('/courses')}}" class="text-white nav-link">Cursos</a>
+            </li>
+            <li class="nav-item">
+              <a href="/subjects" class="text-white nav-link">Asignaturas/Capacidades</a>
+            </li>
+            <li class="nav-item">
+>>>>>>> 7271649de5d2eb63febf25b8727680d96ac5f767
               <a href="/personnel" class="text-white nav-link">Personal</a>
-              </li>
-              <li class="nav-item">
-             <a href="/register_notes" class="text-white">Registro de Notas</a>
-              </li>
-              <li class="nav-item">
-                <a href="/catedra" class="text-white">Cátedra</a>
-                 </li>
-            </ul>
+            </li>
+            <li class="nav-item">
+              <a href="/register_notes" class="text-white">Registro de Notas</a>
+            </li>
+            <li class="nav-item">
+              <a href="/catedra" class="text-white">Cátedra</a>
+            </li>
+          </ul>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
