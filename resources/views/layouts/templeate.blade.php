@@ -135,12 +135,6 @@
               </p>
             </a>
             </li>
-              <li class="nav-item has-treeview">
-                <a href="/grade_section" class="text-white nav-link"><p>  Grados y Secciones</p></a>
-              </li>
-               <li class="nav-item">
-                <a href="/course_grade" class="text-white nav-link">Cursos por Grados</a>
-              </li>
                <li class="nav-item">
                 <a href="{{URL::to('/courses')}}" class="text-white nav-link">Cursos</a>
               </li>
