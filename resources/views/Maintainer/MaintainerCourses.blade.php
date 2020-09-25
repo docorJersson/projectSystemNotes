@@ -25,12 +25,12 @@
                                 <div class="col-md-10 col-sm-12">
                                     <select name="idLevel" id="idLevel" class="form-control select1">
                                         <option value=""></option>
-                                     </select>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <table id="table-curso" class="table table-bordered display nowrap" cellspacing="0" width="100%">
                         <thead class="bg-dark">
                             <tr>
@@ -48,16 +48,16 @@
                                 <td>3er Grado</td>
                                 <td>1255</td>
                                 <td>
-                                @include('Maintainer.EditCourses')
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                    @include('Maintainer.EditCourses')
+                                    <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
-                         
+
                         </tbody>
                     </table>
-                        <div class="col-md-4 col-sm-6">
-                            <button class="btn bg-secondary text-white"><i class="fa fa-reply"></i> Salir</button>
-                        </div>
+                    <div class="col-md-4 col-sm-6">
+                        <button class="btn bg-secondary text-white"><i class="fa fa-reply"></i> Salir</button>
+                    </div>
                 </div>
             </div>
         </div>
