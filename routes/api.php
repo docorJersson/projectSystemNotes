@@ -18,10 +18,9 @@ use App\Degree;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-
     return $request->user();
 });
 
 Route::get('courses', function () {
-    return datatables(DB::select('exec courseTeacher ?', array(2, date('Y'))))->toJson();
+    return datatables(DB::select('exec courseTeacher ?', array(date('Y'))))->toJson();
 });

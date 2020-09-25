@@ -15,14 +15,14 @@
     <div class="container">
         <div class="blue">
             <div class="blue__img">
-                <img src="{{asset('img/fond2.webp')}}" alt="">
+                <img src="https://drive.google.com/uc?id=1V41-dwgXXo1OeMsMPNRim-2T7evYutCf" alt="Notes">
             </div>
             <p class="blue__item">
                 <b class="shadow">System Notes</b>
             </p>
         </div>
         <div class="box">
-            <p class="name"><b>Blac Desings</b></p>
+            <p class="name"><b>Klac Desings</b></p>
         </div>
     </div>
     <div class="bloc">
