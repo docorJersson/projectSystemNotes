@@ -19,11 +19,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $grade = Degree::all();
-        $getPeriod = DB::select('select distinct yearPeriod  from periodsYear order by (yearPeriod) desc');
-        $level = Level::all();
-        $getCourse = DB::select('exec courseTeacher ?', array(auth()->user()->id), date('Y'));
-        return view('Maintainer.MaintainerCourses', ['grade' => $grade, 'level' => $level, 'getCourse' => $getCourse, 'getPeriod' => $getPeriod]);
+        return view('Maintainer.MaintainerCourses');
     }
 
     /**

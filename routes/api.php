@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Level;
+use App\Degree;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+
     return $request->user();
+});
+
+Route::get('courses', function () {
+    return datatables()->query(DB::select('exec courseTeacher ?', array(2, date('Y'))))->addColumn('acciones', 'botonesAcciones')->toJson();
 });
