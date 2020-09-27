@@ -8,42 +8,40 @@
         </div>
         <div class="card-body">
             <div class="container">
-
                 <table id="table-workers" class="table table-bordered nowrap" cellspacing="0" width="100%">
                     <thead class="bg-dark">
                         <tr>
                             <th>Código</th>
-                            <th>Nombres</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
                             <th>DNI</th>
                             <th>Dirección</th>
                             <th>Estado Civil</th>
                             <th>Teléfono</th>
                             <th>Seguro Social</th>
                             <th>Fecha</th>
-                            <th>Acciones</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($workers as $w)
+                        {{--  @foreach ($workers as $w)
                         <tr>
                             <td>{{$w->codeWorker}}</td>
-                            <td>{{$w->lastNameWorker}}, {{$w->nameWorker}}</td>
-                            <td>{{$w->dniWorker}}</td>
-                            <td>{{$w->addressWorker}}</td>
-                            <td>{{$w->civilStatus}}</td>
-                            <td>{{$w->telephone}}</td>
-                            <td>{{$w->socialSecurity}}</td>
-                            <td>{{$w->dateWorker}}</td>
-                            <td>
-                                @include('Personnel.editPersonnel')
-                                <a href="{{route('personnel.destroyed',$w->codeWorker)}}"
-                                    class="btn btn-danger text-white btn-sm"
-                                    onclick="return confirm('¿Seguro que deseas eliminarlo?')">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
+                        <td>{{$w->lastNameWorker}}, {{$w->nameWorker}}</td>
+                        <td>{{$w->dniWorker}}</td>
+                        <td>{{$w->addressWorker}}</td>
+                        <td>{{$w->telephone}}</td>
+                        <td>{{$w->socialSecurity}}</td>
+                        <td>{{$w->dateWorker}}</td>
+                        <td>@include('Personnel.editPersonnel')
+                            <a href="{{route('personnel.destroyed',$w->codeWorker)}}"
+                                class="btn btn-danger text-white btn-sm"
+                                onclick="return confirm('¿Seguro que deseas eliminarlo?')">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
                         </tr>
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
                 </table>
             </div>

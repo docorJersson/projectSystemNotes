@@ -5,6 +5,23 @@ $(document).ready(function () {
         language: {
             sUrl: "Spanish.json",
         },
+        serverSide: true,
+
+        ajax: {
+            url: "api/personnel",
+        },
+        columns: [
+            { data: "codeWorker" },
+            { data: "nameWorker" },
+            { data: "lastNameWorker" },
+            { data: "dniWorker" },
+            { data: "addressWorker" },
+            { data: "civilStatus" },
+            { data: "telephone" },
+            { data: "socialSecurity" },
+            { data: "dateWorker" },
+            { data: "btn" },
+        ],
     });
 
     $("#table-curso").DataTable({

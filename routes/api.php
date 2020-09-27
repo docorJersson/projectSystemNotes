@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Level;
 use App\Degree;
+use App\Worker;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('courses', function () {
     return datatables()->of(DB::select('exec courseTeacher ?', array(date('Y'))))->addColumn('acciones', 'Maintainer.accionesTabla')->rawColumns(['acciones'])->toJson();
+});
+
+Route::get('personnel', function () {
+    return datatables(
+    DB::select('select codeWorker,nameWorker,lastNameWorker,dniWorker,addressWorker,civilStatus,telephone,socialSecurity,dateWorker from workers
+    where statusWorker=1')
+    )
+    ->addColumn('btn','Personnel/actions')
+    ->rawColumns(['btn'])
+    ->toJson();
 });
