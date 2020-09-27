@@ -8,7 +8,8 @@
         </div>
         <div class="card-body">
             <div class="container">
-                <table id="table-workers" class="table table-bordered display nowrap" cellspacing="0" width="100%">
+
+                <table id="table-workers" class="table table-bordered nowrap" cellspacing="0" width="100%">
                     <thead class="bg-dark">
                         <tr>
                             <th>Código</th>
@@ -33,7 +34,8 @@
                             <td>{{$w->telephone}}</td>
                             <td>{{$w->socialSecurity}}</td>
                             <td>{{$w->dateWorker}}</td>
-                            <td>@include('Personnel.editPersonnel')
+                            <td>
+                                @include('Personnel.editPersonnel')
                                 <a href="{{route('personnel.destroyed',$w->codeWorker)}}"
                                     class="btn btn-danger text-white btn-sm"
                                     onclick="return confirm('¿Seguro que deseas eliminarlo?')">
