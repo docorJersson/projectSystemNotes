@@ -4,7 +4,7 @@
 <div class="container p-5">
     <div class="card card-outline card-info">
         <div class="card-header">
-            <h3 class="card-title">Mantenimiento del Personal</h3>
+            <h3 class="card-title">Actualizar Datos del Personal</h3>
         </div>
         <div class="card-body">
             <div class="container">
@@ -80,7 +80,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 text-center form-group">
-                            <a class="btn bg-secondary text-white" data-dismiss="modal"><i class="fa fa-reply"></i>
+                            <a href="{{ route('personnel.index') }}" class="btn bg-secondary text-white"
+                                data-dismiss="modal"><i class="fa fa-reply"></i>
                                 Cancelar</a>
                             <button class="btn bg-success text-white" type="submit"><i class="fa fa-save"></i>
                                 Actualizar</button>
