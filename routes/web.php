@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +32,10 @@ Route::get('/home', 'HomeController@index')->name('home'); //está ruta es la qu
 
 //Por ejemplo una ruta
 
-Route::get('/grade_section','MaintainerController@GradesSections');
-Route::get('/course_grade','MaintainerController@DefCoursesGrades');
-Route::resource('/courses','CoursesController');
-Route::get('/subjects','MaintainerController@Capacity');
-Route::get('/personnel','MaintainerController@Workers');
-Route::get('/catedra','MaintainerController@Mcatedra');
-Route::get('/register_notes','MaintainerController@RegisterNotes');
+Route::get('/grade_section', 'MaintainerController@GradesSections');
+Route::get('/course_grade', 'MaintainerController@DefCoursesGrades');
+Route::resource('/courses', 'CoursesController');
+Route::get('/subjects', 'MaintainerController@Capacity');
+Route::get('/personnel', 'MaintainerController@Workers');
+Route::get('/catedra', 'MaintainerController@Mcatedra');
+Route::get('/register_notes', 'MaintainerController@RegisterNotes');

@@ -7,19 +7,34 @@ $(document).ready(function () {
         language: {
             sUrl: "Spanish.json",
         },
+        processing: true,
         serverSide: true,
 
         ajax: {
             url: "api/personnel",
         },
-        columns: [
-            { data: "idCourse" },
-            { data: "codeCourse" },
-            { data: "descriptionCourse" },
-            { data: "descriptionGrade" },
-            { data: "descriptionLevel" },
-            { data: "bimester" },
-            { data: "nombres" },
+        columns: [{
+                data: "idCourse"
+            },
+            {
+                data: "codeCourse"
+            },
+            {
+                data: "descriptionCourse"
+            },
+            {
+                data: "descriptionGrade"
+            },
+            {
+                data: "descriptionLevel"
+            },
+            {
+                data: "bimester"
+            },
+            {
+                data: "nombres"
+            },
+
         ],
     });
 
@@ -37,14 +52,30 @@ $(document).ready(function () {
         ajax: {
             url: "api/courses",
         },
-        columns: [
-            { data: "idCourse" },
-            { data: "codeCourse" },
-            { data: "descriptionCourse" },
-            { data: "descriptionGrade" },
-            { data: "descriptionLevel" },
-            { data: "bimester" },
-            { data: "nombres" },
+        columns: [{
+                data: "idCourse"
+            },
+            {
+                data: "codeCourse"
+            },
+            {
+                data: "descriptionCourse"
+            },
+            {
+                data: "descriptionGrade"
+            },
+            {
+                data: "descriptionLevel"
+            },
+            {
+                data: "bimester"
+            },
+            {
+                data: "nombres"
+            },
+            {
+                data: "acciones"
+            },
         ],
     });
 

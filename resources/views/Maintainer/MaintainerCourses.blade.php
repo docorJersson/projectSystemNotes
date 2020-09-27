@@ -31,6 +31,7 @@
                                     <th>Nivel</th>
                                     <th>Bimestre:</th>
                                     <th>Profesor a Cargo:</th>
+                                    <th>Acciones de la Tabla</th>
                                 </tr>
                             </thead>
                         </table>

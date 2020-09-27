@@ -22,5 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('courses', function () {
-    return datatables(DB::select('exec courseTeacher ?', array(date('Y'))))->toJson();
+    return datatables()->of(DB::select('exec courseTeacher ?', array(date('Y'))))->addColumn('acciones', 'Maintainer.accionesTabla')->rawColumns(['acciones'])->toJson();
 });
