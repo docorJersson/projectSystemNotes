@@ -10,7 +10,7 @@
                     @csrf
                     <h2>User In</h2>
                     <div class="form-group row">
-                        <label for="email" class="col-3">{{ __('E-Mail Address') }}</label>
+                        <label for="email" class="col-3">{{ __('E-Mail') }}</label>
 
                         <div class="col-9">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
