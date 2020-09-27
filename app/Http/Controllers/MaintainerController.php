@@ -26,11 +26,6 @@ class MaintainerController extends Controller
         return view('Maintainer.Capacity');
     }
 
-    public function  Workers()
-    {
-        return view('Maintainer.MaintainerWorker');
-    }
-    
     public function  Mcatedra()
     {
         return view('Maintainer.MaintainerCatedra');

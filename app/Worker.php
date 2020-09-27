@@ -8,6 +8,7 @@ class Worker extends Model
 {
     protected $table='workers';
     protected $primaryKey='codeWorker';
-    protected $fillable=['nameWorker','lastNameWorker','dniWorker','addressWorker','civilStatus','telephone','socialSecurity','flatWorker','dateWorker','statusWorker'];
+    protected $keyType='string';
+    protected $fillable=['nameWorker','lastNameWorker','dniWorker','addressWorker','civilStatus','telephone','socialSecurity','dateWorker','statusWorker'];
     public $timestamps=false;
 }

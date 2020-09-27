@@ -14,12 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // $user=Auth::user();
-    // if($user->isAdmin()){
-    //     echo "Eres usuario Administrador";
-    // }else{
-    //     echo "Eres Docente";
-    // }
     return view('welcome');
 });
 
@@ -35,6 +29,11 @@ Route::get('/grade_section','MaintainerController@GradesSections');
 Route::get('/course_grade','MaintainerController@DefCoursesGrades');
 Route::resource('/courses','CoursesController');
 Route::get('/subjects','MaintainerController@Capacity');
-Route::get('/personnel','MaintainerController@Workers');
 Route::get('/catedra','MaintainerController@Mcatedra');
 Route::get('/register_notes','MaintainerController@RegisterNotes');
+
+Route::resource('/personnel','personnelController');
+Route::get('personnel/{id}/destroy',[
+    'uses' => 'personnelController@destroy',
+    'as'   => 'personnel.destroyed',
+]);

@@ -2,25 +2,9 @@ $(document).ready(function () {
     $("#table-workers").DataTable({
         responsive: true,
         fixedHeader: true,
-        searching: false,
-        info: false,
         language: {
             sUrl: "Spanish.json",
         },
-        serverSide: true,
-
-        ajax: {
-            url: "api/personnel",
-        },
-        columns: [
-            { data: "idCourse" },
-            { data: "codeCourse" },
-            { data: "descriptionCourse" },
-            { data: "descriptionGrade" },
-            { data: "descriptionLevel" },
-            { data: "bimester" },
-            { data: "nombres" },
-        ],
     });
 
     $("#table-curso").DataTable({
