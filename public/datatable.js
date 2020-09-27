@@ -8,6 +8,7 @@ $(document).ready(function () {
     });
 
     $("#table-curso").DataTable({
+
         responsive: true,
         fixedHeader: true,
         //paging: false,
@@ -21,8 +22,11 @@ $(document).ready(function () {
         ajax: {
             url: "api/courses",
         },
+
         columns: [{
-                data: "idCourse"
+                data: "idCourse",
+                visible: false,
+                searchable: false
             },
             {
                 data: "codeCourse"
@@ -46,6 +50,7 @@ $(document).ready(function () {
                 data: "acciones"
             },
         ],
+
     });
 
     $("#table-capacity").DataTable({

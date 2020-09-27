@@ -7,16 +7,18 @@
         </div>
         <div class="card-body">
             <div class="container">
-                <div class="col-md-10 center-margin" style="font-family: Arial, Helvetica, sans-serif;color:black">
+                <div class="col-md-11 center-margin" style="font-family: Arial, Helvetica, sans-serif;color:black">
                     <div class="row">
                         <div class="form-group col-md-6 col-sm-12">
                             <div class="row">
                                 <label for="" class="col-form-label col-md-3 col-sm-12">Período</label>
                                 <div class="col-md-9 col-sm-12">
                                     <select name="idLevel" id="idLevel" class="form-control select2">
-
                                     </select>
                                 </div>
+                                <div class="">@include('Maintainer.EditCourses')</div>
+
+
                             </div>
                         </div>
                     </div>
@@ -31,7 +33,7 @@
                                     <th>Nivel</th>
                                     <th>Bimestre:</th>
                                     <th>Profesor a Cargo:</th>
-                                    <th>Acciones de la Tabla</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                             </thead>
                         </table>
