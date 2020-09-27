@@ -21,14 +21,28 @@ $(document).ready(function () {
         ajax: {
             url: "api/courses",
         },
-        columns: [
-            { data: "idCourse" },
-            { data: "codeCourse" },
-            { data: "descriptionCourse" },
-            { data: "descriptionGrade" },
-            { data: "descriptionLevel" },
-            { data: "bimester" },
-            { data: "nombres" },
+        columns: [{
+                data: "idCourse"
+            },
+            {
+                data: "codeCourse"
+            },
+            {
+                data: "descriptionCourse"
+            },
+            {
+                data: "descriptionGrade"
+            },
+            {
+                data: "descriptionLevel"
+            },
+            {
+                data: "bimester"
+            },
+            {
+                data: "nombres"
+            },
+
         ],
     });
 

@@ -31,6 +31,7 @@
                                     <th>Nivel</th>
                                     <th>Bimestre:</th>
                                     <th>Profesor a Cargo:</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                             </thead>
                         </table>
