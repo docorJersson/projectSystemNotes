@@ -17,8 +17,9 @@ class personnelController extends Controller
         //
         if($request)
         {
-            $workers=Worker::where('statusWorker',1)->get();
-            return view('Personnel.main',\compact('workers'));      
+            // $workers=Worker::where('statusWorker',1)->get();
+            // return view('Personnel.main',\compact('workers'));   
+            return view('Personnel.main');      
         }  
     }
 
@@ -66,7 +67,7 @@ class personnelController extends Controller
         //el problema era que por defecto un modelo toma la llave por tipo id , entonces estaba comviertiendo el string a id , si el code worker no hubiera sido 001 y hubiera sido CDVA entonces hubiaera habido un desde el principio ya que no podia convertir ese string a un númmero. 
         $worker=Worker::findOrFail($id);
         //,
-        return view('Personnel/edit', compact('worker'));
+        return view('Personnel/editPersonnel', compact('worker'));
         // \dd($worker);
         // return \view('Personnel.edit',\compact('worker'));
     }
