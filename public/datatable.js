@@ -11,63 +11,95 @@ $(document).ready(function () {
             url: "api/personnel",
         },
         columns: [
-            { data: "codeWorker" },
-            { data: "nameWorker" },
-            { data: "lastNameWorker" },
-            { data: "dniWorker" },
-            { data: "addressWorker" },
-            { data: "civilStatus" },
-            { data: "telephone" },
-            { data: "socialSecurity" },
-            { data: "dateWorker" },
-            { data: "btn" },
+            {
+                data: "codeWorker",
+                visible: false,
+                searchable: false,
+            },
+            {
+                data: "nameWorker",
+            },
+            {
+                data: "lastNameWorker",
+            },
+            {
+                data: "dniWorker",
+            },
+            {
+                data: "addressWorker",
+            },
+            {
+                data: "civilStatus",
+            },
+            {
+                data: "telephone",
+            },
+            {
+                data: "socialSecurity",
+            },
+            {
+                data: "dateWorker",
+            },
+            {
+                data: "btn",
+            },
         ],
     });
 
     $("#table-curso").DataTable({
-
-        responsive: true,
+        responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal({
+                    header: function (row) {
+                        var data = row.data();
+                        return "Detalles de " + data[0] + " " + data[1];
+                    },
+                }),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                    tableClass: "table",
+                }),
+            },
+        },
         fixedHeader: true,
-        //paging: false,
         searching: false,
         info: false,
         language: {
             sUrl: "Spanish.json",
         },
+        processing: true,
         serverSide: true,
 
         ajax: {
             url: "api/courses",
         },
-
-        columns: [{
+        columns: [
+            {
                 data: "idCourse",
                 visible: false,
-                searchable: false
+                searchable: false,
             },
             {
-                data: "codeCourse"
+                data: "codeCourse",
             },
             {
-                data: "descriptionCourse"
+                data: "descriptionCourse",
             },
             {
-                data: "descriptionGrade"
+                data: "descriptionGrade",
             },
             {
-                data: "descriptionLevel"
+                data: "descriptionLevel",
             },
             {
-                data: "bimester"
+                data: "bimester",
             },
             {
-                data: "nombres"
+                data: "nombres",
             },
             {
-                data: "acciones"
+                data: "acciones",
             },
         ],
-
     });
 
     $("#table-capacity").DataTable({

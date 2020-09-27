@@ -16,9 +16,6 @@
                                     <select name="idLevel" id="idLevel" class="form-control select2">
                                     </select>
                                 </div>
-                                <div class="">@include('Maintainer.EditCourses')</div>
-
-
                             </div>
                         </div>
                     </div>
