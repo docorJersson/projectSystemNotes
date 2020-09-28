@@ -13,14 +13,19 @@ class Period extends Model
 
     public function teachers()
     {
-        return $this->belongsToMany(Teacher::class, 'detailTeachers', 'idPeriod', 'codeTeacher')->using(detailTeacher::class);
+        return $this->belongsToMany(Teacher::class, 'detailTeachers', 'idPeriod', 'codeTeacher')->using(detailTeacher::class)->withPivot('idDetailTeacher');
     }
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'detailTeachers', 'idPeriod', 'idCourse')->using(detailTeacher::class);
+        return $this->belongsToMany(Course::class, 'detailTeachers', 'idPeriod', 'idCourse')->using(detailTeacher::class)->withPivot('idDetailTeacher');
     }
     public function sections()
     {
-        return $this->belongsToMany(Section::class, 'detailTeachers', 'idPeriod', 'idSection')->using(detailTeacher::class);
+        return $this->belongsToMany(Section::class, 'detailTeachers', 'idPeriod', 'idSection')->using(detailTeacher::class)->withPivot('idDetailTeacher');
+    }
+
+    public function detailTeacher()
+    {
+        return $this->hasMany(detailTeacher::class, 'idDetailTeacher');
     }
 }

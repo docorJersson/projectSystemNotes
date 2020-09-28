@@ -13,14 +13,11 @@ class Section extends Model
 
     public function teachers()
     {
-        return $this->belongsToMany(Teacher::class, 'detailTeachers', 'idSection', 'codeTeacher')->using(detailTeacher::class);
+        return $this->belongsToMany(Teacher::class, 'detailTeachers', 'idSection', 'codeTeacher')->using(detailTeacher::class)->withPivot('idDetailTeacher');
     }
-    public function periodYears()
-    {
-        return $this->belongsToMany(Period::class, 'detailTeachers', 'idSection', 'idPeriod')->using(detailTeacher::class);
-    }
+
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'detailTeachers', 'idSection', 'idCourse')->using(detailTeacher::class);
+        return $this->belongsToMany(Course::class, 'detailTeachers', 'idSection', 'idCourse')->using(detailTeacher::class)->withPivot('idDetailTeacher');
     }
 }

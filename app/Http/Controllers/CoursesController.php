@@ -6,6 +6,7 @@ use App\Course;
 use App\Level;
 use App\Section;
 use App\Degree;
+use App\detailTeacher;
 use App\Period;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -58,8 +59,9 @@ class CoursesController extends Controller
     public function edit($id)
     {
         $course = Course::findOrFail($id);
-
-        dd($course->degree->descriptionGrade);
+        $dt = detailTeacher::where('idCourse', $id)->get();
+        //dd($dt->first()->periodYears);
+        dd($course->teachers->first()->worker);
         return view('Maintainer.EditCourses', compact('course'));
     }
 

@@ -13,15 +13,11 @@ class Course extends Model
 
     public function teachers()
     {
-        return $this->belongsToMany(Teacher::class, 'detailTeachers', 'idCourse', 'codeTeacher')->using(detailTeacher::class);
-    }
-    public function periodYears()
-    {
-        return $this->belongsToMany(Period::class, 'detailTeachers', 'idCourse', 'idPeriod')->using(detailTeacher::class);
+        return $this->belongsToMany(Teacher::class, 'detailTeachers', 'idCourse', 'codeTeacher')->using(detailTeacher::class)->withPivot('idDetailTeacher');
     }
     public function sections()
     {
-        return $this->belongsToMany(Section::class, 'detailTeachers', 'idCourse', 'idSection')->using(detailTeacher::class);
+        return $this->belongsToMany(Section::class, 'detailTeachers', 'idCourse', 'idSection')->using(detailTeacher::class)->withPivot('idDetailTeacher');
     }
 
     public function degree()
