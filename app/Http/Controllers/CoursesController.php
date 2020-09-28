@@ -54,15 +54,13 @@ class CoursesController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        $course = Course::findOrFail($id);
+
+        dd($course->degree->descriptionGrade);
+        return view('Maintainer.EditCourses', compact('course'));
     }
 
     /**

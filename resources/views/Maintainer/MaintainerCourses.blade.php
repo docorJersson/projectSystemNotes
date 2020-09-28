@@ -13,7 +13,7 @@
                             <div class="row">
                                 <label for="" class="col-form-label col-md-3 col-sm-12">Período</label>
                                 <div class="col-md-9 col-sm-12">
-                                    <select name="idLevel" id="idLevel" class="form-control select2">
+                                    <select name="idPeriod" id="idPeriod" class="form-control">
                                     </select>
                                 </div>
                             </div>
@@ -30,6 +30,7 @@
                                     <th>Nivel</th>
                                     <th>Bimestre:</th>
                                     <th>Profesor a Cargo:</th>
+                                    <th>Periodo</th>
                                     <th>&nbsp;</th>
                                 </tr>
                             </thead>
