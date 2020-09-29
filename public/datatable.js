@@ -21,8 +21,7 @@ $(document).ready(function () {
         ajax: {
             url: "api/personnel",
         },
-        columns: [
-            {
+        columns: [{
                 data: "codeWorker",
                 visible: false,
                 searchable: false,
@@ -121,6 +120,7 @@ $(document).ready(function () {
             sUrl: "Spanish.json",
         },
     });
+    obtenerValoresTablaCapacities();
 });
 
 $(function () {
@@ -134,10 +134,10 @@ function cargarYearPeriod(data) {
     $.each(data, function (key, registro) {
         $("#idPeriod").append(
             "<option value=" +
-                registro.yearPeriod +
-                ">" +
-                registro.yearPeriod +
-                "</option>"
+            registro.yearPeriod +
+            ">" +
+            registro.yearPeriod +
+            "</option>"
         );
     });
 }
@@ -158,8 +158,7 @@ $("#btnCapacity").click(function () {
             url: "/capacity/" + level,
             dataSrc: "",
         },
-        columns: [
-            {
+        columns: [{
                 data: "descriptionCapacity",
             },
             {
@@ -171,11 +170,19 @@ $("#btnCapacity").click(function () {
         ],
     });
 });
-
+var valorCapacity = new Array();
 $("#tableNewCapacity").on("click", "tbody tr", function () {
     var row = dataCapacity.row($(this)).data();
+    for (var i = 0; i < valorCapacity.length; i++) {
+        if (valorCapacity[i] == row.idCapacity) {
+            alert("Capacidad ya seleccionada");
+            return false;
+        }
+    }
     var fila_nueva =
-        '<tr><td class="d-none d-print-block">' +
+        "<tr id=fila" +
+        row.idCapacity +
+        '><td class="d-none d-print-block" name="idCapacity[]">' +
         row.idCapacity +
         "</td><td>" +
         row.descriptionCapacity +
@@ -183,22 +190,23 @@ $("#tableNewCapacity").on("click", "tbody tr", function () {
         row.abbreviation +
         "</td><td>" +
         row.orderCapacity +
-        "</td><td><a>Borrar</a></td></tr>";
+        '</td><td><a href="#" class="btn btn-sm btn-danger" onclick="quitar(' +
+        row.idCapacity +
+        ')"><i class="fas fa-minus-circle"></i></a></td></tr>';
     $("#tableCapacities tbody").append(fila_nueva);
     $("#btnCloseCapacity").click();
     obtenerValoresTablaCapacities();
 });
 
+function quitar(fila) {
+    //codigos[item]="";
+    $("#fila" + fila).remove();
+}
+
 function obtenerValoresTablaCapacities() {
-    var valor = new Array();
-    var i = 0;
-    $("#tableCapacities")
-        .find("td")
-        .each(function () {
-            valor[i] = $(this).html();
-            i++;
-        });
-    console.log(valor);
+    $("#tableCapacities tbody tr td:nth-child(1)").each(function () {
+        valorCapacity.push($(this).text());
+    });
 }
 
 function loadTableCourses(yearSelect) {
@@ -228,8 +236,7 @@ function loadTableCourses(yearSelect) {
         ajax: {
             url: "api/courses/" + yearSelect,
         },
-        columns: [
-            {
+        columns: [{
                 data: "codeCourse",
             },
             {

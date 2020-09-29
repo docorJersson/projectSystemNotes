@@ -5,9 +5,10 @@
   <div class="modal-header bg-navy">
     <h5 class="modal-title" id="exampleModalLongTitle">EDITAR CURSO</h5>
   </div>
-  <form action="" method="post">
+  <form action="{{URL::to('courses',$course->idCourse)}}" method="post">
+    @csrf
+    @method('put')
     <div class="modal-body">
-      @csrf
       <div class="card">
         <div class="card-body">
           <h5 class="text-secondary"><strong>Detalles del Curso</strong></h5>
@@ -24,8 +25,8 @@
 
           <div class="col-md-4 col-sm-12  form-group">
             <label for="">Nivel</label>
-            <input type="hidden" id="idLevel" value="{{$course->degree->level->idLevel}}">
-            <input type="text" id="idDescriptionLevel" name="idLevel" class="form-control"
+            <input type="hidden" id="idLevel" name="idLevel" value="{{$course->degree->level->idLevel}}">
+            <input type="text" id="idDescriptionLevel" class="form-control"
               value="{{$course->degree->level->descriptionLevel}}" disabled>
           </div>
           <div class="col-md-4 col-sm-12  form-group">
@@ -35,8 +36,8 @@
           </div>
           <div class="col-md-4 col-sm-12  form-group">
             <label for="">Sección</label>
-            <input type="text" id="idSection" name="idSection" class="form-control"
-              value="{{$dt->sections->first()->descriptionSection}}" disabled>
+            <input type="text" id="idSection" name="descriptionSection" class="form-control"
+              value="{{$dt->sections->first()->descriptionSection}}" readonly>
 
           </div>
         </div>
@@ -78,13 +79,15 @@
           </thead>
           <tbody>
             @foreach ($capacities as $capacity)
-            <tr>
-              <td class="d-none d-print-block">{{$capacity->idCapacity}}</td>
+            <tr id="fila{{$capacity->idCapacity}}">
+              <td class="d-none d-print-block" name="idCapacity[]">{{$capacity->idCapacity}}</td>
               <td>{{$capacity->descriptionCapacity}}</td>
               <td>{{$capacity->abbreviation}}</td>
               <td>{{$capacity->pivot->orderCapacity}}</td>
               <td>
-                <a href="">Borrar</a>
+                <a href="#" class="btn btn-danger btn-sm" onclick="quitar({{$capacity->idCapacity}})">
+                  <i class="fas fa-minus-circle"></i>
+                </a>
               </td>
             </tr>
             @endforeach
