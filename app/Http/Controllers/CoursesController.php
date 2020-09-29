@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Capacity;
 use App\Course;
 use App\Level;
 use App\Section;
 use App\Degree;
+use App\detailCapacity;
 use App\detailTeacher;
 use App\Period;
 use Illuminate\Support\Facades\DB;
@@ -58,11 +60,11 @@ class CoursesController extends Controller
 
     public function edit($id)
     {
-        $course = Course::findOrFail($id);
-        $dt = detailTeacher::where('idCourse', $id)->get();
-        //dd($dt->first()->periodYears);
-        dd($course->teachers->first()->worker);
-        return view('Maintainer.EditCourses', compact('course'));
+
+        $dt = detailTeacher::findOrFail($id);
+        $course = Course::findOrFail($dt->idCourse);
+        $capacities = $course->capacities()->where('idPeriod', $dt->periodYears->idPeriod)->orderBy('orderCapacity')->get();
+        return view('Maintainer.EditCourses', compact('course', 'dt', 'capacities'));
     }
 
     /**

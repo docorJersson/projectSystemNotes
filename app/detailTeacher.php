@@ -14,4 +14,8 @@ class detailTeacher extends Pivot
     {
         return $this->belongsTo(Period::class, 'idPeriod');
     }
+    public function sections()
+    {
+        return $this->hasMany(Section::class, 'idSection');
+    }
 }

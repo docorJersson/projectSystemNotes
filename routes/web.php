@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\capacityController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,3 +39,4 @@ Route::get('personnel/{id}/destroy', [
     'uses' => 'personnelController@destroy',
     'as'   => 'personnel.destroyed',
 ]);
+Route::get('capacity/{course}', [capacityController::class, 'index']);

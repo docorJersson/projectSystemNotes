@@ -11,9 +11,12 @@ class Worker extends Model
     protected $keyType = 'string';
     protected $fillable = ['nameWorker', 'lastNameWorker', 'dniWorker', 'addressWorker', 'civilStatus', 'telephone', 'socialSecurity', 'dateWorker', 'statusWorker'];
     public $timestamps = false;
-
-    public function teamWork()
+    public function teacher()
     {
-        return $this->morphTo();
+        return $this->hasOne(Teacher::class, 'codeTeacher');
+    }
+    public function administrator()
+    {
+        return $this->hasOne(administrator::class);
     }
 }

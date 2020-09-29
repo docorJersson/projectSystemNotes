@@ -1,13 +1,12 @@
 var year = new Date().getFullYear();
 
 $(document).ready(function () {
-
     $.ajax({
         type: "GET",
-        url: 'api/period',
+        url: "api/period",
         dataType: "json",
         success: function (data) {
-            cargarYearPeriod(data)
+            cargarYearPeriod(data);
         },
     });
 
@@ -22,7 +21,8 @@ $(document).ready(function () {
         ajax: {
             url: "api/personnel",
         },
-        columns: [{
+        columns: [
+            {
                 data: "codeWorker",
                 visible: false,
                 searchable: false,
@@ -132,15 +132,68 @@ $(function () {
 
 function cargarYearPeriod(data) {
     $.each(data, function (key, registro) {
-        $("#idPeriod").append('<option value=' + registro.yearPeriod + '>' + registro.yearPeriod + '</option>');
+        $("#idPeriod").append(
+            "<option value=" +
+                registro.yearPeriod +
+                ">" +
+                registro.yearPeriod +
+                "</option>"
+        );
     });
 }
 
-$('#idPeriod').change(function yearSelected() {
-    var year = $('#idPeriod').val();
+$("#idPeriod").change(function yearSelected() {
+    var year = $("#idPeriod").val();
     $("#table-curso").dataTable().fnDestroy();
     loadTableCourses(year);
 });
+var dataCapacity;
+$("#btnCapacity").click(function () {
+    var level = $("#idLevel").val();
+    $("#tableNewCapacity").dataTable().fnDestroy();
+    dataCapacity = $("#tableNewCapacity").DataTable({
+        processing: true,
+        type: "GET",
+        ajax: {
+            url: "/capacity/" + level,
+            dataSrc: "",
+        },
+        columns: [
+            {
+                data: "descriptionCapacity",
+            },
+            {
+                data: "abbreviation",
+            },
+            {
+                data: "orderCapacity",
+            },
+        ],
+    });
+});
+
+$("#tableNewCapacity").on("click", "tbody tr", function () {
+    var row = dataCapacity.row($(this)).data();
+    var fila_nueva =
+        '<tr><td class="d-none d-print-block">' +
+        row.idCapacity +
+        "</td><td>" +
+        row.descriptionCapacity +
+        "</td><td>" +
+        row.abbreviation +
+        "</td><td>Hola</td><td><a>Borrar</a></td></tr>";
+    $("#tableCapacities tbody").append(fila_nueva);
+    $("#btnCloseCapacity").click();
+    obtenerValoresTablaCapacities();
+});
+
+function obtenerValoresTablaCapacities() {
+    $("#tableCapacities")
+        .find("td")
+        .each(function () {
+            console.log($(this).html());
+        });
+}
 
 function loadTableCourses(yearSelect) {
     $("#table-curso").DataTable({
@@ -169,11 +222,7 @@ function loadTableCourses(yearSelect) {
         ajax: {
             url: "api/courses/" + yearSelect,
         },
-        columns: [{
-                data: "idCourse",
-                visible: false,
-                searchable: false,
-            },
+        columns: [
             {
                 data: "codeCourse",
             },
@@ -182,6 +231,9 @@ function loadTableCourses(yearSelect) {
             },
             {
                 data: "descriptionGrade",
+            },
+            {
+                data: "descriptionSection",
             },
             {
                 data: "descriptionLevel",
@@ -193,7 +245,7 @@ function loadTableCourses(yearSelect) {
                 data: "nombres",
             },
             {
-                data: "yearPeriod"
+                data: "yearPeriod",
             },
             {
                 data: "acciones",

@@ -15,13 +15,12 @@ class Course extends Model
     {
         return $this->belongsToMany(Teacher::class, 'detailTeachers', 'idCourse', 'codeTeacher')->using(detailTeacher::class)->withPivot('idDetailTeacher');
     }
-    public function sections()
-    {
-        return $this->belongsToMany(Section::class, 'detailTeachers', 'idCourse', 'idSection')->using(detailTeacher::class)->withPivot('idDetailTeacher');
-    }
-
     public function degree()
     {
         return $this->belongsTo(Degree::class, 'idGrade');
+    }
+    public function capacities()
+    {
+        return $this->belongsToMany(Capacity::class, 'detailCapacities', 'idCourse', 'idCapacity')->using(detailCapacity::class)->withPivot('orderCapacity');
     }
 }

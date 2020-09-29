@@ -11,16 +11,12 @@ class Teacher extends Model
     protected $fillable = ['codeWorker', 'idCourse', 'idDegree', 'idSection', 'idLevel', 'idPeriod'];
     public $timestamps = false;
 
-    public function worker()
-    {
-        return $this->morphOne(Worker::class, 'teamWork');
-    }
     public function courses()
     {
         return $this->belongsToMany(Course::class, 'detailTeachers', 'codeTeacher', 'idCourse')->using(detailTeacher::class)->withPivot('idDetailTeacher');
     }
-    public function sections()
+    public function worker()
     {
-        return $this->belongsToMany(Section::class, 'detailTeachers', 'codeTeacher', 'idSection')->using(detailTeacher::class)->withPivot('idDetailTeacher');
+        return $this->belongsTo(Worker::class, 'codeWorker');
     }
 }

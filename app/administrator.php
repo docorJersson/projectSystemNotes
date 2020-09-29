@@ -16,6 +16,6 @@ class administrator extends Model
     }
     public function worker()
     {
-        return $this->morphOne(Worker::class, 'teamWork');
+        return $this->belongsTo(Worker::class);
     }
 }

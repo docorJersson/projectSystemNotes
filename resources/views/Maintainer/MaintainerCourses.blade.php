@@ -23,10 +23,10 @@
                         <table id="table-curso" class="table table-bordered nowrap" cellspacing="0" width="100%">
                             <thead class="bg-dark">
                                 <tr>
-                                    <th>idCourse</th>
                                     <th>Código de Curso</th>
                                     <th>Curso</th>
                                     <th>Grado</th>
+                                    <th>Sección</th>
                                     <th>Nivel</th>
                                     <th>Bimestre:</th>
                                     <th>Profesor a Cargo:</th>
