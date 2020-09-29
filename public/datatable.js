@@ -181,18 +181,24 @@ $("#tableNewCapacity").on("click", "tbody tr", function () {
         row.descriptionCapacity +
         "</td><td>" +
         row.abbreviation +
-        "</td><td>Hola</td><td><a>Borrar</a></td></tr>";
+        "</td><td>" +
+        row.orderCapacity +
+        "</td><td><a>Borrar</a></td></tr>";
     $("#tableCapacities tbody").append(fila_nueva);
     $("#btnCloseCapacity").click();
     obtenerValoresTablaCapacities();
 });
 
 function obtenerValoresTablaCapacities() {
+    var valor = new Array();
+    var i = 0;
     $("#tableCapacities")
         .find("td")
         .each(function () {
-            console.log($(this).html());
+            valor[i] = $(this).html();
+            i++;
         });
+    console.log(valor);
 }
 
 function loadTableCourses(yearSelect) {
