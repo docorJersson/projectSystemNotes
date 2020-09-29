@@ -6,8 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Worker extends Model
 {
-    protected $table='workers';
-    protected $primaryKey='codeWorker';
-    protected $fillable=['nameWorker','lastNameWorker','dniWorker','addressWorker','civilStatus','telephone','socialSecurity','flatWorker','dateWorker','statusWorker'];
-    public $timestamps=false;
+    protected $table = 'workers';
+    protected $primaryKey = 'codeWorker';
+    protected $keyType = 'string';
+    protected $fillable = ['nameWorker', 'lastNameWorker', 'dniWorker', 'addressWorker', 'civilStatus', 'telephone', 'socialSecurity', 'dateWorker', 'statusWorker'];
+    public $timestamps = false;
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'codeTeacher');
+    }
+    public function administrator()
+    {
+        return $this->hasOne(administrator::class);
+    }
 }

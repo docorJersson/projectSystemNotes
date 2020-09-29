@@ -4,7 +4,7 @@
 <div class="container p-5">
     <div class="card card-outline card-info">
         <div class="card-header">
-            <h3 class="card-title">Definición de Cursos por Grados</h3>
+            <h3 class="card-title">Mantenimiento de Grados y Secciones</h3>
         </div>
         <div class="card-body">
             <div class="container">
@@ -47,13 +47,21 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-4 col-sm-3">
+                    <div class="col-md-4 col-sm-12">
                       <table id="table-course-grade" class="table table-bordered display nowrap"cellspacing="0" width="100%">
                         <thead class="bg-info">
                             <th>Descripcion</th>
                         </thead>
                         <tbody>
-                            <td>Matematicas</td>
+                            <tr>
+                                <td>A</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                            </tr>
                         </tbody>
                       </table>
                     </div>

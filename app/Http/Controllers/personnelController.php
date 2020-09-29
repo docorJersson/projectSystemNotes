@@ -2,27 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Capacity;
-use App\Course;
-use App\Level;
-use App\Section;
-use App\Degree;
-use App\detailCapacity;
-use App\detailTeacher;
-use App\Period;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Worker;
 
-class CoursesController extends Controller
+class personnelController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Maintainer.MaintainerCourses');
+        //
+        if($request)
+        {
+            // $workers=Worker::where('statusWorker',1)->get();
+            // return view('Personnel.main',\compact('workers'));   
+            return view('Personnel.main');      
+        }  
     }
 
     /**
@@ -57,14 +55,21 @@ class CoursesController extends Controller
         //
     }
 
-
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
-
-        $dt = detailTeacher::findOrFail($id);
-        $course = Course::findOrFail($dt->idCourse);
-        $capacities = $course->capacities()->where('idPeriod', $dt->periodYears->idPeriod)->orderBy('orderCapacity')->get();
-        return view('Maintainer.EditCourses', compact('course', 'dt', 'capacities'));
+        //
+        //el problema era que por defecto un modelo toma la llave por tipo id , entonces estaba comviertiendo el string a id , si el code worker no hubiera sido 001 y hubiera sido CDVA entonces hubiaera habido un desde el principio ya que no podia convertir ese string a un númmero. 
+        $worker=Worker::findOrFail($id);
+        //,
+        return view('Personnel/editPersonnel', compact('worker'));
+        // \dd($worker);
+        // return \view('Personnel.edit',\compact('worker'));
     }
 
     /**
@@ -77,6 +82,8 @@ class CoursesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        Worker::findOrFail($id)->update($request->all());
+        return redirect()->route('personnel.index');
     }
 
     /**
@@ -88,5 +95,9 @@ class CoursesController extends Controller
     public function destroy($id)
     {
         //
+        $worker = Worker::findOrFail($id);
+        $worker->statusWorker = 0;
+        $worker->save();
+        return \redirect()->route('personnel.index');
     }
 }

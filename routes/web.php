@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\capacityController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // $user=Auth::user();
-    // if($user->isAdmin()){
-    //     echo "Eres usuario Administrador";
-    // }else{
-    //     echo "Eres Docente";
-    // }
     return view('welcome');
 });
 
@@ -31,10 +27,16 @@ Route::get('/home', 'HomeController@index')->name('home'); //está ruta es la qu
 
 //Por ejemplo una ruta
 
-Route::get('/grade_section','MaintainerController@GradesSections');
-Route::get('/course_grade','MaintainerController@DefCoursesGrades');
-Route::resource('/courses','CoursesController');
-Route::get('/subjects','MaintainerController@Capacity');
-Route::get('/personnel','MaintainerController@Workers');
-Route::get('/catedra','MaintainerController@Mcatedra');
-Route::get('/register_notes','MaintainerController@RegisterNotes');
+Route::get('/grade_section', 'MaintainerController@GradesSections');
+Route::get('/course_grade', 'MaintainerController@DefCoursesGrades');
+Route::resource('courses', 'CoursesController');
+Route::get('/subjects', 'MaintainerController@Capacity');
+Route::get('/catedra', 'MaintainerController@Mcatedra');
+Route::get('/register_notes', 'MaintainerController@RegisterNotes');
+
+Route::resource('/personnel', 'personnelController');
+Route::get('personnel/{id}/destroy', [
+    'uses' => 'personnelController@destroy',
+    'as'   => 'personnel.destroyed',
+]);
+Route::get('capacity/{course}', [capacityController::class, 'index']);

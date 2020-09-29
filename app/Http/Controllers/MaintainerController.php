@@ -8,7 +8,7 @@ class MaintainerController extends Controller
 {
     public function GradesSections()
     {
-        return view('Maintainer.CoursesxGrades');
+        return view('Maintainer.GradeSeccion');
     }
 
     public function DefCoursesGrades()
@@ -26,11 +26,6 @@ class MaintainerController extends Controller
         return view('Maintainer.Capacity');
     }
 
-    public function  Workers()
-    {
-        return view('Maintainer.MaintainerWorker');
-    }
-    
     public function  Mcatedra()
     {
         return view('Maintainer.MaintainerCatedra');
