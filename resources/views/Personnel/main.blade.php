@@ -24,24 +24,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{--  @foreach ($workers as $w)
-                        <tr>
-                            <td>{{$w->codeWorker}}</td>
-                        <td>{{$w->lastNameWorker}}, {{$w->nameWorker}}</td>
-                        <td>{{$w->dniWorker}}</td>
-                        <td>{{$w->addressWorker}}</td>
-                        <td>{{$w->telephone}}</td>
-                        <td>{{$w->socialSecurity}}</td>
-                        <td>{{$w->dateWorker}}</td>
-                        <td>@include('Personnel.editPersonnel')
-                            <a href="{{route('personnel.destroyed',$w->codeWorker)}}"
-                                class="btn btn-danger text-white btn-sm"
-                                onclick="return confirm('¿Seguro que deseas eliminarlo?')">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                        </tr>
-                        @endforeach --}}
                     </tbody>
                 </table>
             </div>

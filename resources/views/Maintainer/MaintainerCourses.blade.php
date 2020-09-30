@@ -7,14 +7,13 @@
         </div>
         <div class="card-body">
             <div class="container">
-                <div class="col-md-10 center-margin" style="font-family: Arial, Helvetica, sans-serif;color:black">
+                <div class="col-md-11 center-margin" style="font-family: Arial, Helvetica, sans-serif;color:black">
                     <div class="row">
                         <div class="form-group col-md-6 col-sm-12">
                             <div class="row">
                                 <label for="" class="col-form-label col-md-3 col-sm-12">Período</label>
                                 <div class="col-md-9 col-sm-12">
-                                    <select name="idLevel" id="idLevel" class="form-control select2">
-
+                                    <select name="idPeriod" id="idPeriod" class="form-control">
                                     </select>
                                 </div>
                             </div>
@@ -24,13 +23,15 @@
                         <table id="table-curso" class="table table-bordered nowrap" cellspacing="0" width="100%">
                             <thead class="bg-dark">
                                 <tr>
-                                    <th>idCourse</th>
                                     <th>Código de Curso</th>
                                     <th>Curso</th>
                                     <th>Grado</th>
+                                    <th>Sección</th>
                                     <th>Nivel</th>
                                     <th>Bimestre:</th>
                                     <th>Profesor a Cargo:</th>
+                                    <th>Periodo</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                             </thead>
                         </table>

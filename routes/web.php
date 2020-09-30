@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\capacityController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,15 +27,16 @@ Route::get('/home', 'HomeController@index')->name('home'); //está ruta es la qu
 
 //Por ejemplo una ruta
 
-Route::get('/grade_section','MaintainerController@GradesSections');
-Route::get('/course_grade','MaintainerController@DefCoursesGrades');
-Route::resource('/courses','CoursesController');
-Route::get('/subjects','MaintainerController@Capacity');
-Route::get('/catedra','MaintainerController@Mcatedra');
-Route::get('/register_notes','MaintainerController@RegisterNotes');
+Route::get('/grade_section', 'MaintainerController@GradesSections');
+Route::get('/course_grade', 'MaintainerController@DefCoursesGrades');
+Route::resource('courses', 'CoursesController');
+Route::get('/subjects', 'MaintainerController@Capacity');
+Route::get('/catedra', 'MaintainerController@Mcatedra');
+Route::get('/register_notes', 'MaintainerController@RegisterNotes');
 
-Route::resource('/personnel','personnelController');
-Route::get('personnel/{id}/destroy',[
+Route::resource('/personnel', 'personnelController');
+Route::get('personnel/{id}/destroy', [
     'uses' => 'personnelController@destroy',
     'as'   => 'personnel.destroyed',
 ]);
+Route::get('capacity/{course}', [capacityController::class, 'index']);
