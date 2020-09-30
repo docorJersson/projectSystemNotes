@@ -10,4 +10,9 @@ class Level extends Model
     protected $primaryKey = 'idLevel';
     protected $fillable = ['descriptionLevel'];
     public $timestamps = false;
+
+    public function grades()
+    {
+        return $this->hasMany(Degree::class, 'idGrade');
+    }
 }

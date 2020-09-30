@@ -1,50 +1,62 @@
+var year = new Date().getFullYear();
+var capacityCourses;
 $(document).ready(function () {
+    $.ajax({
+        type: "GET",
+        url: "api/period",
+        dataType: "json",
+        success: function (data) {
+            cargarYearPeriod(data);
+        },
+    });
+
     $("#table-workers").DataTable({
         responsive: true,
         fixedHeader: true,
         language: {
             sUrl: "Spanish.json",
         },
-    });
-
-    $("#table-curso").DataTable({
-        responsive: true,
-        fixedHeader: true,
-        //paging: false,
-        searching: false,
-        info: false,
-        language: {
-            sUrl: "Spanish.json",
-        },
         serverSide: true,
 
         ajax: {
-            url: "api/courses",
+            url: "api/personnel",
         },
         columns: [{
-                data: "idCourse"
+                data: "codeWorker",
+                visible: false,
+                searchable: false,
             },
             {
-                data: "codeCourse"
+                data: "nameWorker",
             },
             {
-                data: "descriptionCourse"
+                data: "lastNameWorker",
             },
             {
-                data: "descriptionGrade"
+                data: "dniWorker",
             },
             {
-                data: "descriptionLevel"
+                data: "addressWorker",
             },
             {
-                data: "bimester"
+                data: "civilStatus",
             },
             {
-                data: "nombres"
+                data: "telephone",
             },
-
+            {
+                data: "socialSecurity",
+            },
+            {
+                data: "dateWorker",
+            },
+            {
+                data: "btn",
+            },
         ],
     });
+
+    loadTableCourses(year);
 
     $("#table-capacity").DataTable({
         responsive: true,
@@ -108,6 +120,9 @@ $(document).ready(function () {
             sUrl: "Spanish.json",
         },
     });
+    obtenerValoresTablaCapacities();
+
+
 });
 
 $(function () {
@@ -116,3 +131,128 @@ $(function () {
 $(function () {
     $(".select2").select2();
 });
+
+function cargarYearPeriod(data) {
+    $.each(data, function (key, registro) {
+        $("#idPeriod").append(
+            "<option value=" +
+            registro.yearPeriod +
+            ">" +
+            registro.yearPeriod +
+            "</option>"
+        );
+    });
+}
+
+$("#idPeriod").change(function yearSelected() {
+    var year = $("#idPeriod").val();
+    $("#table-curso").dataTable().fnDestroy();
+    loadTableCourses(year);
+});
+var dataCapacity;
+$("#btnCapacity").click(function () {
+    var level = $("#idLevel").val();
+    $("#tableNewCapacity").dataTable().fnDestroy();
+    dataCapacity = $("#tableNewCapacity").DataTable({
+        processing: true,
+        type: "GET",
+        ajax: {
+            url: "/capacity/" + level,
+            dataSrc: "",
+        },
+        columns: [{
+                data: "descriptionCapacity",
+            },
+            {
+                data: "abbreviation",
+            },
+            {
+                data: "orderCapacity",
+            },
+        ],
+    });
+});
+var valorCapacity = new Array();
+$("#tableNewCapacity").on("click", "tbody tr", function () {
+    var row = dataCapacity.row($(this)).data();
+    for (var i = 0; i < valorCapacity.length; i++) {
+        if (valorCapacity[i] == row.idCapacity) {
+            alert("Capacidad ya perteneciente a este curso");
+            return false;
+        }
+    }
+    var fila_nueva = '<tr id="fila' + row.idCapacity + '><td class="d-none d-print-block"><input type="hidden" name="idCapacity[]" value="' + row.idCapacity + '" >' + row.idCapacity + '</td><td>' + row.descriptionCapacity + '</td><td>' + row.abbreviation + '</td><td><input type="hidden" name="orderCapacity[]" value ="' + row.orderCapacity + '">' + row.orderCapacity + '</td><td><a href="#" class="btn btn-sm btn-danger" onclick="quitar(' + row.idCapacity + ')"><i class="fas fa-minus-circle"></i ></a></td></tr>';
+    $("#tableCapacities tbody").append(fila_nueva);
+    $("#btnCloseCapacity").click();
+    valorCapacity.push(row.idCapacity);
+    $("#ordenCapacity").click();
+});
+
+function quitar(fila) {
+    $("#fila" + fila).remove();
+}
+
+
+function obtenerValoresTablaCapacities() {
+    $("#tableCapacities tbody tr").find('td:first').each(function () {
+        valorCapacity.push(parseInt($(this).text()));
+    });
+}
+
+function loadTableCourses(yearSelect) {
+    $("#table-curso").DataTable({
+        responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal({
+                    header: function (row) {
+                        var data = row.data();
+                        return "Detalles del Curso ";
+                    },
+                }),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                    tableClass: "table",
+                }),
+            },
+        },
+        fixedHeader: true,
+        searching: false,
+        info: false,
+        language: {
+            sUrl: "Spanish.json",
+        },
+        processing: true,
+        serverSide: true,
+
+        ajax: {
+            url: "api/courses/" + yearSelect,
+        },
+        columns: [{
+                data: "codeCourse",
+            },
+            {
+                data: "descriptionCourse",
+            },
+            {
+                data: "descriptionGrade",
+            },
+            {
+                data: "descriptionSection",
+            },
+            {
+                data: "descriptionLevel",
+            },
+            {
+                data: "bimester",
+            },
+            {
+                data: "nombres",
+            },
+            {
+                data: "yearPeriod",
+            },
+            {
+                data: "acciones",
+            },
+        ],
+    });
+}
