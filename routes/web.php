@@ -31,7 +31,6 @@ Route::get('/grade_section', 'MaintainerController@GradesSections');
 Route::get('/course_grade', 'MaintainerController@DefCoursesGrades');
 Route::resource('courses', 'CoursesController');
 Route::get('/subjects', 'MaintainerController@Capacity');
-Route::get('/catedra', 'MaintainerController@Mcatedra');
 Route::get('/register_notes', 'MaintainerController@RegisterNotes');
 
 Route::resource('/personnel', 'personnelController');
@@ -40,3 +39,5 @@ Route::get('personnel/{id}/destroy', [
     'as'   => 'personnel.destroyed',
 ]);
 Route::get('capacity/{course}', [capacityController::class, 'index']);
+
+Route::resource('catedra', 'catedraController');

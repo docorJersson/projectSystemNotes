@@ -1,4 +1,5 @@
-<button type="button" class="btn btn-primary text-white" data-toggle="modal" data-target="#Teachers" title="Teachers">
+<button type="button" class="btn btn-primary text-white" data-toggle="modal" data-target="#Teachers" title="Teachers"
+  id="btnTeachers">
   <i class="fa fa-search-plus fa-sm" aria-hidden="true"></i>
 </button>
 <!-- Modal -->
@@ -13,23 +14,18 @@
         </button>
       </div>
       <form action="" method="post">
-        <div class="modal-body">
-          <table id="table-teacher" class="table table-bordered display nowrap" cellspacing="0" width="100%">
+        <div class="modal-body table-responsive">
+          <table id="table-teacher" class="table table-bordered table-hover nowrap" cellspacing="0" width="100%">
             <thead class="bg-warning">
               <tr>
-                <th>Código</th>
                 <th>Nombre</th>
                 <th>Apellidos</th>
                 <th>Año Escolar</th>
+                {{-- <th>Opciones</th> --}}
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>2020</td>
-                <td>2020</td>
-              </tr>
+
             </tbody>
           </table>
         </div>

@@ -39,3 +39,17 @@ Route::get('personnel', function () {
         ->rawColumns(['btn'])
         ->toJson();
 });
+
+Route::get('catedra', function () {
+    return datatables(
+        DB::select('select t.codeTeacher, w.nameWorker, w.lastNameWorker, year(getdate()) as year
+        from teachers t join workers w on t.codeWorker=w.codeWorker where w.statusWorker=1')
+    )
+    ->toJson();
+});
+
+
+Route::get('/levels/{id}/degrees', 'levelController@byDegree');
+Route::get('/degrees/{id}/sections', 'levelController@bySection');
+Route::get('/degrees/{id}/courses', 'levelController@byCourse');
+
