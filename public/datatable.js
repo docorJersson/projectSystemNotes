@@ -181,6 +181,9 @@ $(document).ready(function () {
         $('#idGrade').attr("disabled", false);
         $('#idSection').attr("disabled", true);
         $('#idCourse').attr("disabled", true);
+        $('#idSection').html("");
+        $('#idCourse').html("");
+
 
         if (!id) {
             $('#idGrade').html('<option value="">Choose..</option>');
