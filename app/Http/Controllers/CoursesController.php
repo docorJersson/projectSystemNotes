@@ -76,7 +76,33 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->descriptionSection);
+        $course = Course::findOrFail($request->idCourse);
+        $oldCapacities = $course->capacities()->where('idPeriod', $request->idPeriod)->get();
+        $newCapacities = $request->idCapacity;
+        $orderNewCapacities = $request->orderCapacity;
+        foreach ($newCapacities as $keyNew => $newCapacity) {
+            foreach ($oldCapacities as $keyOld => $oldCapacity) {
+                if ($oldCapacity->idCapacity == $newCapacity) {
+                    unset($oldCapacities[$keyOld]);
+                    unset($newCapacities[$keyNew]);
+                    unset($orderNewCapacities[$keyNew]);
+                }
+            }
+        }
+        if (!empty($oldCapacities)) {
+            foreach ($oldCapacities as $c) {
+                detailCapacity::destroy($c->pivot->idDetailCapacity);
+            }
+        }
+        $newCapacities = array_values($newCapacities);
+        $orderNewCapacities = array_values($orderNewCapacities);
+        if (!empty($newCapacities)) {
+            $tamaño = count($newCapacities);
+            for ($i = 0; $i < $tamaño; $i++) {
+                $course->capacities()->attach($newCapacities[$i], ['idPeriod' => $request->idPeriod, 'orderCapacity' => $orderNewCapacities[$i]]);
+            }
+        }
+        return redirect('courses');
     }
 
     /**

@@ -1,5 +1,5 @@
 var year = new Date().getFullYear();
-
+var capacityCourses;
 $(document).ready(function () {
     $.ajax({
         type: "GET",
@@ -121,6 +121,8 @@ $(document).ready(function () {
         },
     });
     obtenerValoresTablaCapacities();
+
+
 });
 
 $(function () {
@@ -175,37 +177,25 @@ $("#tableNewCapacity").on("click", "tbody tr", function () {
     var row = dataCapacity.row($(this)).data();
     for (var i = 0; i < valorCapacity.length; i++) {
         if (valorCapacity[i] == row.idCapacity) {
-            alert("Capacidad ya seleccionada");
+            alert("Capacidad ya perteneciente a este curso");
             return false;
         }
     }
-    var fila_nueva =
-        "<tr id=fila" +
-        row.idCapacity +
-        '><td class="d-none d-print-block" name="idCapacity[]">' +
-        row.idCapacity +
-        "</td><td>" +
-        row.descriptionCapacity +
-        "</td><td>" +
-        row.abbreviation +
-        "</td><td>" +
-        row.orderCapacity +
-        '</td><td><a href="#" class="btn btn-sm btn-danger" onclick="quitar(' +
-        row.idCapacity +
-        ')"><i class="fas fa-minus-circle"></i></a></td></tr>';
+    var fila_nueva = '<tr id="fila' + row.idCapacity + '><td class="d-none d-print-block"><input type="hidden" name="idCapacity[]" value="' + row.idCapacity + '" >' + row.idCapacity + '</td><td>' + row.descriptionCapacity + '</td><td>' + row.abbreviation + '</td><td><input type="hidden" name="orderCapacity[]" value ="' + row.orderCapacity + '">' + row.orderCapacity + '</td><td><a href="#" class="btn btn-sm btn-danger" onclick="quitar(' + row.idCapacity + ')"><i class="fas fa-minus-circle"></i ></a></td></tr>';
     $("#tableCapacities tbody").append(fila_nueva);
     $("#btnCloseCapacity").click();
-    obtenerValoresTablaCapacities();
+    valorCapacity.push(row.idCapacity);
+    $("#ordenCapacity").click();
 });
 
 function quitar(fila) {
-    //codigos[item]="";
     $("#fila" + fila).remove();
 }
 
+
 function obtenerValoresTablaCapacities() {
-    $("#tableCapacities tbody tr td:nth-child(1)").each(function () {
-        valorCapacity.push($(this).text());
+    $("#tableCapacities tbody tr").find('td:first').each(function () {
+        valorCapacity.push(parseInt($(this).text()));
     });
 }
 

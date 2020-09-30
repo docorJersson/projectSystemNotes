@@ -5,7 +5,7 @@
   <div class="modal-header bg-navy">
     <h5 class="modal-title" id="exampleModalLongTitle">EDITAR CURSO</h5>
   </div>
-  <form action="{{URL::to('courses',$course->idCourse)}}" method="post">
+  <form action="{{URL::to('courses',$dt->idDetailTeacher)}}" method="post">
     @csrf
     @method('put')
     <div class="modal-body">
@@ -15,6 +15,7 @@
           <hr>
           <div class="col-md-4 col-sm-12  form-group">
             <label for="">Código</label>
+            <input type="hidden" name="idCourse" value="{{$course->idCourse}}">
             <input type="text" name="codeCourse" class="form-control" value="{{$course->codeCourse}}" disabled>
           </div>
           <div class="col-md-8 col-sm-12 form-group">
@@ -54,6 +55,7 @@
           </div>
           <div class="col-md-4 col-sm-12  form-group">
             <label for="">Periodo</label>
+            <input type="hidden" name="idPeriod" value="{{$dt->periodYears->idPeriod}}">
             <input type="text" class="form-control" value="{{$dt->periodYears->yearPeriod}}" disabled>
           </div>
           <div class="col-md-4 col-sm-12  form-group">
@@ -73,17 +75,20 @@
               <th class="d-none d-print-block">idCapacity</th>
               <th>Capacidad</th>
               <th>Objetivos</th>
-              <th>Ordern de Evaluación</th>
+              <th id="ordenCapacity">Ordern de Evaluación</th>
               <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($capacities as $capacity)
             <tr id="fila{{$capacity->idCapacity}}">
-              <td class="d-none d-print-block" name="idCapacity[]">{{$capacity->idCapacity}}</td>
+              <td class="d-none d-print-block" name=""><input type="hidden" name="idCapacity[]"
+                  value="{{$capacity->idCapacity}}">{{$capacity->idCapacity}}
+              </td>
               <td>{{$capacity->descriptionCapacity}}</td>
               <td>{{$capacity->abbreviation}}</td>
-              <td>{{$capacity->pivot->orderCapacity}}</td>
+              <td><input type="hidden" name="orderCapacity[]"
+                  value="{{$capacity->pivot->orderCapacity}}">{{$capacity->pivot->orderCapacity}}</td>
               <td>
                 <a href="#" class="btn btn-danger btn-sm" onclick="quitar({{$capacity->idCapacity}})">
                   <i class="fas fa-minus-circle"></i>

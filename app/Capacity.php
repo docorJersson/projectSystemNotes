@@ -13,6 +13,6 @@ class Capacity extends Model
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'detailCapacities', 'idCapacity', 'idCourse')->using(detailCapacity::class)->withPivot('orderCapacity');
+        return $this->belongsToMany(Course::class, 'detailCapacities', 'idCapacity', 'idCourse')->using(detailCapacity::class)->withPivot('orderCapacity', 'idDetailCapacity');
     }
 }
