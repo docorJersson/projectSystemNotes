@@ -22,37 +22,37 @@ $(document).ready(function () {
             url: "api/personnel",
         },
         columns: [{
-                data: "codeWorker",
-                visible: false,
-                searchable: false,
-            },
-            {
-                data: "nameWorker",
-            },
-            {
-                data: "lastNameWorker",
-            },
-            {
-                data: "dniWorker",
-            },
-            {
-                data: "addressWorker",
-            },
-            {
-                data: "civilStatus",
-            },
-            {
-                data: "telephone",
-            },
-            {
-                data: "socialSecurity",
-            },
-            {
-                data: "dateWorker",
-            },
-            {
-                data: "btn",
-            },
+            data: "codeWorker",
+            visible: false,
+            searchable: false,
+        },
+        {
+            data: "nameWorker",
+        },
+        {
+            data: "lastNameWorker",
+        },
+        {
+            data: "dniWorker",
+        },
+        {
+            data: "addressWorker",
+        },
+        {
+            data: "civilStatus",
+        },
+        {
+            data: "telephone",
+        },
+        {
+            data: "socialSecurity",
+        },
+        {
+            data: "dateWorker",
+        },
+        {
+            data: "btn",
+        },
         ],
     });
 
@@ -110,25 +110,136 @@ $(document).ready(function () {
         },
     });
 
-    $("#table-teacher").DataTable({
-        responsive: true,
-        fixedHeader: true,
-        //paging: false,
-        searching: true,
-        info: false,
-        language: {
-            sUrl: "Spanish.json",
-        },
+    $("#btnTeachers").click(function () {
+        $("#table-teacher").dataTable().fnDestroy();
+        tablePersonal = $("#table-teacher").DataTable({
+            responsive: true,
+            //fixedHeader: true,
+            //paging: false,
+            type: "GET",
+            searching: true,
+            processing: true,
+            info: false,
+            language: {
+                sUrl: "Spanish.json",
+            },
+
+            serverSide: true,
+
+            ajax: {
+                url: "api/catedra",
+                //  dataSrc: "",
+            },
+            columns: [
+                {
+                    data: "nameWorker",
+                },
+                {
+                    data: "lastNameWorker",
+                },
+                {
+                    data: "year",
+                },
+            ],
+        });
     });
-    obtenerValoresTablaCapacities();
+
+});
+var tablePersonal = new Array();
+// start
+
+$('#table-teacher').on('click', 'tbody tr', function () {
+    //  let a = [];
+    var row = tablePersonal.row($(this)).data();
+    codeWorker.value = row.codeTeacher;
+    nameWorker.value = row.nameWorker + ' ' + row.lastNameWorker;
+    yearPeriod.value = row.year;
+    $('.close').click();
 });
 
 $(function () {
     $(".select1").select2();
-});
-$(function () {
     $(".select2").select2();
+    $(".select3").select2();
+    $(".select4").select2();
+    $(".select5").select2();
+    $(".select6").select2();
 });
+
+//Haremos los selects dinámicos
+$(document).ready(function () {
+    $('#idGrade').attr("disabled", true);
+    $('#idSection').attr("disabled", true);
+    $('#idCourse').attr("disabled", true);
+
+
+    $('#idLevel').on('change', function () {
+
+        let id = $(this).val();
+        // console.log(id);
+        //Haremos que solo el grado se habilite
+        $('#idGrade').attr("disabled", false);
+        $('#idSection').attr("disabled", true);
+        $('#idCourse').attr("disabled", true);
+
+        if (!id) {
+            $('#idGrade').html('<option value="">Choose..</option>');
+            return;
+        }
+        //AJAX
+        $.get('/api/levels/' + id + '/degrees', function (data) {
+            let htmlSelect = '<option value="">Choose..</option>';
+            for (let i = 0; i < data.length; ++i) {
+                htmlSelect += "<option value='" + data[i].idGrade + "'>" + data[i].descriptionGrade.toUpperCase() + "</option>"
+            }
+            // console.log(htmlSelect);
+            $('#idGrade').html(htmlSelect);
+        })
+    });
+
+    $('#idGrade').on('change', function () {
+        let id = $(this).val();
+        // console.log(id);
+        //Haremos que se habilite la sección
+        $('#idSection').attr("disabled", false);
+
+        if (!id) {
+            $('#idSection').html('<option value="">Choose..</option>');
+            return;
+        }
+        //AJAX
+        $.get('/api/degrees/' + id + '/sections', function (data) {
+            let htmlSelect = '<option value="">Choose..</option>';
+            for (let i = 0; i < data.length; ++i) {
+                htmlSelect += "<option value='" + data[i].idSection + "'>" + data[i].descriptionSection + "</option>"
+            }
+            // console.log(htmlSelect);
+            $('#idSection').html(htmlSelect);
+        })
+    });
+
+    $('#idGrade').on('change', function () {
+        let id = $(this).val();
+        // console.log(id);
+        //Haremos que se habilite el curso
+        $('#idCourse').attr("disabled", false);
+
+        if (!id) {
+            $('#idCourse').html('<option value="">Choose..</option>');
+            return;
+        }
+        //AJAX
+        $.get('/api/degrees/' + id + '/courses', function (data) {
+            let htmlSelect = '<option value="">Choose..</option>';
+            for (let i = 0; i < data.length; ++i) {
+                htmlSelect += "<option value='" + data[i].idCourse + "'>" + data[i].descriptionCourse + "</option>"
+            }
+            // console.log(htmlSelect);
+            $('#idCourse').html(htmlSelect);
+        })
+    });
+});
+//end
 
 function cargarYearPeriod(data) {
     $.each(data, function (key, registro) {
@@ -159,14 +270,14 @@ $("#btnCapacity").click(function () {
             dataSrc: "",
         },
         columns: [{
-                data: "descriptionCapacity",
-            },
-            {
-                data: "abbreviation",
-            },
-            {
-                data: "orderCapacity",
-            },
+            data: "descriptionCapacity",
+        },
+        {
+            data: "abbreviation",
+        },
+        {
+            data: "orderCapacity",
+        },
         ],
     });
 });
@@ -237,32 +348,32 @@ function loadTableCourses(yearSelect) {
             url: "api/courses/" + yearSelect,
         },
         columns: [{
-                data: "codeCourse",
-            },
-            {
-                data: "descriptionCourse",
-            },
-            {
-                data: "descriptionGrade",
-            },
-            {
-                data: "descriptionSection",
-            },
-            {
-                data: "descriptionLevel",
-            },
-            {
-                data: "bimester",
-            },
-            {
-                data: "nombres",
-            },
-            {
-                data: "yearPeriod",
-            },
-            {
-                data: "acciones",
-            },
+            data: "codeCourse",
+        },
+        {
+            data: "descriptionCourse",
+        },
+        {
+            data: "descriptionGrade",
+        },
+        {
+            data: "descriptionSection",
+        },
+        {
+            data: "descriptionLevel",
+        },
+        {
+            data: "bimester",
+        },
+        {
+            data: "nombres",
+        },
+        {
+            data: "yearPeriod",
+        },
+        {
+            data: "acciones",
+        },
         ],
     });
 }
