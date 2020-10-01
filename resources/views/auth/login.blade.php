@@ -4,7 +4,8 @@
 <div class="section">
     <div class="container">
         <div class="user">
-            <div class="user-img"><img src="assets/img/3.jpg" alt="" /></div>
+            <div class="user-img"><img src="https://drive.google.com/uc?id=16SEs7SEKEg-F2lfuAPEoKcXskjnZI92z" alt="" />
+            </div>
             <div class="user-form">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
