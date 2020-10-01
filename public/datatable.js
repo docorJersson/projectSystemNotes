@@ -147,9 +147,6 @@ $("#btnTeachers").click(function () {
             {
                 data: "lastNameWorker",
             },
-            {
-                data: "year",
-            },
         ],
     });
 });
