@@ -109,8 +109,13 @@ $(document).ready(function () {
             sUrl: "Spanish.json",
         },
     });
-
+    //Tabla teachers
+    // *** *** *** ***
+    $('#btnCourseTeachers').attr("disabled", true);
+    $('#yearPeriod').attr("disabled", true);
+    $('#idLevel').attr("disabled", true);
     $("#btnTeachers").click(function () {
+
         $("#table-teacher").dataTable().fnDestroy();
         tablePersonal = $("#table-teacher").DataTable({
             responsive: true,
@@ -137,9 +142,6 @@ $(document).ready(function () {
                 {
                     data: "lastNameWorker",
                 },
-                {
-                    data: "year",
-                },
             ],
         });
     });
@@ -153,21 +155,55 @@ $('#table-teacher').on('click', 'tbody tr', function () {
     var row = tablePersonal.row($(this)).data();
     codeWorker.value = row.codeTeacher;
     nameWorker.value = row.nameWorker + ' ' + row.lastNameWorker;
-    yearPeriod.value = row.year;
     $('.close').click();
+
+    //Cargaremos la tabla mostrar
+    $('#btnCourseTeachers').attr("disabled", false);
+    $('#yearPeriod').attr("disabled", false);
+    $('#idLevel').attr("disabled", false);
+    // console.log(row.codeWorker);
 });
 
+// selects
 $(function () {
     $(".select1").select2();
     $(".select2").select2();
-    $(".select3").select2();
-    $(".select4").select2();
-    $(".select5").select2();
-    $(".select6").select2();
+    // $(".select3").select2();
+    // $(".select4").select2();
+    // $(".select5").select2();
+    // $(".select6").select2();
 });
+//end selects
 
 //Haremos los selects dinámicos
 $(document).ready(function () {
+    // *** *** *** *** *** *** *** *** *** *** *** ***
+    //Select YearPeriod
+    $('#idPeriodo').attr("disabled", true);
+    $('#idPeriodo').html("");
+
+    $('#yearPeriod').on('change', function () {
+        let year = $(this).val();
+        // console.log(id);
+        //Haremos que se habilite el bimestre
+        $('#idPeriodo').attr("disabled", false);
+        if (!year) {
+            $('#idPeriodo').html('<option value="">Choose..</option>');
+            return;
+        }
+        //AJAX
+        $.get('/api/bimester/' + year + '/period', function (data) {
+            let htmlSelect = '<option value="">Choose..</option>';
+            for (let i = 0; i < data.length; ++i) {
+                htmlSelect += "<option value='" + data[i].idPeriod + "'>" + data[i].bimester + "</option>"
+            }
+            // console.log(htmlSelect);
+            $('#idPeriodo').html(htmlSelect);
+        })
+    });
+
+    // ********************************
+
     $('#idGrade').attr("disabled", true);
     $('#idSection').attr("disabled", true);
     $('#idCourse').attr("disabled", true);
@@ -243,6 +279,53 @@ $(document).ready(function () {
     });
 });
 //end
+
+// Tabla Cursos
+// *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+// var dataCapacity;
+$("#btnCourseTeachers").click(function () {
+    let code = $("#codeWorker").val();
+    console.log(code);
+    $("#tCourses").dataTable().fnDestroy();
+    $("#tCourses").DataTable({
+        responsive: true,
+        //fixedHeader: true,
+        //paging: false,
+        searching: true,
+        info: false,
+        processing: true,
+        type: "GET",
+        ajax: {
+
+            url: '/api/catedra/' + code,
+            dataSrc: "",
+        },
+        columns: [
+            {
+                data: "nameWorker",
+            },
+            {
+                data: "lastNameWorker",
+            },
+            {
+                data: "descriptionCourse",
+            },
+            {
+                data: "descriptionGrade",
+            },
+            {
+                data: "descriptionSection",
+            },
+            {
+                data: "bimester",
+            },
+            {
+                data: "yearPeriod",
+            },
+        ],
+    });
+});
+//End tabla cursos
 
 function cargarYearPeriod(data) {
     $.each(data, function (key, registro) {

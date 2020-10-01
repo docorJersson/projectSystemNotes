@@ -41,3 +41,5 @@ Route::get('personnel/{id}/destroy', [
 Route::get('capacity/{course}', [capacityController::class, 'index']);
 
 Route::resource('catedra', 'catedraController');
+
+// Route::get('catedra/{code}', 'levelController@byCoursesTeacher');
