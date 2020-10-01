@@ -40,9 +40,7 @@
                                 <label for="">Nivel*</label>
                                 <select id="idLevel" name="idLevel" class="form-control select3" required>
                                     <option value="">Choose...</option>
-                                    @foreach ($level as $l)
-                                    <option value="{{$l->idLevel}}">{{$l->descriptionLevel}}</option>
-                                    @endforeach
+
                                 </select>
                             </div>
                             <div class="col-md-6 col-sm-12  form-group">

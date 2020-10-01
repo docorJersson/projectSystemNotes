@@ -37,6 +37,7 @@
           </div>
           <div class="col-md-4 col-sm-12  form-group">
             <label for="">Sección</label>
+            <input type="hidden" name="idSection" value="{{$dt->idSection}}">
             <input type="text" id="idSection" name="descriptionSection" class="form-control"
               value="{{$dt->sections->first()->descriptionSection}}" readonly>
 
@@ -49,14 +50,16 @@
           <hr>
           <div class="col-md-4 col-sm-12  form-group">
             <label for="">Docente a Cargo</label>
-            <input type="text" id="idTeacher" name="idTeacher" class="form-control"
+            <input type="hidden" id="codeWorker" name="codeWorker" value="{{$course->teachers->first()->codeTeacher}}">
+            <input type="text" id="nameWorker" name="nameWorker" class="form-control"
               value="{{$course->teachers->first()->worker->nameWorker." ". $course->teachers->first()->worker->lastNameWorker}}"
-              required>
+              required readonly>
+            @include('Catedra.ListTeachers')
           </div>
           <div class="col-md-4 col-sm-12  form-group">
             <label for="">Periodo</label>
             <input type="hidden" name="idPeriod" value="{{$dt->periodYears->idPeriod}}">
-            <input type="text" class="form-control" value="{{$dt->periodYears->yearPeriod}}" disabled>
+            <input type="text" id="yearPeriod" class="form-control" value="{{$dt->periodYears->yearPeriod}}" disabled>
           </div>
           <div class="col-md-4 col-sm-12  form-group">
             <label for="">Bimestre</label>

@@ -10,6 +10,8 @@ use App\Degree;
 use App\detailCapacity;
 use App\detailTeacher;
 use App\Period;
+use App\Teacher;
+use App\Worker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -62,8 +64,14 @@ class CoursesController extends Controller
     {
 
         $dt = detailTeacher::findOrFail($id);
+        //dd($dt);
+        /*foreach ($dt->sections as $d) {
+            print($d);
+        }
+        die;*/
+        // dd($dt->sections);
         $course = Course::findOrFail($dt->idCourse);
-        $capacities = $course->capacities()->where('idPeriod', $dt->periodYears->idPeriod)->orderBy('orderCapacity')->get();
+        $capacities = $course->capacities()->where('idPeriod', $dt->idPeriod)->orderBy('orderCapacity')->get();
         return view('Maintainer.EditCourses', compact('course', 'dt', 'capacities'));
     }
 
@@ -76,7 +84,12 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $dt = detailTeacher::findOrFail($id);
         $course = Course::findOrFail($request->idCourse);
+        $newTeacher = Teacher::findOrFail($request->codeWorker);
+        $dt->codeTeacher = $newTeacher->codeTeacher;
+        $dt->codeWorker = $newTeacher->codeWorker;
+        $dt->save();
         $oldCapacities = $course->capacities()->where('idPeriod', $request->idPeriod)->get();
         $newCapacities = $request->idCapacity;
         $orderNewCapacities = $request->orderCapacity;

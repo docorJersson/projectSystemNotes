@@ -29,6 +29,9 @@ Route::get('courses/{year}', function ($year) {
 Route::get('period', function () {
     return Period::query()->select('yearPeriod')->distinct()->orderByDesc('yearPeriod')->get();
 });
+Route::get('level', function () {
+    return Level::query()->get();
+});
 
 Route::get('personnel', function () {
     return datatables(
@@ -41,15 +44,15 @@ Route::get('personnel', function () {
 });
 
 Route::get('catedra', function () {
+    //echo ("holaJersson");
     return datatables(
         DB::select('select t.codeTeacher, w.nameWorker, w.lastNameWorker, year(getdate()) as year
         from teachers t join workers w on t.codeWorker=w.codeWorker where w.statusWorker=1')
     )
-    ->toJson();
+        ->toJson();
 });
 
 
 Route::get('/levels/{id}/degrees', 'levelController@byDegree');
 Route::get('/degrees/{id}/sections', 'levelController@bySection');
 Route::get('/degrees/{id}/courses', 'levelController@byCourse');
-

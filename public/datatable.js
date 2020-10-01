@@ -9,6 +9,14 @@ $(document).ready(function () {
             cargarYearPeriod(data);
         },
     });
+    $.ajax({
+        type: "GET",
+        url: "api/level",
+        dataType: "json",
+        success: function (data) {
+            cargarLevel(data);
+        },
+    });
 
     $("#table-workers").DataTable({
         responsive: true,
@@ -110,42 +118,40 @@ $(document).ready(function () {
         },
     });
 
-    $("#btnTeachers").click(function () {
-        $("#table-teacher").dataTable().fnDestroy();
-        tablePersonal = $("#table-teacher").DataTable({
-            responsive: true,
-            //fixedHeader: true,
-            //paging: false,
-            type: "GET",
-            searching: true,
-            processing: true,
-            info: false,
-            language: {
-                sUrl: "Spanish.json",
-            },
 
-            serverSide: true,
-
-            ajax: {
-                url: "api/catedra",
-                //  dataSrc: "",
-            },
-            columns: [{
-                    data: "nameWorker",
-                },
-                {
-                    data: "lastNameWorker",
-                },
-                {
-                    data: "year",
-                },
-            ],
-        });
-    });
     obtenerValoresTablaCapacities();
 });
 var tablePersonal = new Array();
 // start
+
+$("#btnTeachers").click(function () {
+    $("#table-teacher").dataTable().fnDestroy();
+    tablePersonal = $("#table-teacher").DataTable({
+        responsive: true,
+        //fixedHeader: true,
+        paging: false,
+        type: "GET",
+        searching: true,
+        processing: true,
+        //info: false,
+        // serverSide: true,
+
+        ajax: {
+            url: "/api/catedra",
+            // dataSrc: "",
+        },
+        columns: [{
+                data: "nameWorker",
+            },
+            {
+                data: "lastNameWorker",
+            },
+            {
+                data: "year",
+            },
+        ],
+    });
+});
 
 $('#table-teacher').on('click', 'tbody tr', function () {
     //  let a = [];
@@ -255,12 +261,25 @@ function cargarYearPeriod(data) {
     });
 }
 
+function cargarLevel(data) {
+    $.each(data, function (key, registro) {
+        $("#idLevel").append(
+            "<option value=" +
+            registro.idLevel +
+            ">" +
+            registro.descriptionLevel +
+            "</option>"
+        );
+    });
+}
+
 $("#idPeriod").change(function yearSelected() {
     var year = $("#idPeriod").val();
     $("#table-curso").dataTable().fnDestroy();
     loadTableCourses(year);
 });
 var dataCapacity;
+
 $("#btnCapacity").click(function () {
     var level = $("#idLevel").val();
     $("#tableNewCapacity").dataTable().fnDestroy();
