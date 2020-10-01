@@ -23,7 +23,7 @@ class MaintainerController extends Controller
 
     public function Capacity()
     {
-        return view('Maintainer.Capacity');
+        return view('Capacities.Capacity');
     }
 
     public function  RegisterNotes()

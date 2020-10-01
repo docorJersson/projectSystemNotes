@@ -18,11 +18,11 @@
                                 </select>
                             </div>
                             <!--div class="col-md-3 col-sm-12 form-group text-center">
-                                <label for="">Con Capacidad*</label>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="materialUnchecked">
-                                </div>
-                            </div-->
+                                    <label for="">Con Capacidad*</label>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="materialUnchecked">
+                                    </div>
+                                </div-->
 
                             <div class="col-md-4 col-sm-12  form-group">
                                 <label for="">Grado*</label>
@@ -32,7 +32,10 @@
                             </div>
                             <div class="col-md-3 col-sm-12 form-group">
                                 <label for="">Periodo*</label>
-                                <input type="text" name="idPeriod" class="form-control" required>
+                                <input type="text" id="idPeriod" name="idPeriod" class="form-control" required readonly>
+                            </div>
+                            <div>
+                                <select name="" id="idPeriodBimester"></select>
                             </div>
                             <div class="col-md-4 col-sm-12  form-group">
                                 <label for="">Curso*</label>
@@ -42,16 +45,20 @@
                             </div>
                             <div class="col-md-8 col-sm-12 form-group">
                                 <label for="">Asignatura/Capacidad*</label>
-                                <input type="text" name="descriptionCapacity" class="form-control" required>
+                                <input type="hidden" name="idCapacity" id="idCapacity">
+                                <input type="text" id="descriptionCapacity" name="descriptionCapacity"
+                                    class="form-control" required>
+                                @include('Capacities.allCapacities')
                             </div>
 
                             <div class="col-md-4 col-sm-12 form-group">
-                                <label for="">Abreviatura*</label>
-                                <input type="text" name="abbreviation" class="form-control" required>
+                                <label for="">Abreviatura</label>
+                                <input type="text" id="abreviation" name="abbreviation" class="form-control" required>
                             </div>
                             <div class="col-md-3 col-sm-12 form-group">
                                 <label for="">Orden*</label>
-                                <input type="text" name="orderCapacity" class="form-control" required>
+                                <input type="number" id="orderCapacity" name="orderCapacity" class="form-control"
+                                    min="1" max="10" required>
                             </div>
                             <div class="col-1"></div>
 
@@ -62,7 +69,8 @@
                             </div>
                         </div>
                     </form>
-                    <table id="table-capacity" class="table table-bordered display nowrap" cellspacing="0" width="100%">
+                    <table id="table-courses-capacity" class="table table-bordered display nowrap" cellspacing="0"
+                        width="100%">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Descripción</th>
@@ -93,4 +101,8 @@
         </div>
     </div>
 </div>
+<script>
+    var year = new Date().getFullYear();
+        idPeriod.value = year;
+</script>
 @endsection

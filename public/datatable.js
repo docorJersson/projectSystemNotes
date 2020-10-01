@@ -1,4 +1,6 @@
 var year = new Date().getFullYear();
+$("#orderCapacity").attr("disabled", true);
+
 var capacityCourses;
 $(document).ready(function () {
     $.ajax({
@@ -29,8 +31,7 @@ $(document).ready(function () {
         ajax: {
             url: "api/personnel",
         },
-        columns: [
-            {
+        columns: [{
                 data: "codeWorker",
                 visible: false,
                 searchable: false,
@@ -140,8 +141,7 @@ $("#btnTeachers").click(function () {
             url: "/api/catedra",
             // dataSrc: "",
         },
-        columns: [
-            {
+        columns: [{
                 data: "nameWorker",
             },
             {
@@ -206,7 +206,10 @@ $(document).ready(function () {
             // console.log(htmlSelect);
             $("#idPeriodo").html(htmlSelect);
         });
+
     });
+
+
 
     // ********************************
 
@@ -317,8 +320,7 @@ $("#btnCourseTeachers").click(function () {
             url: "/api/catedra/" + code,
             dataSrc: "",
         },
-        columns: [
-            {
+        columns: [{
                 data: "nameWorker",
             },
             {
@@ -348,10 +350,10 @@ function cargarYearPeriod(data) {
     $.each(data, function (key, registro) {
         $("#idPeriod").append(
             "<option value=" +
-                registro.yearPeriod +
-                ">" +
-                registro.yearPeriod +
-                "</option>"
+            registro.yearPeriod +
+            ">" +
+            registro.yearPeriod +
+            "</option>"
         );
     });
 }
@@ -360,10 +362,10 @@ function cargarLevel(data) {
     $.each(data, function (key, registro) {
         $("#idLevel").append(
             "<option value=" +
-                registro.idLevel +
-                ">" +
-                registro.descriptionLevel +
-                "</option>"
+            registro.idLevel +
+            ">" +
+            registro.descriptionLevel +
+            "</option>"
         );
     });
 }
@@ -385,8 +387,7 @@ $("#btnCapacity").click(function () {
             url: "/capacity/" + level,
             dataSrc: "",
         },
-        columns: [
-            {
+        columns: [{
                 data: "descriptionCapacity",
             },
             {
@@ -394,6 +395,24 @@ $("#btnCapacity").click(function () {
             },
             {
                 data: "orderCapacity",
+            },
+        ],
+    });
+});
+$("#btnCapacity").click(function () {
+    $("#tableAllCapacity").dataTable().fnDestroy();
+    dataCapacity = $("#tableAllCapacity").DataTable({
+        processing: true,
+        type: "GET",
+        ajax: {
+            url: "/capacity",
+            dataSrc: "",
+        },
+        columns: [{
+                data: "descriptionCapacity",
+            },
+            {
+                data: "abbreviation",
             },
         ],
     });
@@ -430,6 +449,22 @@ $("#tableNewCapacity").on("click", "tbody tr", function () {
     valorCapacity.push(row.idCapacity);
     $("#ordenCapacity").click();
 });
+var valorAllCapacity;
+
+$("#tableAllCapacity").on("click", "tbody tr", function () {
+    var row = dataCapacity.row($(this)).data();
+    if (valorAllCapacity == row.idCapacity) {
+        alert("Capacidad ya perteneciente a este curso");
+        $("#btnCloseCapacity").click();
+        return false;
+    }
+    idCapacity.value = row.idCapacity;
+    descriptionCapacity.value = row.descriptionCapacity;
+    abreviation.value = row.abbreviation;
+    valorAllCapacity = row.idCapacity;
+
+    $("#btnCloseCapacity").click();
+});
 
 function quitar(fila) {
     $("#fila" + fila).remove();
@@ -441,6 +476,10 @@ function obtenerValoresTablaCapacities() {
         .each(function () {
             valorCapacity.push(parseInt($(this).text()));
         });
+}
+
+function loadBimester() {
+
 }
 
 function loadTableCourses(yearSelect) {
@@ -461,6 +500,7 @@ function loadTableCourses(yearSelect) {
         fixedHeader: true,
         searching: false,
         info: false,
+        type: "GET",
         language: {
             sUrl: "Spanish.json",
         },
@@ -470,8 +510,7 @@ function loadTableCourses(yearSelect) {
         ajax: {
             url: "api/courses/" + yearSelect,
         },
-        columns: [
-            {
+        columns: [{
                 data: "codeCourse",
             },
             {

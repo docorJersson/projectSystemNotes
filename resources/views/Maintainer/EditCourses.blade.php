@@ -70,7 +70,7 @@
 
       <div class="table-responsive ">
         <div class="d-flex justify-content-end">
-          @include('Maintainer.listCapacity')
+          @include('Capacities.listCapacity')
         </div>
         <table class="table table-bordered nowrap" id="tableCapacities" cellspacing="0" width="100%">
           <thead class="bg-dark">
@@ -104,7 +104,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close">
-            Cancelar</i></button>
+            <a href="{{URL::to('courses')}}" class="text-decoration-none text-white">
+              Cancelar</a></i></button>
         <button type="submit" class="btn btn-success"><i class="fa fa-save"> Guardar</i></button>
       </div>
   </form>

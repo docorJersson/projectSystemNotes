@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\capacityController;
+use App\Http\Controllers\periodController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,7 +39,10 @@ Route::get('personnel/{id}/destroy', [
     'uses' => 'personnelController@destroy',
     'as'   => 'personnel.destroyed',
 ]);
-Route::get('capacity/{course}', [capacityController::class, 'index']);
+Route::get('capacity/{course}', [capacityController::class, 'show']);
+Route::get('capacity', [capacityController::class, 'index']);
+Route::get('bimester/{year}', [periodController::class, 'show']);
+
 
 Route::resource('catedra', 'catedraController');
 

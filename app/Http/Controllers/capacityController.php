@@ -9,9 +9,15 @@ use Illuminate\Support\Facades\DB;
 
 class capacityController extends Controller
 {
-    public function index($course)
+    public function show($course)
     {
         $capacity = DB::table('detailCapacities as d')->join('capacities as c', 'd.idCapacity', '=', 'c.idCapacity')->join('courses as co', 'd.idCourse', '=', 'co.idCourse')->join('grades as g', 'co.idGrade', '=', 'g.idGrade')->join('levels as l ', 'l.idLevel', '=', 'g.idLevel')->select('c.*', 'd.orderCapacity')->where('l.idLevel', $course)->get();
+        return $capacity->toJson();
+    }
+
+    public function index()
+    {
+        $capacity = Capacity::all();
         return $capacity->toJson();
     }
 }
