@@ -32,20 +32,31 @@
 
                             <div class="col-md-2 col-sm-12  form-group">
                                 <label for="yearPeriod">Año Escolar*</label>
-                                <input type="text" class="form-control" name="yearPeriod" id="yearPeriod" required
-                                    readonly>
+                                <select name="yearPeriod" id="yearPeriod" class="form-control" required>
+                                    <option value="">Choose...</option>
+                                    @foreach ($period as $p)
+                                    <option value="{{$p->yearPeriod}}">{{$p->yearPeriod}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12  form-group">
+                                <label for="idPeriodo">Bimestre*</label>
+                                <select id="idPeriodo" name="idPeriodo" class="form-control" required>
+                                    <option value="">Choose..</option>
+                                </select>
                             </div>
 
                             <div class="col-md-6 col-sm-12  form-group">
                                 <label for="">Nivel*</label>
-                                <select id="idLevel" name="idLevel" class="form-control select3" required>
+                                <select id="idLevel" name="idLevel" class="form-control" required>
                                     <option value="">Choose...</option>
 
                                 </select>
                             </div>
                             <div class="col-md-6 col-sm-12  form-group">
                                 <label for="">Grado*</label>
-                                <select id="idGrade" name="idGrade" class="form-control select4" required>
+                                <select id="idGrade" name="idGrade" class="form-control" required>
                                     {{-- <option value="">Choose..</option> --}}
                                 </select>
                             </div>
@@ -57,16 +68,18 @@
                             </div>
                             <div class="col-md-6 col-sm-12  form-group">
                                 <label for="">Curso*</label>
-                                <select id="idCourse" name="idCourse" class="form-control select6" required>
+                                <select id="idCourse" name="idCourse" class="form-control" required>
                                     {{-- <option value="">Choose..</option> --}}
                                 </select>
                             </div>
+
                             <div class="col-md-12 col-sm-12 form-group p-3">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12 center-margin">
-                                        <a class="btn bg-info text-white"><i class="fa fa-bars"></i> Mostrar</a>
+                                        @include('Catedra.courseTeachers')
                                         <button class="btn bg-success text-white" type="submit"><i
-                                                class="fa fa-save"></i> Insertar</button>
+                                                class="fa fa-save"></i>
+                                            Insertar</button>
                                         <a class="btn bg-secondary text-white"><i class="fa fa-reply"></i> Salir</a>
                                     </div>
                                 </div>

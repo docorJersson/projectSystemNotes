@@ -72,7 +72,8 @@
                     </div>
                 </form>
             </div>
-            <div class="user-img"><img src="assets/img/2.jpg" alt="" /></div>
+            <div class="user-img"><img src="https://drive.google.com/uc?id=1xUFWhSqtZ12RKJV5GttBsStflWF4bqTP" alt="" />
+            </div>
         </div>
     </div>
 </div>

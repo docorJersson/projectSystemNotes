@@ -20,7 +20,7 @@
               <tr>
                 <th>Nombre</th>
                 <th>Apellidos</th>
-                <th>Año Escolar</th>
+                {{--  <th>Año Escolar</th>  --}}
                 {{-- <th>Opciones</th> --}}
               </tr>
             </thead>

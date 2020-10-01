@@ -29,7 +29,8 @@ $(document).ready(function () {
         ajax: {
             url: "api/personnel",
         },
-        columns: [{
+        columns: [
+            {
                 data: "codeWorker",
                 visible: false,
                 searchable: false,
@@ -118,7 +119,6 @@ $(document).ready(function () {
         },
     });
 
-
     obtenerValoresTablaCapacities();
 });
 var tablePersonal = new Array();
@@ -140,7 +140,8 @@ $("#btnTeachers").click(function () {
             url: "/api/catedra",
             // dataSrc: "",
         },
-        columns: [{
+        columns: [
+            {
                 data: "nameWorker",
             },
             {
@@ -153,110 +154,207 @@ $("#btnTeachers").click(function () {
     });
 });
 
-$('#table-teacher').on('click', 'tbody tr', function () {
+$("#table-teacher").on("click", "tbody tr", function () {
     //  let a = [];
     var row = tablePersonal.row($(this)).data();
     codeWorker.value = row.codeTeacher;
-    nameWorker.value = row.nameWorker + ' ' + row.lastNameWorker;
-    yearPeriod.value = row.year;
-    $('.close').click();
+    nameWorker.value = row.nameWorker + " " + row.lastNameWorker;
+    $(".close").click();
+
+    //Cargaremos la tabla mostrar
+    $("#btnCourseTeachers").attr("disabled", false);
+    $("#yearPeriod").attr("disabled", false);
+    $("#idLevel").attr("disabled", false);
+    // console.log(row.codeWorker);
 });
 
+// selects
 $(function () {
     $(".select1").select2();
     $(".select2").select2();
-    $(".select3").select2();
-    $(".select4").select2();
-    $(".select5").select2();
-    $(".select6").select2();
+    // $(".select3").select2();
+    // $(".select4").select2();
+    // $(".select5").select2();
+    // $(".select6").select2();
 });
+//end selects
 
 //Haremos los selects dinámicos
 $(document).ready(function () {
-    $('#idGrade').attr("disabled", true);
-    $('#idSection').attr("disabled", true);
-    $('#idCourse').attr("disabled", true);
+    // *** *** *** *** *** *** *** *** *** *** *** ***
+    //Select YearPeriod
+    $("#idPeriodo").attr("disabled", true);
+    $("#idPeriodo").html("");
 
+    $("#yearPeriod").on("change", function () {
+        let year = $(this).val();
+        // console.log(id);
+        //Haremos que se habilite el bimestre
+        $("#idPeriodo").attr("disabled", false);
+        if (!year) {
+            $("#idPeriodo").html('<option value="">Choose..</option>');
+            return;
+        }
+        //AJAX
+        $.get("/api/bimester/" + year + "/period", function (data) {
+            let htmlSelect = '<option value="">Choose..</option>';
+            for (let i = 0; i < data.length; ++i) {
+                htmlSelect +=
+                    "<option value='" +
+                    data[i].idPeriod +
+                    "'>" +
+                    data[i].bimester +
+                    "</option>";
+            }
+            // console.log(htmlSelect);
+            $("#idPeriodo").html(htmlSelect);
+        });
+    });
 
-    $('#idLevel').on('change', function () {
+    // ********************************
 
+    $("#idGrade").attr("disabled", true);
+    $("#idSection").attr("disabled", true);
+    $("#idCourse").attr("disabled", true);
+
+    $("#idLevel").on("change", function () {
         let id = $(this).val();
         // console.log(id);
         //Haremos que solo el grado se habilite
-        $('#idGrade').attr("disabled", false);
-        $('#idSection').attr("disabled", true);
-        $('#idCourse').attr("disabled", true);
-        $('#idSection').html("");
-        $('#idCourse').html("");
-
+        $("#idGrade").attr("disabled", false);
+        $("#idSection").attr("disabled", true);
+        $("#idCourse").attr("disabled", true);
+        $("#idSection").html("");
+        $("#idCourse").html("");
 
         if (!id) {
-            $('#idGrade').html('<option value="">Choose..</option>');
+            $("#idGrade").html('<option value="">Choose..</option>');
             return;
         }
         //AJAX
-        $.get('/api/levels/' + id + '/degrees', function (data) {
+        $.get("/api/levels/" + id + "/degrees", function (data) {
             let htmlSelect = '<option value="">Choose..</option>';
             for (let i = 0; i < data.length; ++i) {
-                htmlSelect += "<option value='" + data[i].idGrade + "'>" + data[i].descriptionGrade.toUpperCase() + "</option>"
+                htmlSelect +=
+                    "<option value='" +
+                    data[i].idGrade +
+                    "'>" +
+                    data[i].descriptionGrade.toUpperCase() +
+                    "</option>";
             }
             // console.log(htmlSelect);
-            $('#idGrade').html(htmlSelect);
-        })
+            $("#idGrade").html(htmlSelect);
+        });
     });
 
-    $('#idGrade').on('change', function () {
+    $("#idGrade").on("change", function () {
         let id = $(this).val();
         // console.log(id);
         //Haremos que se habilite la sección
-        $('#idSection').attr("disabled", false);
+        $("#idSection").attr("disabled", false);
 
         if (!id) {
-            $('#idSection').html('<option value="">Choose..</option>');
+            $("#idSection").html('<option value="">Choose..</option>');
             return;
         }
         //AJAX
-        $.get('/api/degrees/' + id + '/sections', function (data) {
+        $.get("/api/degrees/" + id + "/sections", function (data) {
             let htmlSelect = '<option value="">Choose..</option>';
             for (let i = 0; i < data.length; ++i) {
-                htmlSelect += "<option value='" + data[i].idSection + "'>" + data[i].descriptionSection + "</option>"
+                htmlSelect +=
+                    "<option value='" +
+                    data[i].idSection +
+                    "'>" +
+                    data[i].descriptionSection +
+                    "</option>";
             }
             // console.log(htmlSelect);
-            $('#idSection').html(htmlSelect);
-        })
+            $("#idSection").html(htmlSelect);
+        });
     });
 
-    $('#idGrade').on('change', function () {
+    $("#idGrade").on("change", function () {
         let id = $(this).val();
         // console.log(id);
         //Haremos que se habilite el curso
-        $('#idCourse').attr("disabled", false);
+        $("#idCourse").attr("disabled", false);
 
         if (!id) {
-            $('#idCourse').html('<option value="">Choose..</option>');
+            $("#idCourse").html('<option value="">Choose..</option>');
             return;
         }
         //AJAX
-        $.get('/api/degrees/' + id + '/courses', function (data) {
+        $.get("/api/degrees/" + id + "/courses", function (data) {
             let htmlSelect = '<option value="">Choose..</option>';
             for (let i = 0; i < data.length; ++i) {
-                htmlSelect += "<option value='" + data[i].idCourse + "'>" + data[i].descriptionCourse + "</option>"
+                htmlSelect +=
+                    "<option value='" +
+                    data[i].idCourse +
+                    "'>" +
+                    data[i].descriptionCourse +
+                    "</option>";
             }
             // console.log(htmlSelect);
-            $('#idCourse').html(htmlSelect);
-        })
+            $("#idCourse").html(htmlSelect);
+        });
     });
 });
 //end
+
+// Tabla Cursos
+// *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+// var dataCapacity;
+$("#btnCourseTeachers").click(function () {
+    let code = $("#codeWorker").val();
+    console.log(code);
+    $("#tCourses").dataTable().fnDestroy();
+    $("#tCourses").DataTable({
+        responsive: true,
+        //fixedHeader: true,
+        //paging: false,
+        searching: true,
+        info: false,
+        processing: true,
+        type: "GET",
+        ajax: {
+            url: "/api/catedra/" + code,
+            dataSrc: "",
+        },
+        columns: [
+            {
+                data: "nameWorker",
+            },
+            {
+                data: "lastNameWorker",
+            },
+            {
+                data: "descriptionCourse",
+            },
+            {
+                data: "descriptionGrade",
+            },
+            {
+                data: "descriptionSection",
+            },
+            {
+                data: "bimester",
+            },
+            {
+                data: "yearPeriod",
+            },
+        ],
+    });
+});
+//End tabla cursos
 
 function cargarYearPeriod(data) {
     $.each(data, function (key, registro) {
         $("#idPeriod").append(
             "<option value=" +
-            registro.yearPeriod +
-            ">" +
-            registro.yearPeriod +
-            "</option>"
+                registro.yearPeriod +
+                ">" +
+                registro.yearPeriod +
+                "</option>"
         );
     });
 }
@@ -265,10 +363,10 @@ function cargarLevel(data) {
     $.each(data, function (key, registro) {
         $("#idLevel").append(
             "<option value=" +
-            registro.idLevel +
-            ">" +
-            registro.descriptionLevel +
-            "</option>"
+                registro.idLevel +
+                ">" +
+                registro.descriptionLevel +
+                "</option>"
         );
     });
 }
@@ -290,7 +388,8 @@ $("#btnCapacity").click(function () {
             url: "/capacity/" + level,
             dataSrc: "",
         },
-        columns: [{
+        columns: [
+            {
                 data: "descriptionCapacity",
             },
             {
@@ -311,7 +410,24 @@ $("#tableNewCapacity").on("click", "tbody tr", function () {
             return false;
         }
     }
-    var fila_nueva = '<tr id="fila' + row.idCapacity + '><td class="d-none d-print-block"><input type="hidden" name="idCapacity[]" value="' + row.idCapacity + '" >' + row.idCapacity + '</td><td>' + row.descriptionCapacity + '</td><td>' + row.abbreviation + '</td><td><input type="hidden" name="orderCapacity[]" value ="' + row.orderCapacity + '">' + row.orderCapacity + '</td><td><a href="#" class="btn btn-sm btn-danger" onclick="quitar(' + row.idCapacity + ')"><i class="fas fa-minus-circle"></i ></a></td></tr>';
+    var fila_nueva =
+        '<tr id="fila' +
+        row.idCapacity +
+        '><td class="d-none d-print-block"><input type="hidden" name="idCapacity[]" value="' +
+        row.idCapacity +
+        '" >' +
+        row.idCapacity +
+        "</td><td>" +
+        row.descriptionCapacity +
+        "</td><td>" +
+        row.abbreviation +
+        '</td><td><input type="hidden" name="orderCapacity[]" value ="' +
+        row.orderCapacity +
+        '">' +
+        row.orderCapacity +
+        '</td><td><a href="#" class="btn btn-sm btn-danger" onclick="quitar(' +
+        row.idCapacity +
+        ')"><i class="fas fa-minus-circle"></i ></a></td></tr>';
     $("#tableCapacities tbody").append(fila_nueva);
     $("#btnCloseCapacity").click();
     valorCapacity.push(row.idCapacity);
@@ -322,11 +438,12 @@ function quitar(fila) {
     $("#fila" + fila).remove();
 }
 
-
 function obtenerValoresTablaCapacities() {
-    $("#tableCapacities tbody tr").find('td:first').each(function () {
-        valorCapacity.push(parseInt($(this).text()));
-    });
+    $("#tableCapacities tbody tr")
+        .find("td:first")
+        .each(function () {
+            valorCapacity.push(parseInt($(this).text()));
+        });
 }
 
 function loadTableCourses(yearSelect) {
@@ -356,7 +473,8 @@ function loadTableCourses(yearSelect) {
         ajax: {
             url: "api/courses/" + yearSelect,
         },
-        columns: [{
+        columns: [
+            {
                 data: "codeCourse",
             },
             {
