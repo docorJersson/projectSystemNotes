@@ -38,8 +38,7 @@
           <div class="col-md-4 col-sm-12  form-group">
             <label for="">Sección</label>
             <input type="hidden" name="idSection" value="{{$dt->idSection}}">
-            <input type="text" id="idSection" name="descriptionSection" class="form-control"
-              value="{{$dt->sections->first()->descriptionSection}}" readonly>
+            <input type="text" id="idSection" name="descriptionSection" class="form-control" readonly>
 
           </div>
         </div>
@@ -50,7 +49,9 @@
           <hr>
           <div class="col-md-4 col-sm-12  form-group">
             <label for="">Docente a Cargo</label>
-            <input type="hidden" id="codeWorker" name="codeWorker" value="{{$course->teachers->first()->codeTeacher}}">
+            <input type="hidden" id="codeWorkerAl" name="codeWorker" value="{{$course->teachers->first()->codeWorker}}">
+            <input type="hidden" id="codeTeacher">
+
             <input type="text" id="nameWorker" name="nameWorker" class="form-control"
               value="{{$course->teachers->first()->worker->nameWorker." ". $course->teachers->first()->worker->lastNameWorker}}"
               required readonly>
@@ -111,4 +112,7 @@
   </form>
 </div>
 
+@endsection
+@section('scripts')
+<script src="http://127.0.0.1:8000/js/editCourses.js"></script>
 @endsection

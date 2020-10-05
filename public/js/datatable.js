@@ -14,14 +14,6 @@ var capacityCourses;
 $(document).ready(function () {
     $.ajax({
         type: "GET",
-        url: "api/period",
-        dataType: "json",
-        success: function (data) {
-            cargarYearPeriod(data);
-        },
-    });
-    $.ajax({
-        type: "GET",
         url: "api/level",
         dataType: "json",
         success: function (data) {
@@ -40,8 +32,7 @@ $(document).ready(function () {
         ajax: {
             url: "api/personnel",
         },
-        columns: [
-            {
+        columns: [{
                 data: "codeWorker",
                 visible: false,
                 searchable: false,
@@ -75,8 +66,6 @@ $(document).ready(function () {
             },
         ],
     });
-
-    loadTableCourses(year);
 
     $("#table-capacity").DataTable({
         responsive: true,
@@ -119,12 +108,11 @@ $(document).ready(function () {
         },
     });
 
-    obtenerValoresTablaCapacities();
 });
-var tablePersonal = new Array();
+//var tablePersonal = new Array();
 // start ahora se encuentra en js/catedra.js
 
-$("#btnTeachers").click(function () {
+/*function listaTeachers() {
     $("#table-teacher").dataTable().fnDestroy();
     tablePersonal = $("#table-teacher").DataTable({
         responsive: true,
@@ -140,8 +128,7 @@ $("#btnTeachers").click(function () {
             url: "/api/catedra",
             // dataSrc: "",
         },
-        columns: [
-            {
+        columns: [{
                 data: "nameWorker",
             },
             {
@@ -149,12 +136,16 @@ $("#btnTeachers").click(function () {
             },
         ],
     });
-});
+}*/
+//Esta está para ver porque también se utiliza en cátedra
+//$("#btnTeachers").click(listaTeachers());
 
 
 //Creo esta este array para que me almacene todos los datos cuando seleccione un teacher
 //despúes se llena con todos los datos correspondientes
 let tableCourseTeachers = [];
+
+
 $("#table-teacher").on("click", "tbody tr", function () {
     var row = tablePersonal.row($(this)).data();
     codeWorkerAl.value = row.codeWorker;
@@ -317,26 +308,26 @@ $("#btnCourseTeachers").click(function () {
             dataSrc: "",
         },
         columns: [{
-            data: "nameWorker",
-        },
-        {
-            data: "lastNameWorker",
-        },
-        {
-            data: "descriptionCourse",
-        },
-        {
-            data: "descriptionGrade",
-        },
-        {
-            data: "descriptionSection",
-        },
-        {
-            data: "bimester",
-        },
-        {
-            data: "yearPeriod",
-        },
+                data: "nameWorker",
+            },
+            {
+                data: "lastNameWorker",
+            },
+            {
+                data: "descriptionCourse",
+            },
+            {
+                data: "descriptionGrade",
+            },
+            {
+                data: "descriptionSection",
+            },
+            {
+                data: "bimester",
+            },
+            {
+                data: "yearPeriod",
+            },
         ],
     });
 });
@@ -467,17 +458,7 @@ function evaluar() {
         $('#saveCourse').attr("disabled", true);
 }
 // ------- end funciones eliminar en la tabla catedra -----
-function cargarYearPeriod(data) {
-    $.each(data, function (key, registro) {
-        $("#idPeriod").append(
-            "<option value=" +
-            registro.yearPeriod +
-            ">" +
-            registro.yearPeriod +
-            "</option>"
-        );
-    });
-}
+
 
 function cargarLevel(data) {
     $.each(data, function (key, registro) {
@@ -491,35 +472,6 @@ function cargarLevel(data) {
     });
 }
 
-$("#idPeriod").change(function yearSelected() {
-    var year = $("#idPeriod").val();
-    $("#table-curso").dataTable().fnDestroy();
-    loadTableCourses(year);
-});
-var dataCapacity;
-
-$("#btnCapacity").click(function () {
-    var level = $("#idLevel").val();
-    $("#tableNewCapacity").dataTable().fnDestroy();
-    dataCapacity = $("#tableNewCapacity").DataTable({
-        processing: true,
-        type: "GET",
-        ajax: {
-            url: "/capacity/" + level,
-            dataSrc: "",
-        },
-        columns: [{
-            data: "descriptionCapacity",
-        },
-        {
-            data: "abbreviation",
-        },
-        {
-            data: "orderCapacity",
-        },
-        ],
-    });
-});
 $("#btnCapacity").click(function () {
     $("#tableAllCapacity").dataTable().fnDestroy();
     dataCapacity = $("#tableAllCapacity").DataTable({
@@ -530,47 +482,15 @@ $("#btnCapacity").click(function () {
             dataSrc: "",
         },
         columns: [{
-            data: "descriptionCapacity",
-        },
-        {
-            data: "abbreviation",
-        },
+                data: "descriptionCapacity",
+            },
+            {
+                data: "abbreviation",
+            },
         ],
     });
 });
 
-var valorCapacity = new Array();
-$("#tableNewCapacity").on("click", "tbody tr", function () {
-    var row = dataCapacity.row($(this)).data();
-    for (var i = 0; i < valorCapacity.length; i++) {
-        if (valorCapacity[i] == row.idCapacity) {
-            alert("Capacidad ya perteneciente a este curso");
-            return false;
-        }
-    }
-    var fila_nueva =
-        '<tr id="fila' +
-        row.idCapacity +
-        '><td class="d-none d-print-block"><input type="hidden" name="idCapacity[]" value="' +
-        row.idCapacity +
-        '" >' +
-        row.idCapacity +
-        "</td><td>" +
-        row.descriptionCapacity +
-        "</td><td>" +
-        row.abbreviation +
-        '</td><td><input type="hidden" name="orderCapacity[]" value ="' +
-        row.orderCapacity +
-        '">' +
-        row.orderCapacity +
-        '</td><td><a href="#" class="btn btn-sm btn-danger" onclick="quitar(' +
-        row.idCapacity +
-        ')"><i class="fas fa-minus-circle"></i ></a></td></tr>';
-    $("#tableCapacities tbody").append(fila_nueva);
-    $("#btnCloseCapacity").click();
-    valorCapacity.push(row.idCapacity);
-    $("#ordenCapacity").click();
-});
 var valorAllCapacity;
 
 $("#tableAllCapacity").on("click", "tbody tr", function () {
@@ -587,78 +507,3 @@ $("#tableAllCapacity").on("click", "tbody tr", function () {
 
     $("#btnCloseCapacity").click();
 });
-
-function quitar(fila) {
-    $("#fila" + fila).remove();
-}
-
-function obtenerValoresTablaCapacities() {
-    $("#tableCapacities tbody tr")
-        .find("td:first")
-        .each(function () {
-            valorCapacity.push(parseInt($(this).text()));
-        });
-}
-
-function loadBimester() {
-
-}
-
-function loadTableCourses(yearSelect) {
-    $("#table-curso").DataTable({
-        responsive: {
-            details: {
-                display: $.fn.dataTable.Responsive.display.modal({
-                    header: function (row) {
-                        var data = row.data();
-                        return "Detalles del Curso ";
-                    },
-                }),
-                renderer: $.fn.dataTable.Responsive.renderer.tableAll({
-                    tableClass: "table",
-                }),
-            },
-        },
-        fixedHeader: true,
-        searching: false,
-        info: false,
-        type: "GET",
-        language: {
-            sUrl: "Spanish.json",
-        },
-        processing: true,
-        serverSide: true,
-
-        ajax: {
-            url: "api/courses/" + yearSelect,
-        },
-        columns: [{
-            data: "codeCourse",
-        },
-        {
-            data: "descriptionCourse",
-        },
-        {
-            data: "descriptionGrade",
-        },
-        {
-            data: "descriptionSection",
-        },
-        {
-            data: "descriptionLevel",
-        },
-        {
-            data: "bimester",
-        },
-        {
-            data: "nombres",
-        },
-        {
-            data: "yearPeriod",
-        },
-        {
-            data: "acciones",
-        },
-        ],
-    });
-}
