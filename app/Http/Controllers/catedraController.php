@@ -7,6 +7,7 @@ use App\Worker;
 use App\Level;
 use App\Degree;
 use App\Period;
+use App\detailTeacher;
 use DB;
 
 class catedraController extends Controller
@@ -18,11 +19,7 @@ class catedraController extends Controller
      */
     public function index()
     {
-        //
-        $period = Period::select('yearPeriod')->orderBy('yearPeriod', 'desc')->distinct()->get();
-        $level = Level::all();
-        // dd($period);
-        return view('Catedra/MaintainerCatedra', \compact('level', 'period'));
+        return view('Catedra/MaintainerCatedra');
     }
 
     /**
@@ -43,7 +40,31 @@ class catedraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+        DB::beginTransaction();
+            $idCourse=$request->get('idCourse');
+            $idSection=$request->get('idSection');
+            $idPeriod=$request->get('idPeriod');
+            $cont=0;
+            while($cont<count($idCourse))
+            {
+                $detail=new detailTeacher();
+                $detail->codeWorker=$request->codeWorkerAl;
+                $detail->codeTeacher=$request->codeTeacher;
+                $detail->idCourse=$idCourse[$cont];
+                $detail->idSection=$idSection[$cont];
+                $detail->idPeriod=$idPeriod[$cont];
+                $detail->save();
+                $cont=$cont+1;
+            }
+
+            DB::commit();
+            //return redirect()->route('venta.index')->with('datos','VENTA REALIZADA EXITOSAMENTE...!');
+        }
+        catch(Exception $e){
+            DB::rollback(); 
+        }
+        return redirect()->route('catedra.index');
     }
 
     /**
