@@ -580,6 +580,8 @@ $("#tableAllCapacity").on("click", "tbody tr", function () {
     valorAllCapacity = row.idCapacity;
 
     $("#btnCloseCapacity").click();
+    order += 1;
+    orderCapacity.value = order;
 });
 
 function quitar(fila) {

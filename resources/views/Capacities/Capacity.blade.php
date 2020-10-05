@@ -68,14 +68,14 @@
                             <div class="col-1"></div>
 
                             <div class="col-md-4 col-sm-12 form-group p-4 text-center">
-                                <a class="btn bg-info text-white"><i class="fa fa-bars"></i></a>
-                                <a href="" class="btn btn-warning"><i class="fas fa-download"></i></a>
-                                <a href="" class="btn btn-danger"><i class="fas fa-window-close"></i></a>
+                                <a class="btn bg-info text-white" id="bars"><i class="fa fa-bars"></i></a>
+                                <a class="btn btn-warning text-white" id="download"><i class="fas fa-download"></i></a>
+                                <a class="btn btn-danger text-white" id="close"><i class="fas fa-window-close"></i></a>
                             </div>
                         </div>
                     </form>
                     <div class="table-responsive">
-                        <table id="table-courses-capacity" class="table table-bordered display nowrap" cellspacing="0"
+                        <table id="tableCoursesCapacity" class="table table-bordered display nowrap" cellspacing="0"
                             width="100%">
                             <thead class="thead-dark">
                                 <tr>
@@ -97,4 +97,7 @@
     var year = new Date().getFullYear();
         idPeriod.value = year;
 </script>
+@section('scripts')
+<script src="{{asset('js/capacity.js')}}"></script>
+@endsection
 @endsection
