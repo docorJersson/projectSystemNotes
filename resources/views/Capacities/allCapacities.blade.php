@@ -1,5 +1,6 @@
-<button type="button" class="btn btn-primary" id="btnCapacity" data-toggle="modal" data-target="#modalCart"><i
-        class="fa fa-plus"></i> Capacidad</button>
+<button type="button" class="btn btn-primary" id="btnCapacity" data-toggle="modal" data-target="#modalCart">
+    <i class="fa fa-plus"></i>
+</button>
 
 <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

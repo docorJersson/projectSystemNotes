@@ -7,4 +7,4 @@ letter.innerHTML = '<b>' + letterString.toUpperCase() + '</b>';
 
 // console.log(letterString);
 
-console.log(letter);
+// console.log(letter);
