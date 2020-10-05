@@ -206,8 +206,8 @@
 
   <!--SELECT 2 LIBRERIAS-->
   <script src="{{asset('assets/adminlte/plugins/select2/js/select2.full.min.js')}}"></script>
-  <script src="{{asset('datatable.js')}}"></script>
-
+  <script src="{{asset('js/functions.js')}}"></script>
+  <script src="{{asset('js/datatable.js')}}"></script>
   @yield('scripts')
 
 </body>
