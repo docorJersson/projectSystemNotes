@@ -15,9 +15,10 @@
                             <div class="col-md-10 col-sm-12 form-group">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-12">
+                                        <input type="hidden" id="codeWorkerAl" name="codeWorkerAl">
                                         <label for="codeWorker" class="">Docente*</label>
                                         <div class="input-group">
-                                            <input type="text" name="codeWorker" id="codeWorker" class="form-control"
+                                            <input type="text" name="codeTeacher" id="codeTeacher" class="form-control"
                                                 required readonly>
                                             @include('Catedra.ListTeachers')
                                         </div>
@@ -32,18 +33,14 @@
 
                             <div class="col-md-2 col-sm-12  form-group">
                                 <label for="yearPeriod">Año Escolar*</label>
-                                <select name="yearPeriod" id="yearPeriod" class="form-control" required>
-                                    <option value="">Choose...</option>
-                                    @foreach ($period as $p)
-                                    <option value="{{$p->yearPeriod}}">{{$p->yearPeriod}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="yearPeriod" id="yearPeriod" class="form-control" required
+                                    readonly>
                             </div>
 
                             <div class="col-md-6 col-sm-12  form-group">
                                 <label for="idPeriodo">Bimestre*</label>
                                 <select id="idPeriodo" name="idPeriodo" class="form-control" required>
-                                    <option value="">Choose..</option>
+                                    {{--  <option value="">Choose..</option>  --}}
                                 </select>
                             </div>
 
@@ -77,9 +74,9 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12 center-margin">
                                         @include('Catedra.courseTeachers')
-                                        <button class="btn bg-success text-white" type="submit"><i
-                                                class="fa fa-save"></i>
-                                            Insertar</button>
+                                        <a class="btn bg-success text-white" id="insertCourse">
+                                            <i class="fa fa-save"></i>
+                                            Insertar</a>
                                         <a class="btn bg-secondary text-white"><i class="fa fa-reply"></i> Salir</a>
                                     </div>
                                 </div>
@@ -94,15 +91,11 @@
                                 <th>Curso</th>
                                 <th>Grado</th>
                                 <th>Sección</th>
+                                <th>Bimestre</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Ciencias</td>
-                                <td>3er Grado</td>
-                                <td>A</td>
-                            </tr>
 
                         </tbody>
                     </table>

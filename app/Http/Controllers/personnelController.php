@@ -12,15 +12,9 @@ class personnelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        //
-        if($request)
-        {
-            // $workers=Worker::where('statusWorker',1)->get();
-            // return view('Personnel.main',\compact('workers'));   
-            return view('Personnel.main');      
-        }  
+        return view('Personnel.main');      
     }
 
     /**

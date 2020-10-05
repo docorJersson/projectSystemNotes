@@ -29,7 +29,7 @@ class levelController extends Controller
     }
 
     //Método que uso para mostrar los cursos del profesor
-    public function byCoursesTeacher($code)
+    public function byCoursesTeacher($code,$year)
     {
       return DB::table('detailTeachers as dt')
             ->join('workers as w', 'w.codeWorker', '=', 'dt.codeWorker')
@@ -37,9 +37,10 @@ class levelController extends Controller
             ->join('sections as s', 's.idSection', '=', 'dt.idSection')
             ->join('periodsYear as p', 'p.idPeriod', '=', 'dt.idPeriod')
             ->join('grades as g', 'g.idGrade', '=', 's.idGrade')
-            ->select('dt.codeWorker','dt.codeTeacher','w.nameWorker','w.lastNameWorker',
-                     'c.descriptionCourse','g.descriptionGrade', 's.descriptionSection',
+            ->select('dt.idDetailTeacher','dt.codeWorker','dt.codeTeacher','w.nameWorker',
+                     'w.lastNameWorker', 'c.idCourse','c.descriptionCourse','g.idGrade',
+                     'g.descriptionGrade','s.idSection', 's.descriptionSection','p.idPeriod',
                      'p.bimester', 'p.yearPeriod')
-            ->where('dt.codeTeacher', $code)->get();
+            ->where(['dt.codeTeacher' => $code,'p.yearPeriod' => $year])->get();
     }
 }

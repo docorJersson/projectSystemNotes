@@ -33,7 +33,7 @@ Route::get('level', function () {
     return Level::query()->get();
 });
 
-Route::get('personnel', function () {
+Route::get('/personnel', function () {
     return datatables(
         DB::select('select codeWorker,nameWorker,lastNameWorker,dniWorker,addressWorker,civilStatus,telephone,socialSecurity,dateWorker from workers
     where statusWorker=1')
@@ -57,4 +57,4 @@ Route::get('/levels/{id}/degrees', 'levelController@byDegree');
 Route::get('/degrees/{id}/sections', 'levelController@bySection');
 Route::get('/degrees/{id}/courses', 'levelController@byCourse');
 Route::get('/bimester/{year}/period', 'levelController@byBimester');
-Route::get('/catedra/{code}', 'levelController@byCoursesTeacher');
+Route::get('/catedra/{code}/{year}', 'levelController@byCoursesTeacher');
