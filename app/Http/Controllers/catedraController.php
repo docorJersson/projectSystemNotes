@@ -7,6 +7,7 @@ use App\Worker;
 use App\Level;
 use App\Degree;
 use App\Period;
+use App\detailTeacher;
 use DB;
 
 class catedraController extends Controller
@@ -18,11 +19,10 @@ class catedraController extends Controller
      */
     public function index()
     {
-        //
-        $period = Period::select('yearPeriod')->orderBy('yearPeriod', 'desc')->distinct()->get();
-        $level = Level::all();
-        // dd($period);
-        return view('Catedra/MaintainerCatedra', \compact('level', 'period'));
+       
+        // $detailT = detailTeacher::all();
+        // dd($detailT);
+        return view('Catedra/MaintainerCatedra');
     }
 
     /**
