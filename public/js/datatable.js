@@ -19,37 +19,37 @@ $(document).ready(function () {
             url: "api/personnel",
         },
         columns: [{
-                data: "codeWorker",
-                visible: false,
-                searchable: false,
-            },
-            {
-                data: "nameWorker",
-            },
-            {
-                data: "lastNameWorker",
-            },
-            {
-                data: "dniWorker",
-            },
-            {
-                data: "addressWorker",
-            },
-            {
-                data: "civilStatus",
-            },
-            {
-                data: "telephone",
-            },
-            {
-                data: "socialSecurity",
-            },
-            {
-                data: "dateWorker",
-            },
-            {
-                data: "btn",
-            },
+            data: "codeWorker",
+            visible: false,
+            searchable: false,
+        },
+        {
+            data: "nameWorker",
+        },
+        {
+            data: "lastNameWorker",
+        },
+        {
+            data: "dniWorker",
+        },
+        {
+            data: "addressWorker",
+        },
+        {
+            data: "civilStatus",
+        },
+        {
+            data: "telephone",
+        },
+        {
+            data: "socialSecurity",
+        },
+        {
+            data: "dateWorker",
+        },
+        {
+            data: "btn",
+        },
         ],
     });
 
@@ -57,16 +57,6 @@ $(document).ready(function () {
         responsive: true,
         fixedHeader: true,
         searching: false,
-        language: {
-            sUrl: "Spanish.json",
-        },
-    });
-
-    $("#table-nots").DataTable({
-        responsive: true,
-        fixedHeader: true,
-        searching: false,
-        info: false,
         language: {
             sUrl: "Spanish.json",
         },
@@ -195,11 +185,11 @@ $("#btnCapacity").click(function () {
             dataSrc: "",
         },
         columns: [{
-                data: "descriptionCapacity",
-            },
-            {
-                data: "abbreviation",
-            },
+            data: "descriptionCapacity",
+        },
+        {
+            data: "abbreviation",
+        },
         ],
     });
 });

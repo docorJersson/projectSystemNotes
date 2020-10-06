@@ -119,6 +119,6 @@ function obtenerDetailTeacher() {
     });
 }
 
-$("#processStudents").click(function () {
-    obtenerDetailTeacher();
+$("#procesar").click(function () {
+    console.log('hello');
 });
