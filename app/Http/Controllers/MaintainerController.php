@@ -28,6 +28,6 @@ class MaintainerController extends Controller
 
     public function  RegisterNotes()
     {
-        return view('Maintainer.RegisterNotes');
+        return view('Notes.RegisterNotes');
     }
 }
