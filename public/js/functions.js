@@ -229,16 +229,12 @@ function selectLevel_Catedra(id) {
     });
 }
 
-function showGradeCourses(id) {
+function showGrade_Catedra(id) {
     //Haremos que se habilite la sección
     $("#idSection").attr("disabled", false);
 
-    //Haremos que se habilite el curso
-    $("#idCourse").attr("disabled", false);
-
     if (!id) {
         $("#idSection").html('<option value="">Choose..</option>');
-        $("#idCourse").html('<option value="">Choose..</option>');
         return;
     }
     //AJAX
@@ -254,6 +250,17 @@ function showGradeCourses(id) {
         }
         $("#idSection").html(htmlSelect);
     });
+
+}
+
+function showCourses(id) {
+    //Haremos que se habilite el curso
+    $("#idCourse").attr("disabled", false);
+
+    if (!id) {
+        $("#idCourse").html('<option value="">Choose..</option>');
+        return;
+    }
     $.get("/api/degrees/" + id + "/courses", function (data) {
         let htmlSelect = '<option value="">Choose..</option>';
         for (let i = 0; i < data.length; ++i) {

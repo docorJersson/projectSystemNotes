@@ -89,7 +89,8 @@ $("#idLevel").on("change", function () {
 
 $("#idGrade").on("change", function () {
     let id = $(this).val();
-    showGradeCourses(id);
+    showGrade_Catedra(id);
+    showCourses(id);
 });
 
 $("#btnCourseTeachers").on("click", function () {
