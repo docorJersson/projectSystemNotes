@@ -55,10 +55,6 @@
                                     <option value="">Seleccione</option>
                                 </select>
                             </div>
-                            <div class="col-md-6 col-sm-12 form-group">
-                                <input type="button" id="processStudents" value="Procesar Alumnos">
-                                <label for="">vkk</label>
-                            </div>
                             <div class="col-md-3 col-sm-10 form-group text-center">
                                 <button type="submit" class="btn btn-success text-white"><i class="fa fa-save"></i>
                                     Procesar</button>

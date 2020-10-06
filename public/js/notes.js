@@ -41,9 +41,6 @@ $("#btnTeachers").click(function () {
     listaTeachers();
     $('#searchCourses').attr("disabled", false);
 });
-$("#processStudents").click(function () {
-    obtenerDetailTeacher();
-});
 
 $("#searchCourses").click(function () {
     listarCoursesPeriod_Notes();
@@ -103,7 +100,6 @@ function listarCoursesPeriod_Notes() {
 
 function cargarCoursePerio(data) {
     $.each(data, function (key, registro) {
-        console.log(registro.pivot.idDetailCapacity);
         $("#idCapcityCP").append(
             "<option value=" +
             registro.pivot.idDetailCapacity +
@@ -117,15 +113,69 @@ function cargarCoursePerio(data) {
 function obtenerDetailTeacher() {
     // let cW = document.getElementById('codeWorkerAl');
     var valueCourse = codeWorkerAl.value.toString();
-    console.log(valueCourse)
+    var idDT
     $.ajax({
         type: "GET",
         url: "api/notes/" + valueCourse + "/" + valCourse[0] + "/" + valSection[0] + "/" + valPeriod[0],
         success: function (data) {
             $.each(data, function (registro) {
-                console.log(registro);
+                idDT = registro.idDetailTeacher;
             });
-
         },
     });
+    $.ajax({
+        type: "GET",
+        url: "api/students/" + idDT,
+        success: function (studentCount) {},
+    });
 }
+
+function cargarStudentTable(studentCount) {
+    var t = studentCount.length;
+    var fila = null;
+    for (let index = 0; index < t; index++) {
+        var fila_nueva =
+            '<tr id="fila' +
+            idDT +
+            '"><td class="d-none d-print-block"><input type="hidden" name="idDetailCapacity[]" value="' +
+            rowCap.idDT +
+            '" >' +
+            studentCount.idDetailStudent +
+            "</td><td>" +
+            studentCount.nameStudent + ' ' + studentCount.lastNameStudent +
+            "</td><td>" +
+            rowCap.abbreviation +
+            '</td><td><input type="hidden" name="orderCapacity[]" value ="' +
+            rowCap.orderCapacity +
+            '">' +
+            rowCap.orderCapacity +
+            '</td><td><a href="#" class="btn btn-sm btn-danger" onclick="quitar(' +
+            rowCap.idCapacity +
+            ')"><i class="fas fa-minus-circle"></i ></a></td></tr>';
+    }
+}
+
+$("#processStudents").click(function () {
+    obtenerDetailTeacher();
+});
+
+
+var fila_nueva =
+    '<tr id="fila' +
+    idDT +
+    '"><td class="d-none d-print-block"><input type="hidden" name="idCapacity[]" value="' +
+    rowCap.idDT +
+    '" >' +
+    rowCap.idCapacity +
+    "</td><td>" +
+    rowCap.descriptionCapacity +
+    "</td><td>" +
+    rowCap.abbreviation +
+    '</td><td><input type="hidden" name="orderCapacity[]" value ="' +
+    rowCap.orderCapacity +
+    '">' +
+    rowCap.orderCapacity +
+    '</td><td><a href="#" class="btn btn-sm btn-danger" onclick="quitar(' +
+    rowCap.idCapacity +
+    ')"><i class="fas fa-minus-circle"></i ></a></td></tr>';
+$("#tableCapacities tbody").append(fila_nueva);
