@@ -24,8 +24,12 @@
                                 </select>
                             </div>
                             <div class="col-md-4 col-sm-12  form-group">
-                                <label for="">Periodo*</label>
+                                <label for="">Año Escolar*</label>
                                 <input type="text" id="yearPeriod" name="yearPeriod " class="form-control" required>
+                            </div>
+                            <div class="col-md-4 col-sm-12  form-group">
+                                <label for="">Periodo</label>
+                                <select id="idPeriodo" name="idPeriodo" class="form-control" required></select>
                             </div>
                             <div class="col-md-4 col-sm-12  form-group">
                                 <label for="">Sección*</label>
@@ -45,15 +49,21 @@
                                 @include('Catedra.ListTeachers')
                             </div>
                             <div class="col-md-6 col-sm-12  form-group">
+                                <button id="searchCourses">Buscar Capacidades</button>
                                 <label for="">Capacidad*</label>
-                                <select id="heard" name="idCapacity " class="form-control" required>
+                                <select id="idCapcityCP" name="idCapacity " class="form-control" required>
                                     <option value="">Seleccione</option>
                                 </select>
                             </div>
+                            <div class="col-md-6 col-sm-12 form-group">
+                                <input type="button" id="processStudents" value="Procesar Alumnos">
+                                <label for="">vkk</label>
+                            </div>
                             <div class="col-md-3 col-sm-10 form-group text-center">
-                                <button class="btn btn-success text-white" type="submit"><i class="fa fa-save"></i>
+                                <button type="submit" class="btn btn-success text-white"><i class="fa fa-save"></i>
                                     Procesar</button>
                             </div>
+
                         </div>
                     </form>
                     <div class="row">
@@ -79,7 +89,7 @@
                                         <td>Hola</td>
                                         <td>Hola</td>
                                         <td>Hola</td>
-                                        <td>Hola</td>
+                                        <td><input type="text" class="form-control" name="" id=""></td>
                                         <td>Hola</td>
 
                                     </tr>

@@ -44,7 +44,6 @@ Route::get('/personnel', function () {
 });
 
 Route::get('catedra', function () {
-    //echo ("holaJersson");
     return datatables(
         DB::select('select w.codeWorker, t.codeTeacher, w.nameWorker, w.lastNameWorker
         from teachers t join workers w on t.codeWorker=w.codeWorker where w.statusWorker=1')
@@ -58,4 +57,9 @@ Route::get('/degrees/{id}/sections', 'levelController@bySection');
 Route::get('/degrees/{id}/courses', 'levelController@byCourse');
 Route::get('/bimester/{year}/period', 'levelController@byBimester');
 Route::get('/catedra/{code}/{year}', 'levelController@byCoursesTeacher');
-
+Route::get('/subjects/{id}/{idPerio}', 'capacitiesController@show');
+Route::get('/personnel/{id}/{idCourse}/{idSection}/{idPeriod}', function ($id, $idCourse, $idSection, $idPeriod) {
+    /*return (DB::table('detailTeachers')->select('idDetailTeacher')->where('codeWorker', '=', $id)->where('idCourse', '=', $idCourse)->where('idSection', $idSection)->where('idPeriod', '=', $idPeriod)->first());*/
+    return (DB::table('detailTeachers')->select('idDetailTeacher')
+        ->where(['codeWorker' => $id], ['idCourse' => $idCourse], ['idSection' => $idSection], ['idPeriod' => $idPeriod]));
+});

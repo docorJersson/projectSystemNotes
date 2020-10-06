@@ -51,7 +51,6 @@
             <label for="">Docente a Cargo</label>
             <input type="hidden" id="codeWorkerAl" name="codeWorker" value="{{$course->teachers->first()->codeWorker}}">
             <input type="hidden" id="codeTeacher">
-
             <input type="text" id="nameWorker" name="nameWorker" class="form-control"
               value="{{$course->teachers->first()->worker->nameWorker." ". $course->teachers->first()->worker->lastNameWorker}}"
               required readonly>

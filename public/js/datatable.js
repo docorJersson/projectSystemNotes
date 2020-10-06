@@ -19,37 +19,37 @@ $(document).ready(function () {
             url: "api/personnel",
         },
         columns: [{
-            data: "codeWorker",
-            visible: false,
-            searchable: false,
-        },
-        {
-            data: "nameWorker",
-        },
-        {
-            data: "lastNameWorker",
-        },
-        {
-            data: "dniWorker",
-        },
-        {
-            data: "addressWorker",
-        },
-        {
-            data: "civilStatus",
-        },
-        {
-            data: "telephone",
-        },
-        {
-            data: "socialSecurity",
-        },
-        {
-            data: "dateWorker",
-        },
-        {
-            data: "btn",
-        },
+                data: "codeWorker",
+                visible: false,
+                searchable: false,
+            },
+            {
+                data: "nameWorker",
+            },
+            {
+                data: "lastNameWorker",
+            },
+            {
+                data: "dniWorker",
+            },
+            {
+                data: "addressWorker",
+            },
+            {
+                data: "civilStatus",
+            },
+            {
+                data: "telephone",
+            },
+            {
+                data: "socialSecurity",
+            },
+            {
+                data: "dateWorker",
+            },
+            {
+                data: "btn",
+            },
         ],
     });
 
@@ -195,11 +195,11 @@ $("#btnCapacity").click(function () {
             dataSrc: "",
         },
         columns: [{
-            data: "descriptionCapacity",
-        },
-        {
-            data: "abbreviation",
-        },
+                data: "descriptionCapacity",
+            },
+            {
+                data: "abbreviation",
+            },
         ],
     });
 });

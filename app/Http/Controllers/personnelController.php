@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\detailTeacher;
 use Illuminate\Http\Request;
 use App\Worker;
+use Illuminate\Support\Facades\DB;
 
 class personnelController extends Controller
 {
@@ -14,7 +16,7 @@ class personnelController extends Controller
      */
     public function index()
     {
-        return view('Personnel.main');      
+        return view('Personnel.main');
     }
 
     /**
@@ -44,9 +46,8 @@ class personnelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $idCourse, $idSection, $idPeriod)
     {
-        //
     }
 
     /**
@@ -59,7 +60,7 @@ class personnelController extends Controller
     {
         //
         //el problema era que por defecto un modelo toma la llave por tipo id , entonces estaba comviertiendo el string a id , si el code worker no hubiera sido 001 y hubiera sido CDVA entonces hubiaera habido un desde el principio ya que no podia convertir ese string a un númmero. 
-        $worker=Worker::findOrFail($id);
+        $worker = Worker::findOrFail($id);
         //,
         return view('Personnel/editPersonnel', compact('worker'));
         // \dd($worker);

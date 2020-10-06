@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use Illuminate\Http\Request;
 
 use App\detailCapacity;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 class capacitiesController extends Controller
 {
@@ -40,29 +42,27 @@ class capacitiesController extends Controller
     public function store(Request $request)
     {
         //
-        try{
+        try {
             DB::beginTransaction();
-            $idCourse=$request->get('idCourse');
-            $idCapacity=$request->get('idCapacity');
-            $idPeriod=$request->get('idPeriod');
-            $idOrder=$request->get('order');
-            $cont=0;
-            while($cont<count($idCourse))
-            {
-                $detail=new detailCapacity();
-                $detail->idCourse=$idCourse[$cont];
-                $detail->idCapacity=$idCapacity[$cont];
-                $detail->idPeriod=$idPeriod[$cont];
-                $detail->orderCapacity=$idOrder[$cont];
+            $idCourse = $request->get('idCourse');
+            $idCapacity = $request->get('idCapacity');
+            $idPeriod = $request->get('idPeriod');
+            $idOrder = $request->get('order');
+            $cont = 0;
+            while ($cont < count($idCourse)) {
+                $detail = new detailCapacity();
+                $detail->idCourse = $idCourse[$cont];
+                $detail->idCapacity = $idCapacity[$cont];
+                $detail->idPeriod = $idPeriod[$cont];
+                $detail->orderCapacity = $idOrder[$cont];
                 $detail->save();
-                $cont=$cont+1;
+                $cont = $cont + 1;
             }
 
             DB::commit();
             //return redirect()->route('venta.index')->with('datos','VENTA REALIZADA EXITOSAMENTE...!');
-        }
-        catch(Exception $e){
-            DB::rollback(); 
+        } catch (Exception $e) {
+            DB::rollback();
         }
         return redirect()->route('subjects.index');
     }
@@ -71,11 +71,14 @@ class capacitiesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
+     * @param  int  $idPerio
+
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $idPerio)
     {
-        //
+        $capacities = Course::findOrFail($id)->capacities()->where('idPeriod', $idPerio)->get()->toJson();
+        return $capacities;
     }
 
     /**
