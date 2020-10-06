@@ -124,8 +124,8 @@
             <div class="sidebar" style="font-size:15px;">
                 <!-- Sidebar user (optional) -->
                 <div class="mt-2 pb-2 mb-2 text-center">
-                    <img src="{{ asset('img/not.png')}}" alt="Sistema de Notas" class="img-fluid text-center"
-                        width="150" height="150" title="Sistema de Notas">
+                    <img src="https://drive.google.com/uc?id=1tcqvliaYpZlTb3XmM4VLzITYrcUOWKmx" alt="Sistema de Notas"
+                        class="img-fluid text-center" width="150" height="150" title="Sistema de Notas">
                 </div>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
