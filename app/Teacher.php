@@ -9,7 +9,7 @@ class Teacher extends Model
     protected $table = 'teachers';
     protected $primaryKey = 'codeTeacher';
     protected $keyType = 'string';
-    protected $fillable = ['codeWorker', 'idCourse', 'idDegree', 'idSection', 'idLevel', 'idPeriod'];
+    /*protected $fillable = ['codeWorker', 'idCourse', 'idDegree', 'idSection', 'idLevel', 'idPeriod'];*/
     public $timestamps = false;
 
     public function courses()

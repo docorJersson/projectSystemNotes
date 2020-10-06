@@ -45,3 +45,6 @@
     </div>
 </div>
 @endsection
+@section('scripts')
+<script src="js/courses.js"></script>
+@endsection

@@ -76,35 +76,35 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-                        {{-- <li class="nav-item">
+                    {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                        @endif --}}
+                    </li>
+                    @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                    @endif --}}
                     @else
-                        <li class="nav-item dropdown">
-                            <div class="square" id="navbarDropdown">
-                                <a href="#" class="letter text-white" id="letter" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false" v-pre>{{ auth()->user()->name }} <span
-                                        class="caret" id="navbarDropdown"></span></a>
+                    <li class="nav-item dropdown">
+                        <div class="square" id="navbarDropdown">
+                            <a href="#" class="letter text-white" id="letter" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" v-pre>{{ auth()->user()->name }} <span
+                                    class="caret" id="navbarDropdown"></span></a>
 
-                                <div class="dropdown-menu dropdown-menu-right text-navy" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <div class="dropdown-menu dropdown-menu-right text-navy" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                                document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt"></i>
-                                        <b>{{ __('Logout') }}</b>
-                                    </a>
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <b>{{ __('Logout') }}</b>
+                                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
-                        </li>
+                        </div>
+                    </li>
                     @endguest
                 </ul>
             </ul>
@@ -124,7 +124,8 @@
             <div class="sidebar" style="font-size:15px;">
                 <!-- Sidebar user (optional) -->
                 <div class="mt-2 pb-2 mb-2 text-center">
-                <img src="{{ asset('img/not.png')}}" alt="Sistema de Notas" class="img-fluid text-center" width="150" height="150" title="Sistema de Notas">
+                    <img src="{{ asset('img/not.png')}}" alt="Sistema de Notas" class="img-fluid text-center"
+                        width="150" height="150" title="Sistema de Notas">
                 </div>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -247,26 +248,37 @@
         </aside>
         <!-- /.control-sidebar -->
     </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+    </div>
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ asset('assets/adminlte/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{asset('assets/adminlte/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{asset('assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
-    <script src="{{ asset('assets/adminlte/dist/js/adminlte.min.js') }}"></script>
+    <script src="{{asset('assets/adminlte/dist/js/adminlte.min.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('assets/adminlte/dist/js/demo.js') }}"></script>
-    <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="{{asset('assets/adminlte/dist/js/demo.js')}}"></script>
+    <script src="{{asset('js/scripts.js')}}"></script>
     <!--DATATABLES-->
-    <script src="{{ asset('assets/adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('assets/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{asset('assets/adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('assets/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 
     <!--SELECT 2 LIBRERIAS-->
-    <script src="{{ asset('assets/adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
-    <script src="{{ asset('datatable.js') }}"></script>
+    <script src="{{asset('assets/adminlte/plugins/select2/js/select2.full.min.js')}}"></script>
+    <script src="{{asset('js/functions.js')}}"></script>
+    <script src="{{asset('js/datatable.js')}}"></script>
+    @yield('scripts')
+
 </body>
 
 </html>

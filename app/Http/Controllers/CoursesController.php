@@ -12,6 +12,7 @@ use App\detailTeacher;
 use App\Period;
 use App\Teacher;
 use App\Worker;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -84,38 +85,45 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dt = detailTeacher::findOrFail($id);
-        $course = Course::findOrFail($request->idCourse);
-        $newTeacher = Teacher::findOrFail($request->codeWorker);
-        $dt->codeTeacher = $newTeacher->codeTeacher;
-        $dt->codeWorker = $newTeacher->codeWorker;
-        $dt->save();
-        $oldCapacities = $course->capacities()->where('idPeriod', $request->idPeriod)->get();
-        $newCapacities = $request->idCapacity;
-        $orderNewCapacities = $request->orderCapacity;
-        foreach ($newCapacities as $keyNew => $newCapacity) {
-            foreach ($oldCapacities as $keyOld => $oldCapacity) {
-                if ($oldCapacity->idCapacity == $newCapacity) {
-                    unset($oldCapacities[$keyOld]);
-                    unset($newCapacities[$keyNew]);
-                    unset($orderNewCapacities[$keyNew]);
+        try {
+
+
+            $dt = detailTeacher::findOrFail($id);
+            $course = Course::findOrFail($request->idCourse);
+            $newTeacher = Worker::findOrFail($request->codeWorker)->teacher;
+            $dt->codeTeacher = $newTeacher->codeTeacher;
+            $dt->codeWorker = $newTeacher->codeWorker;
+            $dt->save();
+            $oldCapacities = $course->capacities()->where('idPeriod', $request->idPeriod)->get();
+            $newCapacities = $request->idCapacity;
+            $orderNewCapacities = $request->orderCapacity;
+
+            foreach ($newCapacities as $keyNew => $newCapacity) {
+                foreach ($oldCapacities as $keyOld => $oldCapacity) {
+                    if ($oldCapacity->idCapacity == $newCapacity) {
+                        unset($oldCapacities[$keyOld]);
+                        unset($newCapacities[$keyNew]);
+                        unset($orderNewCapacities[$keyNew]);
+                    }
                 }
             }
-        }
-        if (!empty($oldCapacities)) {
-            foreach ($oldCapacities as $c) {
-                detailCapacity::destroy($c->pivot->idDetailCapacity);
+            if (!empty($oldCapacities)) {
+                foreach ($oldCapacities as $c) {
+                    detailCapacity::destroy($c->pivot->idDetailCapacity);
+                }
             }
-        }
-        $newCapacities = array_values($newCapacities);
-        $orderNewCapacities = array_values($orderNewCapacities);
-        if (!empty($newCapacities)) {
-            $tamaño = count($newCapacities);
-            for ($i = 0; $i < $tamaño; $i++) {
-                $course->capacities()->attach($newCapacities[$i], ['idPeriod' => $request->idPeriod, 'orderCapacity' => $orderNewCapacities[$i]]);
+            $newCapacities = array_values($newCapacities);
+            $orderNewCapacities = array_values($orderNewCapacities);
+            if (!empty($newCapacities)) {
+                $tamaño = count($newCapacities);
+                for ($i = 0; $i < $tamaño; $i++) {
+                    $course->capacities()->attach($newCapacities[$i], ['idPeriod' => $request->idPeriod, 'orderCapacity' => $orderNewCapacities[$i]]);
+                }
             }
+            return redirect('courses');
+        } catch (Exception $e) {
+            dd($e);
         }
-        return redirect('courses');
     }
 
     /**

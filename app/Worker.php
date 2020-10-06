@@ -13,7 +13,7 @@ class Worker extends Model
     public $timestamps = false;
     public function teacher()
     {
-        return $this->hasOne(Teacher::class, 'codeTeacher');
+        return $this->hasOne(Teacher::class, 'codeWorker');
     }
     public function administrator()
     {
