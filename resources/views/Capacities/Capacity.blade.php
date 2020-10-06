@@ -70,6 +70,7 @@
                             <div class="col-md-4 col-sm-12 form-group p-4 text-center">
                                 <a class="btn btn-warning text-white" id="download"><i class="fas fa-download"></i></a>
                                 <a class="btn btn-danger text-white" id="close"><i class="fas fa-window-close"></i></a>
+                                <a href="home" class="btn bg-secondary text-white"><i class="fa fa-reply"></i></a>
                             </div>
 
                             <div class="table-responsive">
