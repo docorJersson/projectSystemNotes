@@ -9,6 +9,7 @@ class detailCapacity extends Pivot
     protected $table = 'detailCapacities';
     protected $primaryKey = 'idDetailCapacity';
     public $incrementing = true;
+    public $timestamps = false;
 
     public function periodYears()
     {
