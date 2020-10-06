@@ -46,6 +46,7 @@ $("#searchCourses").click(function () {
     listarCoursesPeriod_Notes();
     $(this).attr("disabled", true);
 });
+
 let tableCourseTeachers = [];
 $("#table-teacher").on("click", "tbody tr", function () {
     var row = tablePersonal.row($(this)).data();
@@ -87,7 +88,6 @@ function listarCoursesPeriod_Notes() {
         url: "api/subjects/" + valCourse[0] + "/" + valPeriod[0],
         dataType: "json",
         success: function (data) {
-            console.log(data);
             cargarCoursePerio(data);
         },
     });
@@ -112,9 +112,9 @@ function obtenerDetailTeacher() {
     console.log(valueCourse)
     $.ajax({
         type: "GET",
-        url: "api/personnel/" + valueCourse + "/" + valCourse[0] + "/" + valSection[0] + "/" + valPeriod[0],
+        url: "api/notes/" + valueCourse + "/" + valCourse[0] + "/" + valSection[0] + "/" + valPeriod[0],
         success: function (data) {
-            $.each(data, function (key, registro) {
+            $.each(data, function (registro) {
                 console.log(registro);
             });
 
