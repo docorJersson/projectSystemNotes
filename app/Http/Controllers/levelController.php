@@ -43,4 +43,10 @@ class levelController extends Controller
                      'p.bimester', 'p.yearPeriod')
             ->where(['dt.codeTeacher' => $code,'p.yearPeriod' => $year])->get();
     }
+
+    //Código que le brutitot de chilon no hizo
+      public function blue($id, $idCourse, $idSection, $idPeriod) {
+         return DB::table('detailTeachers')->select('idDetailTeacher')
+            ->where(['codeWorker' => $id, 'idCourse' => $idCourse, 'idSection' => $idSection, 'idPeriod' => $idPeriod])->get();
+   }
 }
