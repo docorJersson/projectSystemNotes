@@ -38,9 +38,6 @@ $("#idGrade").on("change", function () {
 $("#btnTeachers").click(function () {
     listaTeachers();
 });
-$("#processStudents").click(function () {
-    obtenerDetailTeacher();
-});
 
 $("#searchCourses").click(function () {
     listarCoursesPeriod_Notes();
@@ -121,3 +118,7 @@ function obtenerDetailTeacher() {
         },
     });
 }
+
+$("#processStudents").click(function () {
+    obtenerDetailTeacher();
+});
