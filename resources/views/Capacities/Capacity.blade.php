@@ -68,26 +68,29 @@
                             <div class="col-1"></div>
 
                             <div class="col-md-4 col-sm-12 form-group p-4 text-center">
-                                <a class="btn bg-info text-white" id="bars"><i class="fa fa-bars"></i></a>
                                 <a class="btn btn-warning text-white" id="download"><i class="fas fa-download"></i></a>
                                 <a class="btn btn-danger text-white" id="close"><i class="fas fa-window-close"></i></a>
                             </div>
+                            <div class="table-responsive">
+                                <table id="tableCoursesCapacity" class="table table-bordered display nowrap"
+                                    cellspacing="0" width="100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Curso</th>
+                                            <th>Asignatura</th>
+                                            <th>Abreviatura</th>
+                                            <th>Orden</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <a class="btn bg-info text-white mt-2" id="saveC" type="submit"><i
+                                        class="fa fa-save"></i></a>
+                            </div>
                         </div>
                     </form>
-                    <div class="table-responsive">
-                        <table id="tableCoursesCapacity" class="table table-bordered display nowrap" cellspacing="0"
-                            width="100%">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Descripción</th>
-                                    <th>Abreviatura</th>
-                                    <th>Orden</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>
