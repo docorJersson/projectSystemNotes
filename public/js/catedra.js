@@ -14,8 +14,6 @@ $(document).ready(function () {
     });
 });
 
-
-
 //Select YearPeriod
 $("#idPeriodo").attr("disabled", true);
 $("#idPeriodo").html("");
@@ -29,7 +27,9 @@ $("#idSection").attr("disabled", true);
 $("#idCourse").attr("disabled", true);
 
 //mostrar los teachers cada vez que se seleccione la lupa
-$("#btnTeachers").click(listaTeachers());
+$("#btnTeachers").click(function () {
+    listaTeachers()
+});
 
 //Creo esta este array para que me almacene todos los datos cuando seleccione un teacher
 //despúes se llena con todos los datos correspondientes
@@ -49,6 +49,6 @@ $("#idGrade").on("change", function () {
     showGradeCourses(id);
 });
 
-// Tabla Cursos
-// *** *** *** *** *** *** *** *** *** *** *** *** *** ***
-$("#btnCourseTeachers").click(showCourseTeacher_Catedra());
+$("#btnCourseTeachers").on("click", function () {
+    showCourseTeacher_Catedra()
+});

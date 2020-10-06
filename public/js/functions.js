@@ -140,6 +140,7 @@ function quitar(fila) {
 
 function listaTeachers() {
     $("#table-teacher").dataTable().fnDestroy();
+    console.log("goaldbbbbbbbbbbbbbbbbbbbe");
     tablePersonal = $("#table-teacher").DataTable({
         responsive: true,
         paging: false,
@@ -167,6 +168,7 @@ function selectTeacherCompare_Catedra(rowTeacher) {
     yearPeriod.value = year;
     //Probando algo
     let code = $("#codeTeacher").val();
+    console.log(code);
     //lleno mi array creado
     tableCourseTeachers = $.get("/api/catedra/" + code + "/" + year, function (data) {
         return data;
@@ -272,10 +274,9 @@ function showGradeCourses(id) {
 function showCourseTeacher_Catedra() {
     let code = $("#codeTeacher").val();
     $("#tCourses").dataTable().fnDestroy();
+    console.log(code + "ogobbbbbbbbbbbgk");
     $("#tCourses").DataTable({
         responsive: true,
-        //fixedHeader: true,
-        //paging: false,
         searching: true,
         info: false,
         processing: true,

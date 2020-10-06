@@ -152,13 +152,10 @@ $("#idSection").change(function () {
 
 $("#insertCourses").click(function () {
     let course = tableCourseTeachers.responseJSON;
-    // console.log(course);
     let cSize = course.length;
-    // console.log(cSize);
     let i = 0;
     let flag = false;
     while (i < cSize) {
-        // && course[i].idGrade === valGrade[0]
         if (course[i].idPeriod === valPeriod[0] &&
             course[i].idCourse === valCourse[0] && course[i].idSection === valSection[0]) {
             flag = true;
