@@ -1,19 +1,11 @@
 var year = new Date().getFullYear();
 
-// console.log(year);
 
 $("#orderCapacity").attr("disabled", true);
 
 var capacityCourses;
 $(document).ready(function () {
-    $.ajax({
-        type: "GET",
-        url: "api/level",
-        dataType: "json",
-        success: function (data) {
-            cargarLevel(data);
-        },
-    });
+
 
     $("#table-workers").DataTable({
         responsive: true,
@@ -103,66 +95,6 @@ $(document).ready(function () {
     });
 
 });
-//var tablePersonal = new Array();
-// start ahora se encuentra en js/catedra.js
-
-/*function listaTeachers() {
-    $("#table-teacher").dataTable().fnDestroy();
-    tablePersonal = $("#table-teacher").DataTable({
-        responsive: true,
-        //fixedHeader: true,
-        paging: false,
-        type: "GET",
-        searching: true,
-        processing: true,
-        //info: false,
-        // serverSide: true,
-
-        ajax: {
-            url: "/api/catedra",
-            // dataSrc: "",
-        },
-        columns: [{
-                data: "nameWorker",
-            },
-            {
-                data: "lastNameWorker",
-            },
-        ],
-    });
-}*/
-//Esta está para ver porque también se utiliza en cátedra
-//$("#btnTeachers").click(listaTeachers());
-
-
-//Creo esta este array para que me almacene todos los datos cuando seleccione un teacher
-//despúes se llena con todos los datos correspondientes
-let tableCourseTeachers = [];
-
-
-$("#table-teacher").on("click", "tbody tr", function () {
-    var row = tablePersonal.row($(this)).data();
-    codeWorkerAl.value = row.codeWorker;
-    codeTeacher.value = row.codeTeacher;
-    nameWorker.value = row.nameWorker + " " + row.lastNameWorker;
-    $(".close").click();
-
-    yearPeriod.value = year;
-    //Probando algo
-    let code = $("#codeTeacher").val();
-    // console.log(code);
-    //lleno mi array creado
-    tableCourseTeachers = $.get("/api/catedra/" + code + "/" + year, function (data) {
-        // console.log(data);
-        return data;
-    });
-    //Cargaremos la tabla mostrar
-    $("#btnCourseTeachers").attr("disabled", false);
-    $("#yearPeriod").attr("disabled", false);
-    $("#idLevel").attr("disabled", false);
-    $("#idPeriodo").attr("disabled", false);
-    // console.log(row.codeWorker);
-});
 
 // selects
 $(function () {
@@ -171,161 +103,7 @@ $(function () {
 });
 //end selects
 
-//Haremos los selects dinámicos
-$(document).ready(function () {
-    // *** *** *** *** *** *** *** *** *** *** *** ***
-    //Select YearPeriod
-    $("#idPeriodo").attr("disabled", true);
-    $("#idPeriodo").html("");
 
-    //AJAX con esto cargamos el bimestre
-    $.get("/api/bimester/" + year + "/period", function (data) {
-        let htmlSelect = '<option value="">Choose..</option>';
-        for (let i = 0; i < data.length; ++i) {
-            htmlSelect +=
-                "<option value='" +
-                data[i].idPeriod +
-                "'>" +
-                data[i].bimester +
-                "</option>";
-        }
-        // console.log(htmlSelect);
-        $("#idPeriodo").html(htmlSelect);
-    });
-
-    // *** *** *** *** *** *** *** *** *** *** ***
-
-    $("#idGrade").attr("disabled", true);
-    $("#idSection").attr("disabled", true);
-    $("#idCourse").attr("disabled", true);
-
-    $("#idLevel").on("change", function () {
-        let id = $(this).val();
-        // console.log(id);
-        //Haremos que solo el grado se habilite
-        $("#idGrade").attr("disabled", false);
-        $("#idSection").attr("disabled", true);
-        $("#idCourse").attr("disabled", true);
-        $("#idSection").html("");
-        $("#idCourse").html("");
-
-        if (!id) {
-            $("#idGrade").html('<option value="">Choose..</option>');
-            return;
-        }
-        //AJAX
-        $.get("/api/levels/" + id + "/degrees", function (data) {
-            let htmlSelect = '<option value="">Choose..</option>';
-            for (let i = 0; i < data.length; ++i) {
-                htmlSelect +=
-                    "<option value='" +
-                    data[i].idGrade +
-                    "'>" +
-                    data[i].descriptionGrade.toUpperCase() +
-                    "</option>";
-            }
-            // console.log(htmlSelect);
-            $("#idGrade").html(htmlSelect);
-        });
-    });
-
-    $("#idGrade").on("change", function () {
-        let id = $(this).val();
-        // console.log(id);
-        //Haremos que se habilite la sección
-        $("#idSection").attr("disabled", false);
-
-        if (!id) {
-            $("#idSection").html('<option value="">Choose..</option>');
-            return;
-        }
-        //AJAX
-        $.get("/api/degrees/" + id + "/sections", function (data) {
-            let htmlSelect = '<option value="">Choose..</option>';
-            for (let i = 0; i < data.length; ++i) {
-                htmlSelect +=
-                    "<option value='" +
-                    data[i].idSection +
-                    "'>" +
-                    data[i].descriptionSection +
-                    "</option>";
-            }
-            // console.log(htmlSelect);
-            $("#idSection").html(htmlSelect);
-        });
-    });
-
-    $("#idGrade").on("change", function () {
-        let id = $(this).val();
-        // console.log(id);
-        //Haremos que se habilite el curso
-        $("#idCourse").attr("disabled", false);
-
-        if (!id) {
-            $("#idCourse").html('<option value="">Choose..</option>');
-            return;
-        }
-        //AJAX
-        $.get("/api/degrees/" + id + "/courses", function (data) {
-            let htmlSelect = '<option value="">Choose..</option>';
-            for (let i = 0; i < data.length; ++i) {
-                htmlSelect +=
-                    "<option value='" +
-                    data[i].idCourse +
-                    "'>" +
-                    data[i].descriptionCourse +
-                    "</option>";
-            }
-            // console.log(htmlSelect);
-            $("#idCourse").html(htmlSelect);
-        });
-    });
-});
-//end
-
-// Tabla Cursos
-// *** *** *** *** *** *** *** *** *** *** *** *** *** ***
-$("#btnCourseTeachers").click(function () {
-    let code = $("#codeTeacher").val();
-    console.log(code);
-    $("#tCourses").dataTable().fnDestroy();
-    $("#tCourses").DataTable({
-        responsive: true,
-        //fixedHeader: true,
-        //paging: false,
-        searching: true,
-        info: false,
-        processing: true,
-        type: "GET",
-        ajax: {
-            url: "/api/catedra/" + code + "/" + year,
-            dataSrc: "",
-        },
-        columns: [{
-                data: "nameWorker",
-            },
-            {
-                data: "lastNameWorker",
-            },
-            {
-                data: "descriptionCourse",
-            },
-            {
-                data: "descriptionGrade",
-            },
-            {
-                data: "descriptionSection",
-            },
-            {
-                data: "bimester",
-            },
-            {
-                data: "yearPeriod",
-            },
-        ],
-    });
-});
-//End tabla cursos
 //Creamos un Array para validar que los cursos nuevos no sean repetidos
 
 
@@ -454,17 +232,6 @@ function evaluar() {
 // ------- end funciones eliminar en la tabla catedra -----
 
 
-function cargarLevel(data) {
-    $.each(data, function (key, registro) {
-        $("#idLevel").append(
-            "<option value=" +
-            registro.idLevel +
-            ">" +
-            registro.descriptionLevel +
-            "</option>"
-        );
-    });
-}
 
 $("#btnCapacity").click(function () {
     $("#tableAllCapacity").dataTable().fnDestroy();
