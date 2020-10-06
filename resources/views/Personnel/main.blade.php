@@ -7,7 +7,7 @@
             <h3 class="card-title">Mantenimiento del Personal</h3>
         </div>
         <div class="card-body">
-            <div class="container">
+            <div class="container table-responsive">
                 <table id="table-workers" class="table table-bordered nowrap" cellspacing="0" width="100%">
                     <thead class="bg-dark">
                         <tr>

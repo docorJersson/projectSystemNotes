@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\detailTeacher;
+use App\Course;
 use Illuminate\Http\Request;
-use App\Worker;
-use Illuminate\Support\Facades\DB;
 
-class personnelController extends Controller
+use App\detailCapacity;
+use Illuminate\Support\Facades\DB;
+use Exception;
+
+class capacitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,10 @@ class personnelController extends Controller
      */
     public function index()
     {
-        return view('Personnel.main');
+        //
+        return view('Capacities.Capacity');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,16 +42,43 @@ class personnelController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            DB::beginTransaction();
+            $idCourse = $request->get('idCourse');
+            $idCapacity = $request->get('idCapacity');
+            $idPeriod = $request->get('idPeriod');
+            $idOrder = $request->get('order');
+            $cont = 0;
+            while ($cont < count($idCourse)) {
+                $detail = new detailCapacity();
+                $detail->idCourse = $idCourse[$cont];
+                $detail->idCapacity = $idCapacity[$cont];
+                $detail->idPeriod = $idPeriod[$cont];
+                $detail->orderCapacity = $idOrder[$cont];
+                $detail->save();
+                $cont = $cont + 1;
+            }
+
+            DB::commit();
+            //return redirect()->route('venta.index')->with('datos','VENTA REALIZADA EXITOSAMENTE...!');
+        } catch (Exception $e) {
+            DB::rollback();
+        }
+        return redirect()->route('subjects.index');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
+     * @param  int  $idPerio
+
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $idCourse, $idSection, $idPeriod)
+    public function show($id, $idPerio)
     {
+        $capacities = Course::findOrFail($id)->capacities()->where('idPeriod', $idPerio)->get()->toJson();
+        return $capacities;
     }
 
     /**
@@ -59,12 +90,6 @@ class personnelController extends Controller
     public function edit($id)
     {
         //
-        //el problema era que por defecto un modelo toma la llave por tipo id , entonces estaba comviertiendo el string a id , si el code worker no hubiera sido 001 y hubiera sido CDVA entonces hubiaera habido un desde el principio ya que no podia convertir ese string a un númmero. 
-        $worker = Worker::findOrFail($id);
-        //,
-        return view('Personnel/editPersonnel', compact('worker'));
-        // \dd($worker);
-        // return \view('Personnel.edit',\compact('worker'));
     }
 
     /**
@@ -77,8 +102,6 @@ class personnelController extends Controller
     public function update(Request $request, $id)
     {
         //
-        Worker::findOrFail($id)->update($request->all());
-        return redirect()->route('personnel.index');
     }
 
     /**
@@ -90,9 +113,5 @@ class personnelController extends Controller
     public function destroy($id)
     {
         //
-        $worker = Worker::findOrFail($id);
-        $worker->statusWorker = 0;
-        $worker->save();
-        return \redirect()->route('personnel.index');
     }
 }

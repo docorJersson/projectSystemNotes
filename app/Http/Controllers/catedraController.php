@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\detailTeacher;
 use Illuminate\Http\Request;
 use App\Worker;
-use Illuminate\Support\Facades\DB;
+use App\Level;
+use App\Degree;
+use App\Period;
+use App\detailTeacher;
+use DB;
 
-class personnelController extends Controller
+class catedraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +19,7 @@ class personnelController extends Controller
      */
     public function index()
     {
-        return view('Personnel.main');
+        return view('Catedra/MaintainerCatedra');
     }
 
     /**
@@ -37,7 +40,31 @@ class personnelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+        DB::beginTransaction();
+            $idCourse=$request->get('idCourse');
+            $idSection=$request->get('idSection');
+            $idPeriod=$request->get('idPeriod');
+            $cont=0;
+            while($cont<count($idCourse))
+            {
+                $detail=new detailTeacher();
+                $detail->codeWorker=$request->codeWorkerAl;
+                $detail->codeTeacher=$request->codeTeacher;
+                $detail->idCourse=$idCourse[$cont];
+                $detail->idSection=$idSection[$cont];
+                $detail->idPeriod=$idPeriod[$cont];
+                $detail->save();
+                $cont=$cont+1;
+            }
+
+            DB::commit();
+            //return redirect()->route('venta.index')->with('datos','VENTA REALIZADA EXITOSAMENTE...!');
+        }
+        catch(Exception $e){
+            DB::rollback(); 
+        }
+        return redirect()->route('catedra.index');
     }
 
     /**
@@ -46,8 +73,12 @@ class personnelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $idCourse, $idSection, $idPeriod)
+    public function show($id)
     {
+        //
+        // $t=Worker::findOrFail($id);
+        // // dd($t);
+        // return \view('Catedra/MaintainerCatedra', \compact('t'));
     }
 
     /**
@@ -59,12 +90,6 @@ class personnelController extends Controller
     public function edit($id)
     {
         //
-        //el problema era que por defecto un modelo toma la llave por tipo id , entonces estaba comviertiendo el string a id , si el code worker no hubiera sido 001 y hubiera sido CDVA entonces hubiaera habido un desde el principio ya que no podia convertir ese string a un númmero. 
-        $worker = Worker::findOrFail($id);
-        //,
-        return view('Personnel/editPersonnel', compact('worker'));
-        // \dd($worker);
-        // return \view('Personnel.edit',\compact('worker'));
     }
 
     /**
@@ -77,8 +102,6 @@ class personnelController extends Controller
     public function update(Request $request, $id)
     {
         //
-        Worker::findOrFail($id)->update($request->all());
-        return redirect()->route('personnel.index');
     }
 
     /**
@@ -90,9 +113,5 @@ class personnelController extends Controller
     public function destroy($id)
     {
         //
-        $worker = Worker::findOrFail($id);
-        $worker->statusWorker = 0;
-        $worker->save();
-        return \redirect()->route('personnel.index');
     }
 }
