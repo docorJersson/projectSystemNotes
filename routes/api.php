@@ -58,8 +58,6 @@ Route::get('/degrees/{id}/courses', 'levelController@byCourse');
 Route::get('/bimester/{year}/period', 'levelController@byBimester');
 Route::get('/catedra/{code}/{year}', 'levelController@byCoursesTeacher');
 Route::get('/subjects/{id}/{idPerio}', 'capacitiesController@show');
-Route::get('/personnel/{id}/{idCourse}/{idSection}/{idPeriod}', function ($id, $idCourse, $idSection, $idPeriod) {
-    /*return (DB::table('detailTeachers')->select('idDetailTeacher')->where('codeWorker', '=', $id)->where('idCourse', '=', $idCourse)->where('idSection', $idSection)->where('idPeriod', '=', $idPeriod)->first());*/
-    return (DB::table('detailTeachers')->select('idDetailTeacher')
-        ->where(['codeWorker' => $id], ['idCourse' => $idCourse], ['idSection' => $idSection], ['idPeriod' => $idPeriod]));
-});
+
+
+Route::get('/notes/{id}/{idCourse}/{idSection}/{idPeriod}','levelController@blue');
