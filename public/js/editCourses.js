@@ -15,3 +15,10 @@ $("#tableNewCapacity").on("click", "tbody tr", function () {
 
 //esto es posible que también vaya en cátedra 
 $("#btnTeachers").click(listaTeachers());
+
+let tableCourseTeachers = [];
+
+$("#table-teacher").on("click", "tbody tr", function () {
+    var row = tablePersonal.row($(this)).data();
+    selectTeacherCompare_Catedra(row);
+});
