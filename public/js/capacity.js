@@ -1,3 +1,31 @@
+$(document).ready(function () {
+    $.ajax({
+        type: "GET",
+        url: "api/level",
+        dataType: "json",
+        success: function (data) {
+            cargarLevel(data);
+        },
+    });
+});
+
+$("#idGrade").attr("disabled", true);
+$("#idCourse").attr("disabled", true);
+
+$("#idLevel").on("change", function () {
+    let id = $(this).val();
+    selectLevel_Catedra(id);
+});
+
+$("#idGrade").on("change", function () {
+    let id = $(this).val();
+    showCourses(id);
+});
+
+$("#btnCourseTeachers").on("click", function () {
+    showCourseTeacher_Catedra()
+});
+
 let order = 0;
 
 let valLevel = [];
