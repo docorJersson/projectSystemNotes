@@ -58,3 +58,4 @@ Route::get('/degrees/{id}/sections', 'levelController@bySection');
 Route::get('/degrees/{id}/courses', 'levelController@byCourse');
 Route::get('/bimester/{year}/period', 'levelController@byBimester');
 Route::get('/catedra/{code}/{year}', 'levelController@byCoursesTeacher');
+

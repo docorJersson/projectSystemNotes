@@ -31,7 +31,7 @@ Route::get('/home', 'HomeController@index')->name('home'); //está ruta es la qu
 Route::get('/grade_section', 'MaintainerController@GradesSections');
 Route::get('/course_grade', 'MaintainerController@DefCoursesGrades');
 Route::resource('courses', 'CoursesController');
-Route::get('/subjects', 'MaintainerController@Capacity');
+Route::resource('/subjects', 'capacitiesController');
 Route::get('/register_notes', 'MaintainerController@RegisterNotes');
 
 Route::resource('/personnel', 'personnelController');
