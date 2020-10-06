@@ -45,8 +45,16 @@ class levelController extends Controller
     }
 
     //Código que le brutitot de chilon no hizo
-      public function blue($id, $idCourse, $idSection, $idPeriod) {
-         return DB::table('detailTeachers')->select('idDetailTeacher')
-            ->where(['codeWorker' => $id, 'idCourse' => $idCourse, 'idSection' => $idSection, 'idPeriod' => $idPeriod])->get();
+   public function blue($id, $idCourse, $idSection, $idPeriod) {
+      return DB::table('detailTeachers')->select('idDetailTeacher')
+         ->where(['codeWorker' => $id, 'idCourse' => $idCourse, 'idSection' => $idSection, 'idPeriod' => $idPeriod])->get();
+   }
+
+   public function students($id) {
+         return DB::table('detailStudents as d')
+         ->join('students as s', 's.codeStudent', '=', 'd.codeStudent')
+         ->join('detailTeachers as t', 't.idDetailTeacher', '=', 'd.idDetailTeacher')
+         ->select('d.idDetailStudent','t.idDetailTeacher','s.nameStudent','s.lastNameStudent')
+         ->where(['t.idDetailTeacher' => $id])->get();
    }
 }
