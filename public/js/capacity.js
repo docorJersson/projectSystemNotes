@@ -46,7 +46,7 @@ function addCapacity() {
     ctrlCapacity[index] = description;
     ctrlAbreviation[index] = abrev;
     var newRow =
-        '<tr id="newRow' + index + '"><td><input type="hidden" name="idCourse[]" value="' + valCourse[0] + '">' + valCourse[1] + '</td><td><input type="hidden" name="description[]" value="' + description + '">' + description + '</td><td><input type="hidden" name="abrev[]" value="' + abrev + '">' + abrev + '</td><td><input type="hidden" name="order[]" value="' + orderCapacities + '">' + orderCapacities + '</td><td><a href="#" class="btn btn-sm btn-danger" onclick="quitarCapacity(' + index + ')"><i class="fas fa-minus-circle"></i ></a></td></tr>'
+        '<tr id="newRow' + index + '"><td><input type="hidden" name="idCourse[]" value="' + valCourse[0] + '">' + valCourse[1] + '</td><td><input type="hidden" name="description[]" value="' + description + '">' + description + '</td><td><input type="hidden" name="abrev[]" value="' + abrev + '">' + abrev + '</td><td><input type="hidden" name="order[]" value="' + orderCapacities + '">' + orderCapacities + '</td><td><a href="#" class="btn btn-sm btn-danger" onclick="quitarCapacity(' + index + ')" id="delete"><i class="fas fa-minus-circle"></i></a></td></tr>'
     $("#tableCoursesCapacity tbody").append(newRow);
     index++;
 }
@@ -66,3 +66,14 @@ function quitarCapacity(item) {
     ctrlAbreviation[index] = "";
     index--;
 }
+
+$('#close').click(function () {
+    let elmtTable = document.getElementById('tableCoursesCapacity');
+    let tableRows = elmtTable.getElementsByTagName('tr');
+    let rowCount = tableRows.length;
+
+    for (let x = rowCount - 1; x > 0; x--) {
+        elmtTable.removeChild(tableRows[x]);
+    }
+    $("#idLevel").attr("disabled", false);
+});
