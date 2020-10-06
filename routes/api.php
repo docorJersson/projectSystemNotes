@@ -61,3 +61,4 @@ Route::get('/subjects/{id}/{idPerio}', 'capacitiesController@show');
 
 
 Route::get('/notes/{id}/{idCourse}/{idSection}/{idPeriod}','levelController@blue');
+Route::get('/students/{id}','levelController@students');
