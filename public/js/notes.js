@@ -20,6 +20,8 @@ $("#insertCourses").attr("disabled", true);
 $("#idGrade").attr("disabled", true);
 $("#idSection").attr("disabled", true);
 $("#idCourse").attr("disabled", true);
+$('#searchCourses').attr("disabled", true);
+
 //$("#idPeriodo").attr("disabled", true);
 $("#idPeriodo").html("");
 
@@ -37,6 +39,7 @@ $("#idGrade").on("change", function () {
 
 $("#btnTeachers").click(function () {
     listaTeachers();
+    $('#searchCourses').attr("disabled", false);
 });
 $("#processStudents").click(function () {
     obtenerDetailTeacher();
@@ -44,7 +47,6 @@ $("#processStudents").click(function () {
 
 $("#searchCourses").click(function () {
     listarCoursesPeriod_Notes();
-    $(this).attr("disabled", true);
 });
 let tableCourseTeachers = [];
 $("#table-teacher").on("click", "tbody tr", function () {
@@ -87,7 +89,12 @@ function listarCoursesPeriod_Notes() {
         url: "api/subjects/" + valCourse[0] + "/" + valPeriod[0],
         dataType: "json",
         success: function (data) {
-            console.log(data);
+
+            if (data == null) {
+                alert("El curso seleccionado no tiene aún Capacidades");
+                return;
+            }
+            $('#searchCourses').attr("disabled", true);
             cargarCoursePerio(data);
         },
     });
