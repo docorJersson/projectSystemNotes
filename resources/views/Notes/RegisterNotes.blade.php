@@ -72,24 +72,8 @@
                                         <th>#</th>
                                         <th>Alumno</th>
                                         <th>Nota 1</th>
-                                        <th>Nota 2</th>
-                                        <th>Nota 3</th>
-                                        <th>Nota 4</th>
-                                        <th>Promedio</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Hola</td>
-                                        <td>Hola</td>
-                                        <td>Hola</td>
-                                        <td>Hola</td>
-                                        <td>Hola</td>
-                                        <td><input type="text" class="form-control" name="" id=""></td>
-                                        <td>Hola</td>
-
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                         <div class="col-md-2 col-sm-2 form-group">
