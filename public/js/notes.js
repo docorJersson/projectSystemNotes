@@ -41,9 +41,6 @@ $("#btnTeachers").click(function () {
     $("#searchCourses").attr("disabled", false);
 });
 
-$("#searchCourses").click(function () {
-    listarCoursesPeriod_Notes();
-});
 
 let tableCourseTeachers = [];
 $("#table-teacher").on("click", "tbody tr", function () {
@@ -78,42 +75,15 @@ $("#idCourse").change(function () {
     return (valCourse = [valueCourse, textCourse]);
 });
 
+
+
+
+var idDT;
 var dataCapacitiesCourses;
 var dataStudent;
 
-function listarCoursesPeriod_Notes() {
-    $.ajax({
-        type: "GET",
-        url: "api/subjects/" + valCourse[0] + "/" + valPeriod[0],
-        dataType: "json",
-        success: function (data) {
-            if (data == null) {
-                alert("El curso seleccionado no tiene aún Capacidades");
-                return;
-            }
-            dataCapacitiesCourses = data;
-            $("#searchCourses").attr("disabled", true);
-            cargarCoursePerio(data);
-        },
-    });
-}
-
-function cargarCoursePerio(data) {
-    var fila_Capacities;
-    $.each(data, function (registro) {
-        fila_Capacities +=
-            '<div><input type="hidden" value="' +
-            registro.pivot.idDetailCapacity +
-            '"><p>' +
-            registro.descriptionCapacity +
-            "<p/></div>";
-    });
-    return fila_Capacities;
-}
-
 function obtenerDetailTeacher() {
     var valueCourse = codeWorkerAl.value.toString();
-    var idDT;
     $.ajax({
         type: "GET",
         url: "api/notes/" +
@@ -125,33 +95,93 @@ function obtenerDetailTeacher() {
             "/" +
             valPeriod[0],
         success: function (data) {
-            $.each(data, function (registro) {
-                idDT = registro.idDetailTeacher;
+            idDT = data[0].idDetailTeacher;
+            $.ajax({
+                type: "GET",
+                url: "api/subjects/" + valCourse[0] + "/" + valPeriod[0],
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    /*  if (data == null || data == undefined) {
+                          alert("El curso seleccionado no tiene aún Capacidades");
+                          return;
+                      }*/
+                    dataCapacitiesCourses = data;
+                    $.ajax({
+                        type: "GET",
+                        url: "api/students/" + idDT,
+                        success: function (studentCount) {
+                            var t = studentCount.length;
+                            var fila = null;
+                            for (let index = 0; index < t; index++) {
+
+                                fila =
+                                    '<tr id="fila' +
+                                    idDT +
+                                    '"><td><input type="text" name="idDetailCapacity[]" value="' +
+                                    idDT +
+                                    '" >' +
+                                    studentCount[index].idDetailStudent +
+                                    "</td><td>" +
+                                    studentCount[index].nameStudent +
+                                    " " +
+                                    studentCount[index].lastNameStudent +
+                                    "</td><td>" +
+                                    cargarCoursePerio(dataCapacitiesCourses) +
+                                    "</td>";
+
+                                $("#tableNotes tbody").append(fila);
+                            }
+                        },
+                    });
+                },
             });
+
         },
     });
+
+}
+
+function cargarCoursePerio(data) {
+    var fila_Capacities = '';
+    data.forEach(registro => {
+        fila_Capacities +=
+            '<div><input type="hidden" value="' +
+            registro.pivot.idDetailCapacity +
+            '"><p>' +
+            registro.descriptionCapacity +
+            "<p/></div>";
+    });
+    return fila_Capacities;
+}
+
+function consultCapacitiesCourse() {
     $.ajax({
         type: "GET",
         url: "api/subjects/" + valCourse[0] + "/" + valPeriod[0],
         dataType: "json",
         success: function (data) {
-            if (data == null) {
+            if (data == null || data == undefined) {
                 alert("El curso seleccionado no tiene aún Capacidades");
                 return;
             }
             dataCapacitiesCourses = data;
-            //    $("#searchCourses").attr("disabled", true);
+            consultStudent(idDT);
         },
     });
+}
+
+function consultStudent(idDeTe) {
     $.ajax({
         type: "GET",
-        url: "api/students/" + idDT,
+        url: "api/students/" + idDeTe,
         success: function (studentCount) {
             dataStudent = studentCount;
             cargarStudentTable(dataStudent);
         },
     });
 }
+
 
 function cargarStudentTable(dataPositionStudent) {
     var t = dataPositionStudent.length;
@@ -171,13 +201,10 @@ function cargarStudentTable(dataPositionStudent) {
             "</td><td>" +
             cargarCoursePerio(dataCapacitiesCourses) +
             "</td>";
-        $("#table-nots tbody").append(fila_nueva);
+        $("#tableNotes tbody").append(fila_nueva);
     }
 }
 
-$("#processStudents").click(function () {
-    obtenerDetailTeacher();
-});
 $("#procesar").click(function () {
-    console.log("hello");
+    obtenerDetailTeacher();
 });
