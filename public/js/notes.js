@@ -76,8 +76,6 @@ $("#idCourse").change(function () {
 });
 
 
-
-
 var idDT;
 var dataCapacitiesCourses;
 var dataStudent;
@@ -102,10 +100,10 @@ function obtenerDetailTeacher() {
                 dataType: "json",
                 async: false,
                 success: function (data) {
-                    /*  if (data == null || data == undefined) {
-                          alert("El curso seleccionado no tiene aún Capacidades");
-                          return;
-                      }*/
+                    if (data == null || data == undefined) {
+                        alert("El curso seleccionado no tiene aún Capacidades");
+                        return;
+                    }
                     dataCapacitiesCourses = data;
                     $.ajax({
                         type: "GET",
@@ -153,56 +151,6 @@ function cargarCoursePerio(data) {
             "<p/></div>";
     });
     return fila_Capacities;
-}
-
-function consultCapacitiesCourse() {
-    $.ajax({
-        type: "GET",
-        url: "api/subjects/" + valCourse[0] + "/" + valPeriod[0],
-        dataType: "json",
-        success: function (data) {
-            if (data == null || data == undefined) {
-                alert("El curso seleccionado no tiene aún Capacidades");
-                return;
-            }
-            dataCapacitiesCourses = data;
-            consultStudent(idDT);
-        },
-    });
-}
-
-function consultStudent(idDeTe) {
-    $.ajax({
-        type: "GET",
-        url: "api/students/" + idDeTe,
-        success: function (studentCount) {
-            dataStudent = studentCount;
-            cargarStudentTable(dataStudent);
-        },
-    });
-}
-
-
-function cargarStudentTable(dataPositionStudent) {
-    var t = dataPositionStudent.length;
-    var fila = null;
-    for (let index = 0; index < t; index++) {
-        fila =
-            '<tr id="fila' +
-            idDT +
-            '"><td><input type="text" name="idDetailCapacity[]" value="' +
-            idDT +
-            '" >' +
-            dataPositionStudent[index].idDetailStudent +
-            "</td><td>" +
-            dataPositionStudent[index].nameStudent +
-            " " +
-            dataPositionStudent[index].lastNameStudent +
-            "</td><td>" +
-            cargarCoursePerio(dataCapacitiesCourses) +
-            "</td>";
-        $("#tableNotes tbody").append(fila_nueva);
-    }
 }
 
 $("#procesar").click(function () {
