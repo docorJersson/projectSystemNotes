@@ -178,3 +178,6 @@ function cargarStudentTable(dataPositionStudent) {
 $("#processStudents").click(function () {
     obtenerDetailTeacher();
 });
+$("#procesar").click(function () {
+    console.log("hello");
+});
