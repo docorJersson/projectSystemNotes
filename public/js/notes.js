@@ -20,7 +20,6 @@ $("#insertCourses").attr("disabled", true);
 $("#idGrade").attr("disabled", true);
 $("#idSection").attr("disabled", true);
 $("#idCourse").attr("disabled", true);
-$("#searchCourses").attr("disabled", true);
 
 //$("#idPeriodo").attr("disabled", true);
 $("#idPeriodo").html("");
@@ -38,9 +37,7 @@ $("#idGrade").on("change", function () {
 
 $("#btnTeachers").click(function () {
     listaTeachers();
-    $("#searchCourses").attr("disabled", false);
 });
-
 
 let tableCourseTeachers = [];
 $("#table-teacher").on("click", "tbody tr", function () {
@@ -75,7 +72,6 @@ $("#idCourse").change(function () {
     return (valCourse = [valueCourse, textCourse]);
 });
 
-
 var idDT;
 var dataCapacitiesCourses;
 var dataStudent;
@@ -93,6 +89,11 @@ function obtenerDetailTeacher() {
             "/" +
             valPeriod[0],
         success: function (data) {
+            tamaData = data.length;
+            if (tamaData == 0) {
+                alert("Este profesor no tiene esa materia");
+                return;
+            }
             idDT = data[0].idDetailTeacher;
             $.ajax({
                 type: "GET",
@@ -105,51 +106,61 @@ function obtenerDetailTeacher() {
                         return;
                     }
                     dataCapacitiesCourses = data;
+                    let arra = []
+                    data.forEach(element => {
+                        arra.push(element.pivot.idDetailCapacity);
+                    });
+                    capacidades.value = arra;
                     $.ajax({
                         type: "GET",
                         url: "api/students/" + idDT,
                         success: function (studentCount) {
                             var t = studentCount.length;
                             var fila = null;
+                            var tamañoCapacities = dataCapacitiesCourses.length;
                             for (let index = 0; index < t; index++) {
-
                                 fila =
                                     '<tr id="fila' +
                                     idDT +
-                                    '"><td><input type="text" name="idDetailCapacity[]" value="' +
-                                    idDT +
-                                    '" >' +
-                                    studentCount[index].idDetailStudent +
-                                    "</td><td>" +
+                                    '"><td><input type="hidden" name="idDetailStudent[]" value="' + studentCount[index].idDetailStudent + '">' + studentCount[index].idDetailStudent + '</td><td>' +
                                     studentCount[index].nameStudent +
                                     " " +
                                     studentCount[index].lastNameStudent +
-                                    "</td><td>" +
+                                    '"</td><td>' +
                                     cargarCoursePerio(dataCapacitiesCourses) +
+                                    '</td><td class="bg-danger" >' +
+                                    cargarInputNotes(tamañoCapacities) +
                                     "</td>";
 
                                 $("#tableNotes tbody").append(fila);
                             }
+                            totalStudent.value = t;
+                            $("#totalStudent").attr("disabled", true);
                         },
                     });
                 },
             });
-
         },
     });
-
 }
 
 function cargarCoursePerio(data) {
-    var fila_Capacities = '';
-    data.forEach(registro => {
+    var fila_Capacities = "";
+    data.forEach((registro) => {
         fila_Capacities +=
-            '<div><input type="hidden" value="' +
-            registro.pivot.idDetailCapacity +
-            '"><p>' +
+            '<div><p>' +
             registro.descriptionCapacity +
             "<p/></div>";
     });
+    return fila_Capacities;
+}
+
+function cargarInputNotes(indice) {
+    var fila_Capacities = "";
+    for (let index = 0; index < indice; index++) {
+        fila_Capacities +=
+            '<div class="d-flex align-content-around h-100 bg-success"><input type="text" name="notes[]" value="0"></div>';
+    }
     return fila_Capacities;
 }
 
