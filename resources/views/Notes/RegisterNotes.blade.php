@@ -9,7 +9,9 @@
         <div class="card-body">
             <div class="container">
                 <div class="col-md-10 center-margin" style="font-family: Arial;color:black">
-                    <form class="form-horizontal form-label-left">
+                    <form class="form-horizontal form-label-left" action="{{URL::to('notes')}}" method="post">
+                        @csrf
+                        @method('post')
                         <div class="row">
                             <div class="col-md-4 col-sm-12  form-group">
                                 <label for="">Nivel*</label>
@@ -31,6 +33,7 @@
                                 <label for="">Periodo</label>
                                 <select id="idPeriodo" name="idPeriodo" class="form-control" required></select>
                             </div>
+
                             <div class="col-md-4 col-sm-12  form-group">
                                 <label for="">Sección*</label>
                                 <select id="idSection" name="idSection " class="form-control" required>
@@ -41,64 +44,57 @@
                                 <select id="idCourse" name="idCourse " class="form-control" required>
                                 </select>
                             </div>
-                            <div class="col-md-6 col-sm-12 form-group">
+                            <div class="col-md-1 mt-md-4 col-sm-12 form-group">
+                                @include('Catedra.ListTeachers')
+                            </div>
+
+                            <div class="col-md-11 col-sm-12 form-group">
                                 <label for="">Docente*</label>
                                 <input type="hidden" id="codeWorkerAl" name="codeWorker">
                                 <input type="hidden" id="codeTeacher">
                                 <input type="text" class="form-control" id="nameWorker" required readonly>
-                                @include('Catedra.ListTeachers')
                             </div>
-                            <div class="col-md-6 col-sm-12  form-group">
-                                <button id="searchCourses">Buscar Capacidades</button>
-                                <label for="">Capacidad*</label>
-                                <select id="idCapcityCP" name="idCapacity " class="form-control" required>
-                                    <option value="">Seleccione</option>
-                                </select>
+                            <hr>
+
+                            <div class="col-12 form-group">
+                                <a type="button" class="btn btn-success text-white float-right" id="procesar">
+                                    <i class="fa fa-download"></i>
+                                </a>
                             </div>
-                            <div class="col-md-3 col-sm-10 form-group text-center">
-                                <button type="submit" class="btn btn-success text-white"><i class="fa fa-save"></i>
-                                    Procesar</button>
+
+                            <div class="col-md-12 col-sm-12">
+                                <label for="" style="font-family: Arial; font-size: 15px;">Alumnos Matriculados:</label>
+                                <input type="hidden" id="capacidades" name="idDetailCapacity">
+                                <div class="table-responsive">
+                                    <table id="tableNotes" class="table table-bordered display nowrap" cellspacing="0"
+                                        width="100%">
+                                        <thead class="bg-dark">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Alumno</th>
+                                                <th>Capacidad</th>
+                                                <th>Nota de Periodo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-2 form-group">
+                                <input type="submit" value="Guardar">
                             </div>
 
                         </div>
                     </form>
                     <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <label for="" style="font-family: Arial; font-size: 15px;">Alumnos Matriculados:</label>
-                            <table id="table-nots" class="table table-bordered display nowrap" cellspacing="0"
-                                width="100%">
-                                <thead class="bg-dark">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Alumno</th>
-                                        <th>Nota 1</th>
-                                        <th>Nota 2</th>
-                                        <th>Nota 3</th>
-                                        <th>Nota 4</th>
-                                        <th>Promedio</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Hola</td>
-                                        <td>Hola</td>
-                                        <td>Hola</td>
-                                        <td>Hola</td>
-                                        <td>Hola</td>
-                                        <td><input type="text" class="form-control" name="" id=""></td>
-                                        <td>Hola</td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                         <div class="col-md-2 col-sm-2 form-group">
                             <label for="">Total de Alumnos*</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" id="totalStudent">
                         </div>
                         <div class="col-md-2"></div>
                         <div class="col-md-8 col-sm-10 form-group text-center p-4">
-                            <a class="btn bg-secondary text-white"><i class="fa fa-reply"></i> Salir</a>
+                            <a href="home" class="btn bg-secondary text-white"><i class="fa fa-reply"></i></a>
                             <a class="btn bg-info text-white"><i class="fa fa-file"></i> Reporte Anual</a>
                             <a class="btn bg-primary text-white"><i class="fa fa-file"></i> Reporte 1 Bimestre</a>
                         </div>
