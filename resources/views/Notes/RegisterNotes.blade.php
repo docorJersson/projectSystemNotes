@@ -41,7 +41,7 @@
                             </div>
                             <div class="col-md-4 col-sm-12  form-group">
                                 <label for="">Curso*</label>
-                                <select id="idCourse" name="idCourse " class="form-control" required>
+                                <select id="idCourse" name="idCourse" class="form-control" required>
                                 </select>
                             </div>
                             <div class="col-md-1 mt-md-4 col-sm-12 form-group">
@@ -52,7 +52,7 @@
                                 <label for="">Docente*</label>
                                 <input type="hidden" id="codeWorkerAl" name="codeWorker">
                                 <input type="hidden" id="codeTeacher">
-                                <input type="text" class="form-control" id="nameWorker" required readonly>
+                                <input type="text" class="form-control" id="nameWorker" name="nameWorker" required readonly>
                             </div>
                             <hr>
 
@@ -94,9 +94,15 @@
                         </div>
                         <div class="col-md-2"></div>
                         <div class="col-md-8 col-sm-10 form-group text-center p-4">
-                            <a href="home" class="btn bg-secondary text-white"><i class="fa fa-reply"></i></a>
-                            <a class="btn bg-info text-white"><i class="fa fa-file"></i> Reporte Anual</a>
-                            <a class="btn bg-primary text-white"><i class="fa fa-file"></i> Reporte 1 Bimestre</a>
+                            <a href="home" class="btn bg-secondary text-white" ><i class="fa fa-reply"></i></a>
+                            <form action="{{route('descarga')}}" method="get" id="form1" name="form1">
+                                <input  name="codigo" id="codigo">
+                                <input  name="grade" id="grade">
+                                <input  name="course" id="course">
+                                <input  name="section" id="section">
+                                <input  name="period" id="period">
+                                <button type="button" name="descarga" id="descarga" class="btn bg-info text-white" onclick="enviar()"><i class="fa fa-file"></i> Reporte Por Bimestre</button>
+                            </form>
                         </div>
                     </div>
                 </div>

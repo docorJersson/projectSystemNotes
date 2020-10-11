@@ -49,3 +49,6 @@ Route::resource('catedra', 'catedraController');
 Route::post('notes', [notesController::class, 'store']);
 
 // Route::get('catedra/{code}', 'levelController@byCoursesTeacher');
+
+//Reportes
+Route::get('descarga','PdfController@reporteanual')->name('descarga');
