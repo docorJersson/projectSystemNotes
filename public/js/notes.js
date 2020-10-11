@@ -167,3 +167,20 @@ function cargarInputNotes(indice) {
 $("#procesar").click(function () {
     obtenerDetailTeacher();
 });
+
+function enviar()
+{                    
+    var teachercode=$("#codeWorkerAl").val();
+    $("#codigo").val(teachercode);
+    var gradecode=$('#idGrade').val();
+    $("#grade").val(gradecode);
+    var coursecode=$("#idCourse").val();
+    $("#course").val(coursecode);
+
+    var sectioncode=$('#idSection').val();
+    $("#section").val(sectioncode);
+
+    var periodcode=$('#idPeriodo').val();
+    $("#period").val(periodcode);
+    document.getElementById("form1").submit();
+}
