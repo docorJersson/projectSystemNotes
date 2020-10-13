@@ -47,8 +47,7 @@ Route::get('catedra', function () {
     return datatables(
         DB::select('select w.codeWorker, t.codeTeacher, w.nameWorker, w.lastNameWorker
         from teachers t join workers w on t.codeWorker=w.codeWorker where w.statusWorker=1')
-    )
-        ->toJson();
+    )->toJson();
 });
 
 
