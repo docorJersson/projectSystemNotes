@@ -128,7 +128,7 @@ function obtenerDetailTeacher() {
                                     studentCount[index].lastNameStudent +
                                     '"</td><td>' +
                                     cargarCoursePerio(dataCapacitiesCourses) +
-                                    '</td><td class="bg-danger" >' +
+                                    '</td><td>' +
                                     cargarInputNotes(tamañoCapacities) +
                                     "</td>";
 
