@@ -96,11 +96,11 @@
                         <div class="col-md-8 col-sm-10 form-group text-center p-4">
                             <a href="home" class="btn bg-secondary text-white" ><i class="fa fa-reply"></i></a>
                             <form action="{{route('descarga')}}" method="get" id="form1" name="form1">
-                                <input  name="codigo" id="codigo">
-                                <input  name="grade" id="grade">
-                                <input  name="course" id="course">
-                                <input  name="section" id="section">
-                                <input  name="period" id="period">
+                                <input  type="hidden" name="codigo" id="codigo">
+                                <input  type="hidden" name="grade" id="grade">
+                                <input  type="hidden" name="course" id="course">
+                                <input  type="hidden" name="section" id="section">
+                                <input  type="hidden" name="period" id="period">
                                 <button type="button" name="descarga" id="descarga" class="btn bg-info text-white" onclick="enviar()"><i class="fa fa-file"></i> Reporte Por Bimestre</button>
                             </form>
                         </div>
